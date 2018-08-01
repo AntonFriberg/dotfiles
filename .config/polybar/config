@@ -1,0 +1,159 @@
+[colors]
+nord0  = #2E3440
+nord1  = #3B4252
+nord2  = #434C5E
+nord3  = #4C566A
+nord4  = #D8DEE9
+nord5  = #E5E9F0
+nord6  = #ECEFF4
+nord7  = #8FBCBB
+nord8  = #88C0D0
+nord9  = #81A1C1
+nord10 = #5E81AC
+nord11 = #BF616A
+nord12 = #D08770
+nord13 = #EBCB8B
+nord14 = #A3BE8C
+nord15 = #B48EAD
+
+[settings]
+format-background = ${colors.nord0}
+format-foreground = ${colors.nord4}
+
+[module/backlight]
+type = internal/xbacklight
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <ramp>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = " 🌕 "
+ramp-1 = " 🌔 "
+ramp-2 = " 🌓 "
+ramp-3 = " 🌒 "
+ramp-4 = " 🌑 "
+
+format-background = ${colors.nord2}
+format-foreground = ${colors.nord4}
+
+[module/vpn]
+type = custom/script
+exec = echo "  "
+exec-if = wg show | grep " "
+interval = 30
+format-background = ${colors.nord2}
+
+[module/wired]
+type = internal/network
+interface = enp0s25
+label-connected = "  "
+format-connected = <label-connected>
+format-connected-background = ${colors.nord2}
+
+[module/wireless]
+type = internal/network
+interface = wlp4s0
+label-connected = "  "
+format-connected = <label-connected>
+format-connected-background = ${colors.nord2}
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %A, %B %dth
+
+label = %date%
+format-padding = 1
+
+[module/time]
+type = internal/date
+interval = 1.0
+time = " %H:%M "
+time-alt = " %A, %B %dth "
+label = %time%
+format-background = ${colors.nord2}
+format-foreground = ${colors.nord4}
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+
+label-focused = %index%
+label-focused-padding = 1
+label-focused-foreground = ${colors.nord4}
+label-focused-background = ${colors.nord3}
+
+label-unfocused = %index%
+label-unfocused-background = ${colors.nord0}
+label-unfocused-padding = 1
+label-visible = %index%
+label-visible-padding = 1
+label-visible-background = ${colors.nord2}
+label-urgent = %index%
+label-urgent-padding = 1
+index-sort = true
+
+[module/battery]
+type = internal/battery
+full-at = 96
+battery = BAT0
+adapter = AC
+poll-interval = 5
+
+format-full =
+format-full-background = ${colors.nord2}
+format-full-padding = 1
+
+format-charging-padding = 1
+format-charging = <animation-charging>
+format-charging-background = ${colors.nord3}
+
+label-discharging = %percentage%%
+format-discharging = <ramp-capacity>
+format-discharging-padding = 1
+format-discharging-background = ${colors.nord3}
+animation-charging-framerate = 750
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+
+[bar/bar]
+monitor-strict = true
+bottom = true
+modules-left = i3
+modules-center =
+modules-right = date time wired wireless vpn backlight battery
+monitor = ${env:MONITOR1}
+background = ${colors.nord0}
+foreground = ${colors.nord4}
+font-0 = Hack:size=10;3
+font-1 = MaterialIcons:size=10;3
+font-2 = FontAwesome5Free:size=10;3
+font-3 = FontAwesome5Free:style=Solid:size=10;3
+font-4 = DejaVuSans:size=10;3
+height = 24
+tray-position = right
+tray-padding = 4
+wm-restack = i3
+
+
+[bar/second]
+inherit = bar/bar
+modules-left = i3
+modules-right = time
+modules-center =
+monitor = ${env:MONITOR2}

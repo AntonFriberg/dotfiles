@@ -1,0 +1,48 @@
+Urxvt*termName:             screen-256color
+
+! -*- include colors -*-
+#include "/home/afriberg/git/nord-xresources/src/nord"
+
+! -*- Basic settings -*-
+URxvt.loginShell:           true
+URxvt*scrollBar:            false
+URxvt*scrollWithBuffer:     false
+URxvt*colorUL:              nord13
+URxvt*secondaryScreen:      1
+URxvt*secondaryScroll:      0
+URxvt*scrollTtyKeypress:    true
+URxvt.iso14755:             false
+URxvt.iso14755_52:          false
+URxvt.saveLines:            2000
+URxvt.fading:               0
+URxvt.internalBorder:       10
+Xcursor.size:               8
+
+! -*- Font rendering -*-
+URxvt.font:                 xft:Hack:medium:size=12
+URxvt.letterSpace:          -1
+!Xft.dpi:                   131
+Xft.lcdfilter:              lcddefault
+Xft.hintstyle:              hintslight
+Xft.hinting:                1
+Xft.antialias:              1
+Xft.rgba:                   rgb
+
+!-*- Perl extensions -*-
+URxvt.perl-ext-common: default,selection-to-clipboard,clipboard,matcher,keyboard-select
+! Mouse selection
+URxvt.keysym.M-u:     perl:url-select:select_next
+URxvt.keysym.M-Escape:perl:keyboard-select:activate
+! Support url links
+URxvt.url-launcher:   /usr/bin/firefox-developer-edition
+URxvt.underlineURLs:  true
+URxvt.matcher.button: 1
+! Fix copy paste commands
+URxvt.keysym.Control-Shift-V:     perl:clipboard:paste
+URxvt.keysym.Control-Shift-C:     perl:clipboard:copy
+! Add terminal tabs
+URxvt.tabbed.no-tabbedex-keys: true
+URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+URxvt.tabbed.autohide: true
