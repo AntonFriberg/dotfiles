@@ -44,4 +44,8 @@ fi
 
 alias axis_connect="sshuttle --dns -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12"
 alias battery="acpi"
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# config alias to manage dotfiles in version control
+function config {
+   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+}
