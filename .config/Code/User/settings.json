@@ -1,0 +1,8 @@
+{
+    "window.menuBarVisibility": "toggle",
+    "editor.fontFamily": "'Hack', 'monospace', monospace, 'Droid Sans Fallback'",
+    "window.zoomLevel": 0,
+    "editor.renderWhitespace": "boundary",
+    "python.linting.pylintPath": "/home/afriberg/Documents/test/bin/pylint",
+    "editor.rulers": [80,120]
+}
