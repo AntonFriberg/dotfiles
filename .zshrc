@@ -33,6 +33,9 @@ if [[ -n $SSH_CONNECTION ]]; then
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# Turn off compression for AUR installs
+alias makepkg='PKGEXT=.tar makepkg'
+
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
