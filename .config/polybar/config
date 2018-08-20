@@ -161,6 +161,6 @@ wm-restack = i3
 [bar/second]
 inherit = bar/bar
 modules-left = i3
-modules-right = time
 modules-center =
+modules-right = date time wired wireless vpn axis backlight battery
 monitor = ${env:MONITOR2}

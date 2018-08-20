@@ -274,7 +274,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/green_leaves.jpg
+exec --no-startup-id feh --bg-fill  ~/Pictures/Wallpapers/mountain.jpg
 exec --no-startup-id compton -b --respect-prop-shadow --config $HOME/.config/compton.conf
 #exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
