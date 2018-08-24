@@ -34,7 +34,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 export ARCHFLAGS="-arch x86_64"
 
 # Turn off compression for AUR installs
-alias makepkg='PKGEXT=.tar makepkg'
+alias makepkg='PKGEXT=".pkg.tar" makepkg'
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
@@ -45,7 +45,9 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh/.ssh-agent)"
 fi
 
-alias axis_connect="sshuttle --dns -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12"
+alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 && echo "Connected."'
+alias axis_disconnect='kill $(< /tmp/sshuttle.pid) && echo "Disconnected."'
+
 alias battery="acpi"
 
 # config alias to manage dotfiles in version control
