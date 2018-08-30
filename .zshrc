@@ -12,6 +12,9 @@ ZSH_THEME="bira"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh_reload
+  docker
+  docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
