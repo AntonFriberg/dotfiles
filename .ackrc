@@ -1,0 +1,29 @@
+#ack is a tool like grep, designed for programmers with large trees of heterogeneous source code
+
+# To install ack, see http://betterthangrep.com/
+# ack will search all files in the current directory & sub-directories
+
+
+# Always sort the files
+#--sort−files
+
+# Always color, even if piping to a another program
+--color
+
+# Ignore some directories during search
+--ignore-dir=.vscode/
+--ignore-dir=node_modules/
+--ignore-dir=node_modules
+
+# Make sure ack knows how to search common filetypes
+--type-add=css=scss
+--type-add=ruby=.haml,.rselm,.feature,.ru,.lock
+--type-set=coffeescript=.coffee
+--type-set=coffee=.coffee
+--type-set=jade=.jade
+--type-set=feature=.feature
+--type-set=json=.json
+--type-set=md=.md,.mkd,.markdown
+
+# Use less as pager
+--pager=less -FRX
