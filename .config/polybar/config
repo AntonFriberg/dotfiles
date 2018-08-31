@@ -34,11 +34,11 @@ format = <ramp>
 label = %percentage%%
 
 ; Only applies if <ramp> is used
-ramp-0 = " 🌕 "
-ramp-1 = " 🌔 "
-ramp-2 = " 🌓 "
-ramp-3 = " 🌒 "
-ramp-4 = " 🌑 "
+ramp-0 = " 🌕" 
+ramp-1 = " 🌔" 
+ramp-2 = " 🌓" 
+ramp-3 = " 🌒" 
+ramp-4 = " 🌑" 
 
 format-background = ${colors.nord2}
 format-foreground = ${colors.nord4}
@@ -115,17 +115,15 @@ adapter = AC
 poll-interval = 5
 
 format-full =
-format-full-background = ${colors.nord2}
-format-full-padding = 1
 
 format-charging-padding = 1
 format-charging = <animation-charging>
-format-charging-background = ${colors.nord3}
+format-charging-background = ${colors.nord2}
 
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity>
 format-discharging-padding = 1
-format-discharging-background = ${colors.nord3}
+format-discharging-background = ${colors.nord2}
 animation-charging-framerate = 750
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -138,20 +136,46 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+use-ui-max = false
+interval = 5
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+format-muted-padding = 1
+format-muted-background = ${colors.nord2}
+; format-muted-foreground = ${colors.nord4}
+format-volume-padding= 1
+format-volume-background = ${colors.nord2}
+; format-volume-foreground = ${colors.nord4}
+
+label-volume = %percentage%%
+label-muted = " 🔇 "
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+
+
+
+
+
 [bar/bar]
 monitor-strict = true
 bottom = true
 modules-left = i3
 modules-center =
-modules-right = date time wired wireless vpn axis backlight battery
+modules-right = date time wired wireless vpn axis backlight pulseaudio battery
 monitor = ${env:MONITOR1}
 background = ${colors.nord0}
 foreground = ${colors.nord4}
 font-0 = Hack:size=10;3
-font-1 = MaterialIcons:size=10;3
-font-2 = FontAwesome5Free:size=10;3
-font-3 = FontAwesome5Free:style=Solid:size=10;3
-font-4 = DejaVuSans:size=10;3
+font-1 = DejavuSans:size=10;3
+font-2 = NotoSansSymbols2:size=12;5
+font-3 = FontAwesome5Free:size=10;3
+font-4 = FontAwesome5Free:style=Solid:size=10;3
+font-5 = MaterialIcons:size=10;3
 height = 24
 tray-position = right
 tray-padding = 4
