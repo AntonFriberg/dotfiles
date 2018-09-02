@@ -46,7 +46,7 @@ format-foreground = ${colors.nord4}
 [module/vpn]
 type = custom/script
 exec = echo "  "
-exec-if = wg show | grep " "
+exec-if = ifconfig | grep -i "mullvad"
 interval = 30
 format-background = ${colors.nord2}
 
@@ -114,7 +114,7 @@ battery = BAT0
 adapter = AC
 poll-interval = 5
 
-format-full = ""
+format-full =
 
 format-charging-padding = 1
 format-charging = <animation-charging>
