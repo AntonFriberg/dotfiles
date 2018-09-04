@@ -9,36 +9,44 @@
 # layout, use the i3-config-wizard
 #
 
+# Theme colors
+#   name     color
+set $nord0   #2E3440
+set $nord1   #3B4252
+set $nord2   #434C5E
+set $nord3   #4C566A
+set $nord4   #D8DEE9
+set $nord5   #E5E9F0
+set $nord6   #ECEFF4
+set $nord7   #8FBCBB
+set $nord8   #88C0D0
+set $nord9   #81A1C1
+set $nord10  #5E81AC
+set $nord11  #BF616A
+set $nord12  #D08770
+set $nord13  #EBCB8B
+set $nord14  #A3BE8C
+set $nord15  #B48EAD
+
+# Colors                  border     background text      indicator child_border
+client.focused            $nord3     $nord3     $nord6    $nord3    $nord3
+client.focused_inactive   $nord5     $nord5     $nord6    $nord6    $nord0
+client.unfocused          $nord1     $nord1     $nord6    $nord8    $nord1
+client.urgent             $nord13    $nord13    $nord0    $nord8    $nord8
+client.placeholder        $nord8     $nord0     $nord8    $nord8    $nord8
+
+#custom settings
+hide_edge_borders both
+new_window pixel 10
+new_float pixel 10
+focus_follows_mouse no
+
 # Disable window titlebars
 for_window [class="^.*"] border pixel 10
-
 # floating window for mpv
 for_window [class="mpv"] floating enable
 
-
-set_from_resource $nord1  i3wm.color0  #2E3440 
-set_from_resource $nord11 i3wm.color0  #3B4252 
-set_from_resource $nord14 i3wm.color2  #434C5E 
-set_from_resource $nord13 i3wm.color3  #4C566A 
-set_from_resource $nord9  i3wm.color4  #D8DEE9 
-set_from_resource $nord15 i3wm.color5  #E5E9F0 
-set_from_resource $nord8  i3wm.color6  #ECEFF4 
-set_from_resource $nord5  i3wm.color7  #8FBCBB 
-set_from_resource $nord3  i3wm.color8  #88C0D0 
-set_from_resource $nord11 i3wm.color9  #81A1C1 
-set_from_resource $nord14 i3wm.color10 #5E81AC  
-set_from_resource $nord13 i3wm.color11 #BF616A  
-set_from_resource $nord9  i3wm.color12 #D08770  
-set_from_resource $nord15 i3wm.color13 #EBCB8B  
-set_from_resource $nord7  i3wm.color14 #A3BE8C  
-set_from_resource $nord6  i3wm.color15 #B48EAD  
-
-set_from_resource $background i3wm.background $nord3
-set_from_resource $foreground i3wm.foreground $nord0
-
-set_from_resource $lighterbg  i3wm.lighterbg  $nord2
-set_from_resource $separator  i3wm.separator $lighterbg
-
+# Define keys
 set $mod Mod4
 set $alt Mod1
 
@@ -244,21 +252,6 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-# Theme colors
-# class                  border      backgr  text	indicator
-client.focused	        $nord3      $nord3  $background $background
-client.focused_inactive $nord1      $nord1  $background $background
-client.unfocused        $nord1      $nord1  $background $background
-client.urgent	        $nord11     $nord11 $background $background
-client.placeholder      $nord1      $nord1  $background $background
-
-#custom settings
-hide_edge_borders both
-new_window pixel 10
-new_float pixel 10
-focus_follows_mouse no
-
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
