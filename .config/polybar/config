@@ -157,6 +157,23 @@ ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
 
+[module/title]
+type = internal/xwindow
+; Available tags:
+;   <label> (default)
+format = <label>
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 100
+
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+label-empty = Empty
+label-empty-foreground = #707880
 
 
 
@@ -165,7 +182,7 @@ ramp-volume-2 = 🔊
 monitor-strict = true
 bottom = true
 modules-left = i3
-modules-center =
+modules-center = title
 modules-right = date time wired wireless vpn axis backlight pulseaudio battery
 monitor = ${env:MONITOR1}
 background = ${colors.nord0}
@@ -184,7 +201,4 @@ wm-restack = i3
 
 [bar/second]
 inherit = bar/bar
-modules-left = i3
-modules-center =
-modules-right = date time wired wireless vpn axis backlight battery
 monitor = ${env:MONITOR2}
