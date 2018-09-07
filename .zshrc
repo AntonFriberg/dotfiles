@@ -12,7 +12,7 @@ ZSH_THEME="bira"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh_reload
+  virtualenvwrapper
   docker
   docker-compose
 )
@@ -48,12 +48,20 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh/.ssh-agent)"
 fi
 
+# Environment Variables
+export BAT_THEME="Nord"
+
+# Aliases
 alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 && echo "Connected."'
 alias axis_disconnect='kill $(< /tmp/sshuttle.pid) && echo "Disconnected."'
-
 alias battery="acpi"
+alias du="ncdu --color dark -rr"
+alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
+
 
 # config alias to manage dotfiles in version control
 function config {
-   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+   /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
