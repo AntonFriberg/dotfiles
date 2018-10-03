@@ -8,5 +8,6 @@
         80,
         120
     ],
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Nord",
+    "editor.minimap.enabled": false
 }
