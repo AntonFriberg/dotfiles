@@ -26,7 +26,8 @@ Create a bare git repository in your home catalog and alias a command to handle 
 git init --bare $HOME/.dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
-echo "alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+
+echo -e 'function config {\n  /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"\n}' >> $HOME/.zshrc
 ```
 
 ## Usage example

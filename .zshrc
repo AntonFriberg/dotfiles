@@ -61,7 +61,7 @@ alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandock
 
 # config alias to manage dotfiles in version control
 function config {
-   /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"
+  /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
