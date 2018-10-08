@@ -88,3 +88,11 @@ config checkout
 config config status.showUntrackedFiles no
 ```
 [atlassian developer blog]: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+
+## External dependencies
+
+### Nano syntax highlighting
+
+```
+git clone git@github.com:scopatz/nanorc.git ~/.nano
+```
