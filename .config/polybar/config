@@ -46,15 +46,15 @@ format-foreground = ${colors.nord4}
 [module/vpn]
 type = custom/script
 exec = echo "  "
-exec-if = ifconfig | grep -i "mullvad"
-interval = 30
+exec-if = ip a | grep mullvad > /dev/null
+interval = 5
 format-background = ${colors.nord2}
 
 [module/axis]
 type = custom/script
 exec = echo "  "
-exec-if = pgrep -f sshuttle
-interval = 30
+exec-if = pgrep sshuttle > /dev/null
+interval = 5
 format-background = ${colors.nord2}
 
 [module/wired]
