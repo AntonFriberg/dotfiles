@@ -15,6 +15,7 @@ plugins=(
   virtualenvwrapper
   docker
   docker-compose
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -52,7 +53,7 @@ fi
 export BAT_THEME="Nord"
 
 # Aliases
-alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 && echo "Connected."'
+alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 -x 172.19.0.0/24 && echo "Connected."'
 alias axis_disconnect='kill $(< /tmp/sshuttle.pid) && echo "Disconnected."'
 alias battery="acpi"
 alias du="ncdu --color dark -rr"
@@ -64,4 +65,8 @@ function config {
   /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Fix mullvad autocompletion from https://gitlab.com/adihrustic/Mullvad-WireGuard-Wrapper
+autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
+source /usr/share/bash-completion/completions/mullvad
+
