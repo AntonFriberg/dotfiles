@@ -9,5 +9,7 @@
         120
     ],
     "workbench.colorTheme": "Nord",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "python.venvPath": "~/.virtualenvs",
+    "window.titleBarStyle": "custom"
 }
