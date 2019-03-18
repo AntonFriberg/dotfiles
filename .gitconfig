@@ -1,0 +1,7 @@
+[user]
+	email = anton.friberg@outlook.com
+	name = Anton Friberg
+[status]
+	short = true
+[format]
+	pretty = format:%h%Cgreen%d%Creset %C(yellow)%an %C(cyan)%cr%Creset %s
