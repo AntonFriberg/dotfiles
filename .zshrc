@@ -22,6 +22,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# yarn global install configuration
+export PATH="$PATH:`yarn global bin`"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -53,7 +56,7 @@ fi
 export BAT_THEME="Nord"
 
 # Aliases
-alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 -x 172.19.0.0/24 && echo "Connected."'
+alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 && echo "Connected."'
 alias axis_disconnect='kill $(< /tmp/sshuttle.pid) && echo "Disconnected."'
 alias battery="acpi"
 alias du="ncdu --color dark -rr"
