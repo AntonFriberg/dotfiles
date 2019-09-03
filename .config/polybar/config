@@ -46,7 +46,7 @@ format-foreground = ${colors.nord4}
 [module/vpn]
 type = custom/script
 exec = echo "  "
-exec-if = ip a | grep mullvad > /dev/null
+exec-if = ip a | grep wvpn > /dev/null
 interval = 5
 format-background = ${colors.nord2}
 
