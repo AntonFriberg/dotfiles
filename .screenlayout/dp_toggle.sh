@@ -1,14 +1,14 @@
 #!/bin/bash
-EXTERNAL_OUTPUT="DP1"
+EXTERNAL_OUTPUT="DP1-8"
 INTERNAL_OUTPUT="eDP1"
 
 # if we don't have a file, start at zero
-if [ ! -f "/tmp/monitor_mode.dat" ] ; then
+if [ ! -f "/tmp/monitor_dp_mode.dat" ] ; then
   monitor_mode="all"
 
 # otherwise read the value from the file
 else
-  monitor_mode=`cat /tmp/monitor_mode.dat`
+  monitor_mode=`cat /tmp/monitor_dp_mode.dat`
 fi
 
 if [ $monitor_mode = "all" ]; then
@@ -24,4 +24,4 @@ else
         monitor_mode="all"
         xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --left-of $INTERNAL_OUTPUT
 fi
-echo "${monitor_mode}" > /tmp/monitor_mode.dat
+echo "${monitor_mode}" > /tmp/monitor_dp_mode.dat
