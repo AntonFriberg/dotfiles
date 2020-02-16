@@ -1,0 +1,3 @@
+# https://yadm.io/docs/encryption#
+.config/rclone/*
+.aws/credentials
