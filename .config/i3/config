@@ -279,7 +279,7 @@ bindsym XF86Explorer exec xdg-open $HOME
 bindsym XF86Search exec rofi -show drun
 
 exec --no-startup-id feh --bg-fill  ~/Pictures/Wallpapers/mountain.jpg
-exec --no-startup-id compton -b --respect-prop-shadow --config $HOME/.config/compton.conf
+exec --no-startup-id picom -b --respect-prop-shadow --config $HOME/.config/picom/picom.conf
 # exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
