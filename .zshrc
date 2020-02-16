@@ -73,3 +73,5 @@ autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
 source /usr/share/bash-completion/completions/wvpn
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
