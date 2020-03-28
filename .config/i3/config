@@ -45,6 +45,9 @@ focus_follows_mouse no
 for_window [class="^.*"] border pixel 10
 # floating window for mpv
 for_window [class="mpv"] floating enable
+# floating window for microsoft teams
+for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
+for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 
 # Define keys
 set $mod Mod4
