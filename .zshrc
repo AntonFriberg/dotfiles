@@ -20,6 +20,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Fix completions
+autoload -U compinit && compinit
+
 # User configuration
 
 # yarn global install configuration
