@@ -95,7 +95,7 @@ autocmd InsertLeave * highlight  CursorLine ctermbg=None ctermfg=None
 " Colors
 " ---------------------------------------------------------------------------
 syntax enable
-" set background=dark
+set background=dark
 " ---------------------------------------------------------------------------
 
 " Specify a directory for plugins
@@ -138,6 +138,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
+
+" Yaml syntax
+Plug 'stephpy/vim-yaml'
 
 " Initialize plugin system
 call plug#end()
