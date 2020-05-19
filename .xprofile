@@ -1,6 +1,0 @@
-#!/bin/sh
-xrdb -merge ~/.Xresources⎈
-if [ "$(/usr/bin/xrandr -q --prop | grep 'Broadcast RGB: Full' | wc -l)" = "0" ] ; then
-/usr/bin/xrandr --output DP1 --set "Broadcast RGB" "Full"
-fi
-
