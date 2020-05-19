@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Config paths
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -12,9 +16,6 @@ ZSH_THEME="bira"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  virtualenvwrapper
-  docker
-  docker-compose
   fzf
 )
 
@@ -22,11 +23,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Fix completions
 autoload -U compinit && compinit
-
-# User configuration
-
-# yarn global install configuration
-export PATH="$PATH:`yarn global bin`"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -47,13 +43,13 @@ export ARCHFLAGS="-arch x86_64"
 alias makepkg='PKGEXT=".pkg.tar" makepkg'
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh/.ssh-agent
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh/.ssh-agent)"
-fi
+#export SSH_KEY_PATH="~/.ssh/id_rsa"
+#if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#    ssh-agent > ~/.ssh/.ssh-agent
+#fi
+#if [[ "$SSH_AGENT_PID" == "" ]]; then
+#    eval "$(<~/.ssh/.ssh-agent)"
+#fi
 
 # Environment Variables
 export BAT_THEME="Nord"
@@ -74,7 +70,7 @@ function config {
 # Fix mullvad autocompletion from https://gitlab.com/adihrustic/Mullvad-WireGuard-Wrapper
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
-source /usr/share/bash-completion/completions/wvpn
+#source /usr/share/bash-completion/completions/wvpn
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
