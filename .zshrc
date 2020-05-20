@@ -67,6 +67,9 @@ function config {
   /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"
 }
 
+# fix yadm autocompletion
+# https://github.com/TheLocehiliosan/yadm/tree/master/completion
+fpath=(/home/afriberg/.config/yadm/_yadm $fpath)
 # Fix mullvad autocompletion from https://gitlab.com/adihrustic/Mullvad-WireGuard-Wrapper
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
