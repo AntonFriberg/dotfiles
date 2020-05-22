@@ -43,6 +43,15 @@ client.urgent           $lred     $black     $gray   $lred      $lblue
 # Font
 font pango:monospace 10
 
+# GTK Theme
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Nordic'
+    gsettings set $gnome-schema icon-theme 'Nordic'
+    # gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
+}
+
+
 ### Output configuration
 output * bg $background fill
 #
