@@ -8,12 +8,14 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenclip slurp | grim -g - ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $background /home/afriberg/Pictures/wallpaper.jpg
 
 # Your preferred terminal emulator
 set $term alacritty
+
 # Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 ### Gaps and egdes
@@ -38,8 +40,11 @@ client.focused_inactive $gray     $black     $gray   $gray      $gray
 client.unfocused        $black    $black     $gray   $black     $blue
 client.urgent           $lred     $black     $gray   $lred      $lblue
 
+# Font
+font pango:monospace 10
+
 ### Output configuration
-output * bg /home/afriberg/Pictures/wallpaper.jpg fill
+output * bg $background fill
 #
 # Example configuration:
 #
@@ -256,5 +261,12 @@ gaps inner 8
 gaps outer 10
 smart_gaps off
 
+
+# Screenshot
+bindsym $mod+Print exec $screenshot
+bindsym $mod+Shift+Print exec $screenclip
+
+# waybar
+#exec_always ~/.config/waybar/waybar.sh
 
 include /etc/sway/config.d/*
