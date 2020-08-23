@@ -61,6 +61,10 @@ alias battery="acpi"
 alias du="ncdu --color dark -rr"
 alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
 
+# Fix ssh on exotic terminals see terminfo complexity for more info
+function ssh {
+  TERM=xterm-256color /usr/bin/ssh "${@}"
+}
 
 # config alias to manage dotfiles in version control
 function config {
