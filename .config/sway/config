@@ -16,7 +16,8 @@ set $background /home/afriberg/Pictures/wallpaper.jpg
 set $term alacritty
 
 # Your preferred application launcher
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu wofi --show drun
 
 ### Gaps and egdes
 smart_gaps on
