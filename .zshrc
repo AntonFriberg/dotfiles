@@ -73,7 +73,7 @@ fpath=(/home/afriberg/.config/yadm/_yadm $fpath)
 # Fix mullvad autocompletion from https://gitlab.com/adihrustic/Mullvad-WireGuard-Wrapper
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
-#source /usr/share/bash-completion/completions/wvpn
+source /usr/share/bash-completion/completions/wvpn
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
