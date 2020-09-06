@@ -1,0 +1,12 @@
+# Based on sshuttle's official /usr/lib/systemd/system/sshuttle.service
+[Unit]
+Description=Create a transparent proxy over SSH
+After=network-online.target
+
+[Service]
+Type=notify
+NotifyAccess=all
+ExecStart=/usr/bin/sshuttle --dns --remote sshuttle_tunnel -s %h/.config/sshuttle/prefixes.conf -e "ssh -F %h/.config/sshuttle/tunnel.conf"
+
+[Install]
+WantedBy=multi-user.target
