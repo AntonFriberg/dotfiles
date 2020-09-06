@@ -55,8 +55,9 @@ alias makepkg='PKGEXT=".pkg.tar" makepkg'
 export BAT_THEME="Nord"
 
 # Aliases
-alias axis_connect='sshuttle --daemon --dns --pidfile=/tmp/sshuttle.pid -r lnxantonfr1 10.0.0.0/8 172.16.0.0/12 && echo "Connected."'
-alias axis_disconnect='kill $(< /tmp/sshuttle.pid) && echo "Disconnected."'
+alias axis_connect='systemctl --user start sshuttle.service'
+alias axis_disconnect='systemctl --user stop sshuttle.service'
+alias axis_status='systemctl --user status sshuttle.service'
 alias battery="acpi"
 alias du="ncdu --color dark -rr"
 alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
