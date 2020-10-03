@@ -67,9 +67,6 @@ output * bg $background fill
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 15 --effect-blur 7x5 --effect-vignette 0.5:0.5 --text-color e5e9f0 --ring-color 4c566a --key-hl-color a3be8c --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 15 --effect-blur 7x5 --effect-vignette 0.5:0.5 --text-color e5e9f0 --ring-color 4c566a --key-hl-color a3be8c --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
