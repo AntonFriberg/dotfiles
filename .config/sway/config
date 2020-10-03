@@ -19,30 +19,63 @@ set $term alacritty
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu wofi --show drun
 
-### Gaps and egdes
-smart_gaps on
+### Gaps and edges
+smart_gaps off
 smart_borders on
-gaps inner 8
-default_border pixel 2
+default_border pixel 3
 focus_follows_mouse no
+gaps inner 8
+gaps outer 10
 
-### Palette
-set $black    #3b4252
-set $gray     #d8dee9
-set $lred     #bf616a
-set $blue     #5e81ac
-set $lblue    #88c0d0
-set $white    #eceff4
-set $yellow   #ebcb8b
+# Theme colors (based on nord theme)
+#   name     color
+# The origin color or the Polar Night palette (dark gray).
+set $nord0   #2E3440
+# A brighter shade color based on nord0.
+set $nord1   #3B4252
+# An even more brighter shade color of nord0.
+set $nord2   #434C5E
+# The brightest shade color based on nord0.
+set $nord3   #4C566A
+# Unofficial extra bright gray
+set $nord3a  #7c818c
+# unofficial dark-greenish gray
+set $nord3b  #888888
+# The origin color or the Snow Storm palette.
+set $nord4   #D8DEE9
+# A brighter shade color of nord4.
+set $nord5   #E5E9F0
+# The brightest shade color based on nord4.
+set $nord6   #ECEFF4
+# A calm and highly contrasted color reminiscent of frozen polar water
+set $nord7   #8FBCBB
+# The bright and shiny primary accent color reminiscent of pure and clear ice.
+set $nord8   #88C0D0
+# A more darkened and less saturated color reminiscent of arctic waters.
+set $nord9   #81A1C1
+# A dark and intensive color reminiscent of the deep arctic ocean.
+set $nord10  #5E81AC
+# Used for UI elements that are rendering error states.
+set $nord11  #BF616A
+# Rarely used for UI elements, but it may indicate a more advanced or dangerous functionality.
+set $nord12  #D08770
+# Used for UI elements that are rendering warning states.
+set $nord13  #EBCB8B
+# Used for UI elements that are rendering success states.
+set $nord14  #A3BE8C
+# Rarely used for UI elements, but it may indicate a more uncommon functionality.
+set $nord15  #B48EAD
 
-# Color                 border    background text    indicator  child_border
-client.focused          $gray     $black     $gray   $lblue     $gray
-client.focused_inactive $gray     $black     $gray   $gray      $gray
-client.unfocused        $black    $black     $gray   $black     $blue
-client.urgent           $lred     $black     $gray   $lred      $lblue
+# Window decoration
+# class                 border  backgr. text    indicator child_border
+client.focused          $nord10 $nord10 $nord6  $nord3a   $nord10
+client.focused_inactive $nord3  $nord1  $nord6  $nord3a   $nord3
+client.unfocused        $nord3  $nord1  $nord3b $nord3a   $nord3
+client.urgent           $nord3a $nord11 $nord6  $nord13   $nord11
+client.placeholder      $nord0  $nord0  $nord6  $nord0    $nord0 
 
 # Font
-font pango:monospace 10
+font pango:FiraCode Nerd Font 10
 
 # GTK Theme
 set $gnome-schema org.gnome.desktop.interface
@@ -261,14 +294,6 @@ bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle && micto
 #
 bindsym XF86MonBrightnessUp exec sudo light -A 5
 bindsym XF86MonBrightnessDown exec sudo light -U 5
-
-#
-# Gaps
-#
-gaps inner 8
-gaps outer 10
-smart_gaps off
-
 
 # Screenshot
 bindsym $mod+Print exec $screenshot
