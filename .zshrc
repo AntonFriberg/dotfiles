@@ -4,6 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Config paths
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CURRENT_DESKTOP="sway"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
