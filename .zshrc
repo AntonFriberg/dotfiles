@@ -1,85 +1,129 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Personal Zsh configuration file. It is strongly recommended to keep all
+# shell customization and configuration (including exported environment
+# variables such as PATH) in this file or in files source by it.
+#
+# Zsh manager is zsh4humans
+# Documentation: https://github.com/romkatv/zsh4humans/blob/v4/README.md.
 
-# Config paths
+# Periodic auto-update on Zsh startup: 'ask' or 'no'.
+zstyle ':z4h:'                auto-update      'ask'
+# Ask whether to auto-update this often; has no effect if auto-update is 'no'.
+zstyle ':z4h:'                auto-update-days '28'
+
+# Keyboard type: 'mac' or 'pc'.
+zstyle ':z4h:bindkey'         keyboard         'pc'
+# When fzf menu opens on TAB, another TAB moves the cursor down ('tab:down')
+# or accepts the selection and triggers another TAB-completion ('tab:repeat')?
+zstyle ':z4h:fzf-complete'    fzf-bindings     'tab:down'
+# When fzf menu opens on Alt+Down, TAB moves the cursor down ('tab:down')
+# or accepts the selection and triggers another Alt+Down ('tab:repeat')?
+zstyle ':z4h:cd-down'         fzf-bindings     'tab:down'
+# Right-arrow key accepts one character ('partial-accept') from
+# command autosuggestions or the whole thing ('accept')?
+zstyle ':z4h:autosuggestions' forward-char     'accept'
+
+# Send these files over to the remote host when connecting over ssh.
+# Multiple files can be listed here.
+# zstyle ':z4h:ssh:*'           send-extra-files '~/.iterm2_shell_integration.zsh'
+
+# Disable automatic teleportation of z4h over ssh when connecting to some-host.
+# This makes `ssh some-host` equivalent to `command ssh some-host`.
+# zstyle ':z4h:ssh:some-host'   passthrough       'yes'
+zstyle ':z4h:ssh:*'           passthrough       'no'
+
+# Move the cursor to the end when Up/Down fetches a command from history?
+zstyle ':zle:up-line-or-beginning-search'   leave-cursor 'yes'
+zstyle ':zle:down-line-or-beginning-search' leave-cursor 'yes'
+
+# Clone additional Git repositories from GitHub.
+#
+# This doesn't do anything apart from cloning the repository and keeping it
+# up-to-date. Cloned files can be used after `z4h init`. This is just an
+# example. If you don't plan to use Oh My Zsh, delete this line.
+z4h install ohmyzsh/ohmyzsh || return
+
+# Install or update core components (fzf, zsh-autosuggestions, etc.) and
+# initialize Zsh. After this point console I/O is unavailable until Zsh
+# is fully initialized. Everything that requires user interaction or can
+# perform network I/O must be done above. Everything else is best done below.
+z4h init || return
+
+# Export environment variables.
+export GPG_TTY=$TTY
+# config
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_CURRENT_DESKTOP="sway"
+export BAT_THEME="Nord"
+# compilation flags
+export ARCHFLAGS="-arch x86_64"
+# turn off compression for AUR installs
+alias makepkg='PKGEXT=".pkg.tar" makepkg'
+# make sure that python does not produce pyc files
+export PYTHONDONTWRITEBYTECODE=1
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  fzf
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# Fix completions
-autoload -U compinit && compinit
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
+# Extend PATH.
+path=(~/bin $path)
+# fix yadm autocompletion
+fpath=(/home/afriberg/.config/yadm/_yadm $fpath)
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='nvim'
- fi
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# Use additional Git repositories pulled in with `z4h install`.
+#
+# This is just an example that you should delete. It does nothing useful.
+z4h source $Z4H/ohmyzsh/ohmyzsh/lib/diagnostics.zsh
+z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/emoji-clock/emoji-clock.plugin.zsh
+fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
 
-# Turn off compression for AUR installs
-alias makepkg='PKGEXT=".pkg.tar" makepkg'
+# Source additional local files if they exist.
+# z4h source ~/.iterm2_shell_integration.zsh
+z4h source ~/.config/zsh/work_config.zsh
 
-# ssh
-#export SSH_KEY_PATH="~/.ssh/id_rsa"
-#if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-#    ssh-agent > ~/.ssh/.ssh-agent
-#fi
-#if [[ "$SSH_AGENT_PID" == "" ]]; then
-#    eval "$(<~/.ssh/.ssh-agent)"
-#fi
+# Define key bindings.
+z4h bindkey z4h-backward-kill-word  Ctrl+Backspace Ctrl+H
+z4h bindkey z4h-backward-kill-zword Ctrl+Alt+Backspace
 
-# Environment Variables
-export BAT_THEME="Nord"
+z4h bindkey undo Ctrl+/  # undo the last command line change
+z4h bindkey redo Alt+/   # redo the last undone command line change
 
-# Aliases
+z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
+z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
+z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
+z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
+
+# Autoload functions.
+autoload -Uz zmv
+
+# Define functions and completions.
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+compdef _directories md
+
+# Replace `ssh` with `z4h ssh` to automatically teleport z4h to remote hosts.
+# Note: changed config to whitelist via https://github.com/romkatv/zsh4humans/issues/87
+function ssh() { z4h ssh "$@" }
+
+# Define named directories: ~w <=> Windows home directory on WSL.
+[[ -n $z4h_win_home ]] && hash -d w=$z4h_win_home
+
+# Define aliases.
+alias tree='tree -a -I .git'
 alias axis_connect='systemctl --user start sshuttle.service'
 alias axis_disconnect='systemctl --user stop sshuttle.service'
 alias axis_status='systemctl --user status sshuttle.service'
 alias battery="acpi"
 alias du="ncdu --color dark -rr"
 alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
+# Print current proxy environment
+alias pp="env | grep -i proxy"
 
-# Fix ssh on exotic terminals see terminfo complexity for more info
-function ssh {
-  TERM=xterm-256color /usr/bin/ssh "${@}"
-}
+# Add flags to existing aliases.
+alias ls="${aliases[ls]:-ls} -A"
 
-# config alias to manage dotfiles in version control
-function config {
-  /usr/bin/git --git-dir="${HOME}"/.dotfiles/ --work-tree="${HOME}" "${@}"
-}
-
-# fix yadm autocompletion
-# https://github.com/TheLocehiliosan/yadm/tree/master/completion
-fpath=(/home/afriberg/.config/yadm/_yadm $fpath)
-# Fix mullvad autocompletion from https://gitlab.com/adihrustic/Mullvad-WireGuard-Wrapper
-autoload -U compinit && compinit
-autoload -U bashcompinit && bashcompinit
-source /usr/share/bash-completion/completions/wvpn
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
+setopt glob_dots     # no special treatment for file names with a leading dot
+setopt no_auto_menu  # require an extra TAB press to open the completion menu
