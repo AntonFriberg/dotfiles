@@ -1,16 +1,15 @@
 # AntonFriberg's Dotfiles
 
 My personal configuration files and scripts used under both Arch Linux, Ubuntu
-and Debian machines. Currently running [i3-gaps] window manager with [polybar],
-[rofi] application launcher, [urxvt] terminal and [compton] as compositor
+and Debian machines. Currently running [sway] window manager with [waybar],
+[wofi] application launcher, and [alacritty] terminal.
 
 Based on the [nord colorscheme] and managed by [yadm].
 
-[i3-gaps]: https://github.com/Airblader/i3
-[polybar]: https://github.com/polybar/polybar
-[rofi]: https://github.com/davatorium/rofi
-[urxvt]: https://wiki.archlinux.org/index.php/Rxvt-unicode
-[compton]: https://wiki.archlinux.org/index.php/Compton
+[sway]: https://github.com/swaywm/sway
+[waybar]: https://github.com/Alexays/Waybar
+[wofi]: https://github.com/mikn/wofi
+[alacritty]: https://github.com/alacritty/alacritty
 [nord colorscheme]: https://github.com/arcticicestudio/nord
 [yadm]: https://github.com/TheLocehiliosan/yadm
 
@@ -46,16 +45,22 @@ Add your newly installed computer's public [ssh key to Github].
 #### Arch Linux
 
 ```zsh
-yay -Syu yadm-git
+$ yay -Syu alacritty curl sway yadm-git waybar wofi
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v4/install)"
 ```
 
 #### Ubuntu & Debian
 
+Debian and Ubuntu does not provide all dependencies needed in the official repositories unfortunately.
+
 ```zsh
-sudo apt update -y && sudo apt install -y git yad
+$ sudo apt update -y && sudo apt install -y curl yadm
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v4/install)"
 ```
 
 #### Initialize
+
+Install dotfiles.
 
 ```zsh
 yadm clone git@github.com:AntonFriberg/dotfiles.git
