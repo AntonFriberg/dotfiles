@@ -105,7 +105,7 @@ compdef _directories md
 
 # Replace `ssh` with `z4h ssh` to automatically teleport z4h to remote hosts.
 # Note: changed config to whitelist via https://github.com/romkatv/zsh4humans/issues/87
-function ssh() { z4h ssh "$@" }
+#function ssh() { z4h ssh "$@" }
 
 # Define named directories: ~w <=> Windows home directory on WSL.
 [[ -n $z4h_win_home ]] && hash -d w=$z4h_win_home
