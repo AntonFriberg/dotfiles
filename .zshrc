@@ -64,6 +64,8 @@ export PYTHONDONTWRITEBYTECODE=1
 
 # Extend PATH.
 path=(~/bin $path)
+# Poetry
+path=(~/.poetry/bin $path)
 # fix yadm autocompletion
 fpath=(/home/afriberg/.config/yadm/_yadm $fpath)
 # Preferred editor for local and remote sessions
