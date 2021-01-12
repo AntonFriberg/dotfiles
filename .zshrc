@@ -79,10 +79,7 @@ fi
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
-# This is just an example that you should delete. It does nothing useful.
-z4h source $Z4H/ohmyzsh/ohmyzsh/lib/diagnostics.zsh
-z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/emoji-clock/emoji-clock.plugin.zsh
-fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
+z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 
 # Source additional local files if they exist.
 # z4h source ~/.iterm2_shell_integration.zsh
