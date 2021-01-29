@@ -114,6 +114,7 @@ exec swayidle -w \
     }
     input type:keyboard {
         xkb_layout us,se
+        xkb_variant ",swerty"
         xkb_options grp:win_space_toggle,compose:caps
     }
 # Example configuration:
