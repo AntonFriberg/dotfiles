@@ -1,248 +1,265 @@
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
-# layout.
-#
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
+### i3-gaps stuff ###
 
-# Theme colors
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Necessary for i3-gaps to work properly (pixel can be any value)
+for_window [class="^.*"] border pixel 3
+
+### Variables
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Your preferred terminal emulator
+set $term alacritty
+
+# Your preferred application launcher
+set $menu rofi -show drun
+
+### Gaps and edges
+# smart_gaps off
+smart_borders on
+default_border pixel 3
+focus_follows_mouse no
+gaps inner 8
+gaps outer 10
+
+# Theme colors (based on nord theme)
 #   name     color
+# The origin color or the Polar Night palette (dark gray).
 set $nord0   #2E3440
+# A brighter shade color based on nord0.
 set $nord1   #3B4252
+# An even more brighter shade color of nord0.
 set $nord2   #434C5E
+# The brightest shade color based on nord0.
 set $nord3   #4C566A
+# Unofficial extra bright gray
+set $nord3a  #7c818c
+# unofficial dark-greenish gray
+set $nord3b  #888888
+# The origin color or the Snow Storm palette.
 set $nord4   #D8DEE9
+# A brighter shade color of nord4.
 set $nord5   #E5E9F0
+# The brightest shade color based on nord4.
 set $nord6   #ECEFF4
+# A calm and highly contrasted color reminiscent of frozen polar water
 set $nord7   #8FBCBB
+# The bright and shiny primary accent color reminiscent of pure and clear ice.
 set $nord8   #88C0D0
+# A more darkened and less saturated color reminiscent of arctic waters.
 set $nord9   #81A1C1
+# A dark and intensive color reminiscent of the deep arctic ocean.
 set $nord10  #5E81AC
+# Used for UI elements that are rendering error states.
 set $nord11  #BF616A
+# Rarely used for UI elements, but it may indicate a more advanced or dangerous functionality.
 set $nord12  #D08770
+# Used for UI elements that are rendering warning states.
 set $nord13  #EBCB8B
+# Used for UI elements that are rendering success states.
 set $nord14  #A3BE8C
+# Rarely used for UI elements, but it may indicate a more uncommon functionality.
 set $nord15  #B48EAD
 
-# Colors                  border     background text      indicator child_border
-client.focused            $nord3     $nord3     $nord6    $nord3    $nord3
-client.focused_inactive   $nord5     $nord5     $nord6    $nord6    $nord0
-client.unfocused          $nord1     $nord1     $nord6    $nord8    $nord1
-client.urgent             $nord13    $nord13    $nord0    $nord8    $nord8
-client.placeholder        $nord8     $nord0     $nord8    $nord8    $nord8
+# Window decoration
+# class                 border  backgr. text    indicator child_border
+client.focused          $nord10 $nord10 $nord6  $nord3a   $nord10
+client.focused_inactive $nord3  $nord1  $nord6  $nord3a   $nord3
+client.unfocused        $nord3  $nord1  $nord3b $nord3a   $nord3
+client.urgent           $nord3a $nord11 $nord6  $nord13   $nord11
+client.placeholder      $nord0  $nord0  $nord6  $nord0    $nord0 
 
-#custom settings
-hide_edge_borders both
-new_window pixel 10
-new_float pixel 10
-focus_follows_mouse no
+# Font
+#font pango:MesloLGS NF 10
 
-# Disable window titlebars
-for_window [class="^.*"] border pixel 10
-# floating window for mpv
-for_window [class="mpv"] floating enable
-# floating window for microsoft teams
-for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
-for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 
-# Define keys
-set $mod Mod4
-set $alt Mod1
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:DejaVu Sans Mono 10
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+    # Kill focused window
+    bindsym $mod+Shift+q kill
 
-# start a terminal
-bindsym $mod+Return exec --no-startup-id urxvt
+    # Start your launcher
+    bindsym $mod+d exec $menu
 
-# kill focused window
-bindsym $mod+Shift+q kill
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show drun
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
 
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-# bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+    # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    bindsym $mod+Shift+r restart
 
-# alternatively, you can use the cursor keys:
+    # exit i3 (logs you out of your X session)
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+    # changing keyboard layout
+    exec_always --no-startup-id setxkbmap -layout us,se -variant ,swerty -option grp:win_space_toggle
+
+
+#
+# Moving around:
+#
+
+# Move your focus around
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
+# Move the focused window with the same, but add Shift
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
+#
+# Workspaces:
+#
 
-# split in vertical orientation
-bindsym $mod+v split v
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
-# change container layout (stacked, tabbed, toggle split)
+#
+# Layout stuff:
+#
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# Swap focus between the tiling area and the floating area
+# conflict with keyboard toggle
+# bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# Move focus to the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
+#
+# Resizing containers:
+#
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    #bindsym $left resize shrink width 10px
+    #bindsym $down resize grow height 10px
+    #bindsym $up resize shrink height 10px
+    #bindsym $right resize grow width 10px
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
-# Change keyboard language
-bindsym $mod+$alt+s exec setxkbmap se
-bindsym $mod+$alt+u exec setxkbmap us
+#
+# Lock Screen
+#
 
-# Lock system
-bindsym $mod+l exec i3lock-fancy
+bindsym $mod+l exec betterlockscreen -l dim
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#}
+#
+# Media Controls
+#
 
-### Gaps ###
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
+#bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+#bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle && mictoggle
 
-# Set inner/outer gaps
-gaps inner 10
-gaps outer 4
+#
+# Screen Brightness
+#
 
-# smart_gaps on
+#bindsym XF86MonBrightnessUp exec sudo light -A 5
+#bindsym XF86MonBrightnessDown exec sudo light -U 5
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
+exec --no-startup-id betterlockscreen -w dim
+exec --no-startup-id picom -b --respect-prop-shadow --config $HOME/.config/picom/picom.conf
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-set $mode_gaps Gaps: (o) outer, (i) inner
+#
+# i3 Gaps Settings
+#
+
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+        bindsym Return mode "$mode_gaps"
         bindsym Escape mode "default"
 }
 
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
 mode "$mode_gaps_outer" {
         bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
@@ -252,37 +269,90 @@ mode "$mode_gaps_outer" {
         bindsym Shift+minus gaps outer all minus 5
         bindsym Shift+0     gaps outer all set 0
 
-        bindsym Return mode "default"
+        bindsym Return mode "$mode_gaps"
         bindsym Escape mode "default"
 }
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
 
-### To identify your XF86 keys install the xorg-xev package then run the following ###
-# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
 
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
 
-# Toggle external monitor controls
-bindsym XF86Display exec $HOME/.screenlayout/hdmi_toggle.sh
-bindsym XF86LaunchA exec $HOME/.screenlayout/dp_toggle.sh
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
 
-# pause / play / next / previous
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
 
-# Misc XF86 keys
-bindsym XF86Explorer exec xdg-open $HOME
-bindsym XF86Search exec rofi -show drun
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
 
-exec --no-startup-id feh --bg-fill  ~/Pictures/Wallpapers/mountain.jpg
-exec --no-startup-id picom -b --respect-prop-shadow --config $HOME/.config/picom/picom.conf
-# exec --no-startup-id nm-applet
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
 
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
