@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # This is a file that contains needed bootstrap operations that are needed
 # after initial clone of the dotfiles.
@@ -9,3 +9,40 @@ cd "$HOME"
 
 echo "Init submodules"
 yadm submodule update --recursive --init
+
+# Set XDG directories.
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+
+# Set Zsh configuration directories.
+export ZDOTDIR="${HOME}/.config/zsh"
+
+# Set User's bin directory.
+export USER_BIN_DIR="${HOME}/.local/bin"
+
+bootstrap_zsh() {
+    echo -e "Bootstrapping Zsh."
+    # Zsh configuration files.
+    zsh_dotfiles=(".zsh" ".zlogin" ".zlogout" ".zprofile" ".zshenv" ".zshrc")
+    # Delete default Zsh configuration files if present
+    for file in "${zsh_dotfiles[@]}"; do
+        [ -e "${HOME}/${file}" ] && rm -rf "${HOME:?}/${file}" >/dev/null 2>&1
+    done
+    # Create symlinks to Zsh configuration files.
+    ln -sf "${ZDOTDIR}/zlogin"    "${ZDOTDIR}/.zlogin"
+    ln -sf "${ZDOTDIR}/zlogout"   "${ZDOTDIR}/.zlogout"
+    ln -sf "${ZDOTDIR}/zshenv"    "${ZDOTDIR}/.zshenv"
+    ln -sf "${ZDOTDIR}/zshrc"     "${ZDOTDIR}/.zshrc"
+    # Set default shell to Zsh.
+    echo -e "Set Zsh as default shell..."
+    chsh -s "$(command -v zsh)"
+    # Set path to Zsh configuration files (system-wide configuration). We want
+    # to do this to avoid as many dotfiles as possible in user home directory.
+    # shellcheck disable=SC2016
+    echo -e "Set path as to Zsh configuration files to ~/.config/zsh ..."
+    echo 'export ZDOTDIR="${HOME}/.config/zsh"' | \
+    sudo tee --append /etc/zsh/zshenv >/dev/null 2>&1
+}
+
+bootstrap_zsh
