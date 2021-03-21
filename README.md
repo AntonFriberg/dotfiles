@@ -15,7 +15,7 @@ Based on the [nord colorscheme] and managed by [yadm].
 
 ## Screenshots
 ### Clean
-![Clean](.config/yadm/screenshots/clean.jpg)
+![Clean](.config/yadm/screenshots/clean.png)
 ### Dirty
 ![Dirty](.config/yadm/screenshots/dirty.png)
 ### Editor
