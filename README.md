@@ -46,7 +46,6 @@ Add your newly installed computer's public [ssh key to Github].
 
 ```zsh
 $ yay -Syu alacritty curl sway yadm-git waybar wofi
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v4/install)"
 ```
 
 #### Ubuntu & Debian
@@ -55,7 +54,6 @@ Debian and Ubuntu does not provide all dependencies needed in the official repos
 
 ```zsh
 $ sudo apt update -y && sudo apt install -y curl yadm
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v4/install)"
 ```
 
 #### Initialize
@@ -65,6 +63,7 @@ Install dotfiles.
 ```zsh
 yadm clone git@github.com:AntonFriberg/dotfiles.git
 yadm decrypt
+yadm bootstrap
 ```
 
 ### Dotfile Management
