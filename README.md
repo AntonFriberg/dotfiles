@@ -2,7 +2,8 @@
 
 My personal configuration files and scripts used under both Arch Linux, Ubuntu
 and Debian machines. Currently running [sway] window manager with [waybar],
-[wofi] application launcher, and [alacritty] terminal.
+[wofi] application launcher, and [alacritty] terminal. Utilizes [Zinit] for
+Zsh plugin management and binary utilities installation.
 
 Based on the [nord colorscheme] and managed by [yadm].
 
@@ -12,6 +13,7 @@ Based on the [nord colorscheme] and managed by [yadm].
 [alacritty]: https://github.com/alacritty/alacritty
 [nord colorscheme]: https://github.com/arcticicestudio/nord
 [yadm]: https://github.com/TheLocehiliosan/yadm
+[zinit]: https://github.com/zdharma/zinit
 
 ## Screenshots
 ### Clean
