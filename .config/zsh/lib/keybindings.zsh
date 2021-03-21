@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-################################################################################
-#  CONFIGURE KEY BINDINGS
-################################################################################
+###########################
+#  CONFIGURE KEY BINDINGS #
+###########################
 
 # Key bindings and configuration based on Roman Perepelitsa's dotfiles;
 # https://github.com/romkatv/dotfiles-public/blob/master/dotfiles/bindings.zsh

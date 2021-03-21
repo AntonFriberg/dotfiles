@@ -46,7 +46,17 @@ alias untarb="tar -xvjf"
 alias untarx="tar -xvJf"
 # Show all processes.
 alias ps="ps aux"
+# turn off compression for AUR installs
+alias makepkg='PKGEXT=".pkg.tar" makepkg'
+# Print current proxy environment
+alias pp="env | grep -i proxy"
+# Add flags to existing aliases.
+alias ls="${aliases[ls]:-ls} -A"
 
 ### Custom oneliners.
 alias update-arch="yay -Syu"
 alias update-ubuntu="sudo apt update && sudo apt upgrade && sudo apt autoremove"
+alias tree='tree -a -I .git'
+alias axis_connect='sshuttle --dns --remote=lnxantonfr-axis 10.0.0.0/8 172.16.0.0/12 172.30.8.0/12'
+alias battery="acpi"
+alias du="ncdu --color dark -rr"
