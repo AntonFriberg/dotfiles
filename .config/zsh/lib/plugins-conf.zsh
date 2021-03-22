@@ -6,6 +6,10 @@
 
 ### zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+# Faster tab completions
+zstyle ':completion:' accept-exact '(N)'
+zstyle ':completion:' use-cache yes
+zstyle ':completion::complete:' cache-path '${ZDOTDIR:-$HOME}'
 
 ### zsh-history-substring-search
 # Configure zsh-history-substring-search plugin. See key binding configuration
