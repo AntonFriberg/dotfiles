@@ -288,7 +288,7 @@ bar {
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
 bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
-bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle && mictoggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle && amixer -c0 set Capture toggle && mictoggle
 
 #
 # Screen Brightness
