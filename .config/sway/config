@@ -25,7 +25,7 @@ smart_borders on
 default_border pixel 3
 focus_follows_mouse no
 gaps inner 8
-gaps outer 10
+gaps outer 4
 
 # Theme colors (based on nord theme)
 #   name     color
@@ -205,7 +205,7 @@ exec swayidle -w \
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
+    # bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
