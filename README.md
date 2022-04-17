@@ -40,14 +40,21 @@ the same underlying idea but adds a user-friendly interface.
 [atlassian developer blog]: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
 ### Installation
-Add your newly installed computer's public [ssh key to Github].
 
-[ssh key to Github]: https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
+First setup [GitHub CLI] and login.
+
+```zsh
+$ gh auth login
+```
+
+[GitHub CLI]: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
 #### Arch Linux
 
+Install dependencies using yay or other AUR helper.
+
 ```zsh
-$ yay -Syu alacritty curl sway yadm-git waybar wofi
+$ yay -Syu alacritty zsh curl git sway yadm-git waybar wofi jq
 ```
 
 #### Ubuntu & Debian
@@ -55,7 +62,7 @@ $ yay -Syu alacritty curl sway yadm-git waybar wofi
 Debian and Ubuntu does not provide all dependencies needed in the official repositories unfortunately.
 
 ```zsh
-$ sudo apt update -y && sudo apt install -y curl yadm
+$ sudo apt update -y && sudo apt install -y zsh curl git yadm jq
 ```
 
 #### Initialize
@@ -63,7 +70,7 @@ $ sudo apt update -y && sudo apt install -y curl yadm
 Install dotfiles.
 
 ```zsh
-yadm clone git@github.com:AntonFriberg/dotfiles.git
+yadm clone https://github.com/AntonFriberg/dotfiles.git
 yadm decrypt
 yadm bootstrap
 ```
