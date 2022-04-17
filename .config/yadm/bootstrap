@@ -21,6 +21,15 @@ export ZDOTDIR="${HOME}/.config/zsh"
 # Set User's bin directory.
 export USER_BIN_DIR="${HOME}/.local/bin"
 
+# Set Zinit directory.
+export ZINIT_HOME="${ZDOTDIR}/zinit/bin"
+
+bootstrap_zinit() {
+    echo -e "Bootstrapping Zinit."
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+}
+
 bootstrap_zsh() {
     echo -e "Bootstrapping Zsh."
     # Zsh configuration files.
@@ -45,4 +54,5 @@ bootstrap_zsh() {
     sudo tee --append /etc/zsh/zshenv >/dev/null 2>&1
 }
 
+bootstrap_zinit
 bootstrap_zsh
