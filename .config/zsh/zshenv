@@ -46,6 +46,7 @@ export ZLIB="${ZDOTDIR}/lib"
 
 # Add custom paths.
 [ -d "${XDG_BIN_HOME}" ] && PATH="${PATH}:${XDG_BIN_HOME}" && export PATH
+[ -d "${HOME}/.local/bin" ] && PATH="${PATH}:${HOME}/.local/bin" && export PATH
 #[ -d "${HOME}/.config/autostart-scripts" ] && PATH="${PATH}:${HOME}/.config/autostart-scripts" && export PATH
 
 # Set SSH_ASKPASS environment variable to ksshaskpass if present.
