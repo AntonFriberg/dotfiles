@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+  };
   home = {
     username = "antonfr";
     homeDirectory = "/home/antonfr";
@@ -54,11 +58,6 @@
         ];
       })
     ];
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = _: true;
   };
 
   # Let home-manager manage itself
