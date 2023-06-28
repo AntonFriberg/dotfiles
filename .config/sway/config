@@ -111,16 +111,7 @@ exec swayidle \
         before-sleep 'swaylock -f -i ~/Pictures/wallpaper_dark.jpg'
 
 ### Input configuration
-    input "1739:52620:SYNA8005:00_06CB:CD8C_Touchpad" {
-        dwt enabled
-        tap enabled
-        natural_scroll enabled
-    }
-    input type:keyboard {
-        xkb_layout us,se
-        xkb_variant ",swerty"
-        xkb_options grp:win_space_toggle,compose:caps
-    }
+#
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -132,6 +123,17 @@ exec swayidle \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
+    input "1739:52620:SYNA8005:00_06CB:CD8C_Touchpad" {
+        dwt enabled
+        tap enabled
+        natural_scroll enabled
+    }
+    input type:keyboard {
+        xkb_layout us,se
+        xkb_variant ",swerty"
+        xkb_options grp:win_space_toggle,compose:caps
+    }
 
 ### Key bindings
 #
