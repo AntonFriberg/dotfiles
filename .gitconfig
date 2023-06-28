@@ -60,4 +60,4 @@
 [format]
   pretty = format:%h%Cgreen%d%Creset %C(yellow)%an %C(cyan)%cr%Creset %s
 [credential "https://github.com"]
-  helper = !/usr/bin/gh auth git-credential
+  helper = !gh auth git-credential
