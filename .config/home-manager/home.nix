@@ -265,4 +265,42 @@
       "workbench.sideBar.location" = "right";
     };
   };
+
+  # Allow fontconfig to discover fonts and configurations installed through home.packages
+  fonts.fontconfig.enable = true;
+
+  # Ease usage on non-NixOS installations
+  targets.genericLinux.enable = true;
+
+  # Better font rendering
+  xdg.configFile."fontconfig/conf.d/1-better-rendering.conf".text = ''
+    <!-- Better font rendering by changing settings. -->
+    <!-- https://wiki.archlinux.org/title/font_configuration -->
+    <match target="font">
+      <!-- disable embedded bitmaps in fonts to fix Calibri, Cambria, etc. -->
+      <edit name="embeddedbitmap" mode="assign">
+        <bool>false</bool>
+      </edit>
+      <!-- Enable anti-aliasing in font rendering -->
+      <edit mode="assign" name="antialias">
+        <bool>true</bool>
+      </edit>
+      <!-- Enable hinting in font rendering -->
+      <edit mode="assign" name="hinting">
+        <bool>true</bool>
+      </edit>
+      <!-- Only hint slightly -->
+      <edit mode="assign" name="hintstyle">
+        <const>hintslight</const>
+      </edit>
+      <!-- Set subpixel rendering to reduce color fringing -->
+      <edit mode="assign" name="lcdfilter">
+        <const>lcddefault</const>
+      </edit>
+      <!-- Set correct pixel alignment-->
+      <edit mode="assign" name="rgba">
+        <const>rgb</const>
+      </edit>
+    </match>
+  '';
 }
