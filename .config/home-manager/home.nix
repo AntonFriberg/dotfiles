@@ -70,9 +70,9 @@
       arcticicestudio.nord-visual-studio-code
       bbenoist.nix
       bmalehorn.vscode-fish
-      brettm12345.nixfmt-vscode
       bungcip.better-toml
       esbenp.prettier-vscode
+      kamadorueda.alejandra
       ms-python.python
       ms-python.vscode-pylance
       redhat.vscode-yaml
