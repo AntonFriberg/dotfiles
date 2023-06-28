@@ -67,6 +67,23 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
+  # SSH configs
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      AddKeysToAgent yes
+      SetEnv TERM=xterm-256color
+      ForwardX11 no
+      Compression yes
+      ControlMaster auto
+      ControlPath ~/.ssh/masters/%r@%h-%p
+      ControlPersist 600
+      ServerAliveInterval 25
+      ServerAliveCountMax 3
+      GSSAPIAuthentication no
+    '';
+  };
+
   # Add Visual Studio Code
   programs.vscode = {
     enable = true;
