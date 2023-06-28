@@ -77,6 +77,14 @@
     XDG_BACKEND = "wayland";
     XDG_CURRENT_DESKTOP = "sway";
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent.socket";
+    # Tell applications to use wayland
+    XDG_SESSION_TYPE = "wayland";
+    # GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    # Fix cursor on non wayland native applications
+    XCURSOR_SIZE = "24";
+    # VS Code under wayland
+    NIXOS_OZONE_WL = "1";
   };
 
   # SSH configs
