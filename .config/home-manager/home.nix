@@ -76,7 +76,6 @@
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_BACKEND = "wayland";
     XDG_CURRENT_DESKTOP = "sway";
-    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent.socket";
     # Tell applications to use wayland
     XDG_SESSION_TYPE = "wayland";
     # GDK_BACKEND = "wayland";
@@ -92,6 +91,14 @@
     BROWSER = "firefox";
     PAGER = "less";
     DESKTOP = "sway";
+    # Respect XDG directories
+    DOCKER_CONFIG = "$HOME/.config/docker";
+    LESSHISTFILE = "-"; # Disable less history
+    # Other configs
+    PYTHONDONTWRITEBYTECODE = "true";
+    PIP_REQUIRE_VIRTUALENV = "true";
+    # SSH Agent
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent.socket";
   };
 
   # SSH configs
