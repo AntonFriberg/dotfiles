@@ -291,6 +291,9 @@
   # Enable dircolors
   programs.dircolors.enable = true;
 
+  # Install waybar using home-manager to get a more up-to-date version
+  programs.waybar.enable = true;
+
   # Allow fontconfig to discover fonts and configurations installed through home.packages
   fonts.fontconfig.enable = true;
 
