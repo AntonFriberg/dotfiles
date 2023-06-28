@@ -8,8 +8,8 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
-set $screenclip slurp | grim -g - ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenshot grim /home/antonfr/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenclip slurp | grim -g - /home/antonfr/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $background /home/afriberg/Pictures/wallpaper.jpg
 
 # Your preferred terminal emulator needs running foot server
@@ -124,7 +124,7 @@ output * bg $background fill
 exec swayidle \
         timeout 300 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -i ~/Pictures/wallpaper_dark.jpg'
+        before-sleep 'swaylock -f -i /home/antonfr/Pictures/wallpaper_dark.jpg'
 
 ### Input configuration
 #
@@ -302,7 +302,7 @@ bar {
 # Lock Screen
 #
 
-bindsym $mod+l exec "swaylock -f -i ~/Pictures/wallpaper_dark.jpg"
+bindsym $mod+l exec "swaylock -f -i /home/antonfr/Pictures/wallpaper_dark.jpg"
 
 #
 # Media Controls
@@ -323,7 +323,7 @@ bindsym $mod+Print exec $screenshot
 bindsym $mod+Shift+Print exec $screenclip
 
 # waybar
-#exec_always ~/.config/waybar/waybar.sh
+#exec_always /home/antonfr/.config/waybar/waybar.sh
 
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
