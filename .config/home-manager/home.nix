@@ -75,5 +75,24 @@
       ms-python.vscode-pylance
       redhat.vscode-yaml
     ];
+    userSettings = {
+      "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
+      "[python]" = {};
+      "[yaml]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
+      "editor.copyWithSyntaxHighlighting" = false;
+      "editor.fontFamily" = "'Cousine', 'Hack', 'monospace', monospace, 'Droid Sans Fallback'";
+      "editor.minimap.enabled" = false;
+      "editor.renderWhitespace" = "boundary";
+      "editor.rulers" = [80 120];
+      "files.insertFinalNewline" = true;
+      "files.trimTrailingWhitespace" = true;
+      "python.analysis.typeCheckingMode" = "basic";
+      "python.languageServer" = "Pylance";
+      "terminal.integrated.fontFamily" = "Cousine Nerd Font Mono";
+      "window.titleBarStyle" = "custom";
+      "window.zoomLevel" = 1;
+      "workbench.colorTheme" = "Nord";
+      "workbench.sideBar.location" = "right";
+    };
   };
 }
