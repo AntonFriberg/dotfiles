@@ -13,7 +13,7 @@ set $screenclip slurp | grim -g - ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-
 set $background /home/afriberg/Pictures/wallpaper.jpg
 
 # Your preferred terminal emulator
-set $term alacritty
+set $term /home/antonfr/.nix-profile/bin/footclient
 
 # Your preferred application launcher
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
@@ -72,7 +72,7 @@ client.focused          $nord10 $nord10 $nord6  $nord3a   $nord10
 client.focused_inactive $nord3  $nord1  $nord6  $nord3a   $nord3
 client.unfocused        $nord3  $nord1  $nord3b $nord3a   $nord3
 client.urgent           $nord3a $nord11 $nord6  $nord13   $nord11
-client.placeholder      $nord0  $nord0  $nord6  $nord0    $nord0 
+client.placeholder      $nord0  $nord0  $nord6  $nord0    $nord0
 
 # Font
 font pango:FiraCode Nerd Font 10
