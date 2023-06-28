@@ -145,6 +145,28 @@
       update = "sudo apt update";
       upgrade = "sudo apt upgrade";
     };
+    shellInit = ''
+      # Disable help message
+      set -U fish_greeting
+      # Nix
+      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+          fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+      end
+      # home-manager
+      fenv 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}'
+      # Rtx to manage Python installations
+      rtx activate --quiet --shell fish | source
+      # Fix for python dependencies under nix
+      #fenv 'export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:$LD_LIBRARY_PATH'
+      # Use ssh-agent
+      if test -z (pgrep ssh-agent | string collect)
+        eval (ssh-agent -c)
+        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+      end
+      # Add to PATH
+      fish_add_path -m ~/.local/bin
+    '';
   };
 
   # SSH Agent systemd user service
