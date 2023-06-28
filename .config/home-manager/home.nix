@@ -85,6 +85,13 @@
     XCURSOR_SIZE = "24";
     # VS Code under wayland
     NIXOS_OZONE_WL = "1";
+    # Set default applications
+    VISUAL = "vim";
+    EDITOR = "vim";
+    TERMINAL = "foot";
+    BROWSER = "firefox";
+    PAGER = "less";
+    DESKTOP = "sway";
   };
 
   # SSH configs
