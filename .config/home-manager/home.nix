@@ -68,6 +68,14 @@
 
   # Environment variables to set at login
   home.sessionVariables = {
+    # Set XDG directories
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    XDG_LIB_HOME = "$HOME/.local/lib";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_BACKEND = "wayland";
+    XDG_CURRENT_DESKTOP = "sway";
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent.socket";
   };
 
