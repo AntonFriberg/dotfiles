@@ -4,6 +4,12 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+# Fix for running sway under gde (gnome desktop environment)
+# Change /usr/share/wayland-sessions/sway.desktop
+# -Exec=sway
+# +Exec=env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland MOZ_ENABLE_WAYLAND="1" sway
+
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
