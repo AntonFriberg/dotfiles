@@ -102,14 +102,13 @@ output * bg $background fill
 
 ### Idle configuration
 #
-# Example configuration:
-#
-exec swayidle -w \
-         before-sleep 'swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 15 --effect-blur 7x5 --effect-vignette 0.5:0.5 --text-color e5e9f0 --ring-color 4c566a --key-hl-color a3be8c --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2'
-#
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle \
+        timeout 300 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -i ~/Pictures/wallpaper_dark.jpg'
 
 ### Input configuration
     input "1739:52620:SYNA8005:00_06CB:CD8C_Touchpad" {
