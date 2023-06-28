@@ -12,8 +12,11 @@ set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").pn
 set $screenclip slurp | grim -g - ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $background /home/afriberg/Pictures/wallpaper.jpg
 
-# Your preferred terminal emulator
+# Your preferred terminal emulator needs running foot server
 set $term /home/antonfr/.nix-profile/bin/footclient
+
+# Start foot server
+exec_always systemctl --user start foot
 
 # Your preferred application launcher
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
