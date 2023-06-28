@@ -140,6 +140,11 @@
         end
       '';
     };
+    shellAliases = {
+      code = "~/.nix-profile/bin/code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
+      update = "sudo apt update";
+      upgrade = "sudo apt upgrade";
+    };
   };
 
   # SSH Agent systemd user service
