@@ -16,7 +16,7 @@
 set $mod Mod4
 set $screenshot grim /home/antonfr/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $screenclip slurp | grim -g - /home/antonfr/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
-set $background /home/afriberg/Pictures/wallpaper.jpg
+set $background /home/antonfr/Pictures/wallpaper.jpg
 
 # Your preferred terminal emulator needs running foot server
 set $term /home/antonfr/.nix-profile/bin/footclient
