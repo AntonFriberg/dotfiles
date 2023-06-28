@@ -6,6 +6,8 @@
   home = {
     username = "antonfr";
     homeDirectory = "/home/antonfr";
+
+    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "22.11";
 
     packages = with pkgs; [
