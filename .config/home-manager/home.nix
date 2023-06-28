@@ -10,6 +10,7 @@
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "22.11";
 
+    # Add packages
     packages = with pkgs; [
       alejandra
       delta
@@ -62,6 +63,9 @@
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
 
   # Add Visual Studio Code
   programs.vscode = {
