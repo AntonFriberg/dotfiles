@@ -103,6 +103,19 @@ exec_always {
 # output DP-6 pos 0 0 transform 270
 output * bg $background fill
 
+### Workspace configuration
+#
+# Example configuration:
+#
+#  workspace 1 output DVI-D-1
+#  workspace 2 output DVI-D-1
+#
+# workspace 1 output DP-4
+# workspace 2 output DP-4
+# workspace 10 output DP-5
+# workspace 8 output DP-6
+# workspace 9 output DP-6
+
 ### Idle configuration
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
