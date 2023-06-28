@@ -96,6 +96,11 @@
     '';
   };
 
+  # Change shell to fish
+  programs.fish = {
+    enable = true;
+  };
+
   # SSH Agent systemd user service
   systemd.user.services = {
     ssh-agent = {
