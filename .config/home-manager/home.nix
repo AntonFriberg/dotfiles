@@ -58,5 +58,11 @@
     allowUnfreePredicate = _: true;
   };
 
+  # Let home-manager manage itself
   programs.home-manager.enable = true;
+
+  # Add Visual Studio Code
+  programs.vscode = {
+    enable = true;
+  };
 }
