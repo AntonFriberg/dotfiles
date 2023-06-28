@@ -67,6 +67,11 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
+  # Environment variables to set at login
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent.socket";
+  };
+
   # SSH configs
   programs.ssh = {
     enable = true;
@@ -82,6 +87,24 @@
       ServerAliveCountMax 3
       GSSAPIAuthentication no
     '';
+  };
+
+  # SSH Agent systemd user service
+  systemd.user.services = {
+    ssh-agent = {
+      Unit = {
+        Description = "SSH key agent";
+        Documentation = [
+          "https://wiki.archlinux.org/index.php/SSH_keys#Start_ssh-agent_with_systemd_user"
+        ];
+      };
+      Service = {
+        Type = "simple";
+        Environment = ["SSH_AUTH_SOCK=%t/ssh-agent.socket" "DISPLAY=:0"];
+        ExecStart = "${pkgs.openssh}/bin/ssh-agent -D -a $SSH_AUTH_SOCK";
+      };
+      Install = {WantedBy = ["default.target"];};
+    };
   };
 
   # Add Visual Studio Code
