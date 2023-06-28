@@ -17,7 +17,7 @@ set $term /home/antonfr/.nix-profile/bin/footclient
 
 # Your preferred application launcher
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show drun
+set $menu /home/antonfr/.nix-profile/bin/fuzzel --background-color '4c566aff' --text-color='eceff4ff' --selection-color='8fbcbbff' --selection-text-color='eceff4ff'
 
 ### Gaps and edges
 smart_gaps off
