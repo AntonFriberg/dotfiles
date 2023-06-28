@@ -294,6 +294,22 @@
   # Install waybar using home-manager to get a more up-to-date version
   programs.waybar.enable = true;
 
+  programs.bat = {
+    enable = true;
+    extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
+    config = {
+      theme = "Nord";
+      italic-text = "never";
+      # Show line numbers, Git modifications and file header (but no grid)
+      style = "numbers,changes,header,grid";
+      # Add mouse scrolling support in less (does not work with older
+      # versions of "less").
+      pager = "less -FR";
+      # Use "gitignore" highlighting for ".ignore" files
+      map-syntax = [".ignore:.gitignore" "*.jenkinsfile:Groovy"];
+    };
+  };
+
   # Allow fontconfig to discover fonts and configurations installed through home.packages
   fonts.fontconfig.enable = true;
 
