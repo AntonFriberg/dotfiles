@@ -26,14 +26,14 @@
         "sway/window"
     ],
     "modules-right": [
-        "clock#date",
-        "clock#time",
-        "custom/keyboard-layout",
         "network",
+        "tray",
+        "custom/keyboard-layout",
         "backlight",
-        "pulseaudio",
         "battery",
-        "tray"
+        "pulseaudio",
+        "clock#date",
+        "clock#time"
         //"memory",
         //"cpu",
         //"temperature",
@@ -57,7 +57,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "  {icon}  {capacity}%", // Icon: bolt
+        "format": " {icon}  {capacity}%", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
@@ -71,7 +71,7 @@
     },
 
     "clock": {
-        "interval": 60,
+        "interval": 10,
         "format": "{:%H:%M}",
         "max-length": 25
     },
@@ -95,7 +95,7 @@
       "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -c32-33",
       // Interval set only as a fallback, as the value is updated by signal
       "interval": 5,
-      "format": "  {}", // Icon: keyboard
+      "format": " {}", // Icon: keyboard
       // Signal sent by Sway key binding (~/.config/sway/key-bindings)
       "signal": 1, // SIGHUP
       "tooltip": false
@@ -111,11 +111,16 @@
     },
 
     "network": {
-        "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}"
+        "format": "{ifname}",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "format-disconnected": "",
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 100
     },
 
     "sway/mode": {
@@ -147,7 +152,7 @@
     "pulseaudio": {
         //"scroll-step": 1,
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% ",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
