@@ -104,6 +104,9 @@
   # SSH configs
   programs.ssh = {
     enable = true;
+    includes = [
+      "config.d/*"
+    ];
     extraConfig = ''
       AddKeysToAgent yes
       SetEnv TERM=xterm-256color
