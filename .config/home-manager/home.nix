@@ -218,7 +218,8 @@
     server.enable = true;
     settings = {
       main = {
-        font = "Cousine Nerd Font Mono:size=11";
+        font = "Cousine Nerd Font Mono:size=9";
+        dpi-aware = "yes";
         pad = "10x10";
       };
       cursor = {color = "2e3440 d8dee9";};
