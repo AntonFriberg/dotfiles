@@ -269,6 +269,7 @@
       kamadorueda.alejandra
       ms-python.python
       ms-python.vscode-pylance
+      ms-vscode-remote.remote-ssh
       redhat.vscode-yaml
     ];
     userSettings = {
