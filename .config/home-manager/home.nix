@@ -169,6 +169,8 @@
       code = "~/.nix-profile/bin/code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
       update = "sudo apt update";
       upgrade = "sudo apt upgrade";
+      hmu = "nix flake update ~/.config/home-manager";
+      hms = "home-manager switch --flake ~/.config/home-manager";
     };
     shellInit = ''
       # Disable help message
