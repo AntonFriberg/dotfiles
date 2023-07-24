@@ -171,6 +171,7 @@
       upgrade = "sudo apt upgrade";
       hmu = "nix flake update ~/.config/home-manager";
       hms = "home-manager switch --flake ~/.config/home-manager";
+      hmgc = "nix-collect-garbage --delete-older-than 30d";
     };
     shellInit = ''
       # Disable help message
