@@ -42,6 +42,7 @@
       radeontop
       rclone
       ripgrep
+      rtx
       tealdeer
       vagrant
       yadm
