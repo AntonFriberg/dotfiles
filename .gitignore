@@ -1,0 +1,45 @@
+# Ignores to speed up yadm completion
+snap
+Videos
+Pictures
+Downloads
+Desktop
+Documents
+.thunderbird
+.vagrant.d
+.themes
+.nix-defexpr
+.nix-profile
+.mozilla
+.local/state
+.local/share
+.pki
+.gnome
+.gnupg
+.manpath
+.config/pulse
+.config/totem
+.config/google-chrome
+.config/menus
+.config/VirtualBox
+.config/Code
+.config/evolution
+.config/.gsd-keyboard.settings-ported
+.cache
+.GlobalProtect
+GP_HTML
+.zhistory
+.viminfo
+# Already managed by .config/home-manager
+.ssh
+.vscode
+.config/fish
+.config/fontconfig
+.config/foot
+.config/gh
+.config/systemd
+.config/user-dirs.dirs
+.config/user-dirs.locale
+# Already managed per project
+Git
+
