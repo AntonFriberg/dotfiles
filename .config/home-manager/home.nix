@@ -267,13 +267,13 @@
       arcticicestudio.nord-visual-studio-code
       bbenoist.nix
       bmalehorn.vscode-fish
-      bungcip.better-toml
       esbenp.prettier-vscode
       kamadorueda.alejandra
       ms-python.python
       ms-python.vscode-pylance
       ms-vscode-remote.remote-ssh
       redhat.vscode-yaml
+      tamasfe.even-better-toml
     ];
     userSettings = {
       "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
