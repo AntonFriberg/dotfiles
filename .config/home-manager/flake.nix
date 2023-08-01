@@ -1,6 +1,9 @@
 {
   description = "Home Manager configuration of Anton Friberg";
 
+  # Flake inputs are Nix dependencies that a flake needs to be built. Each input
+  # in the set can be pulled from various sources, such as github, generic git
+  # repositories, and even your filesystem.
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -10,6 +13,15 @@
     };
   };
 
+  # Flake outputs are what a flake produces as part of its build. Each flake can
+  # have many different outputs simultaneously, including but not limited to:
+  #   Nix packages
+  #   Nix development environments
+  #   NixOS configurations
+  #   Nix templates
+  # Flake outputs are defined by a function, which takes an attribute set as
+  # input, containing each of the inputs to that flake
+  # (named after the chosen identifier in the inputs section).
   outputs = {
     nixpkgs,
     home-manager,
