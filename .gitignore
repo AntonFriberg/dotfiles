@@ -12,7 +12,8 @@ Documents
 .nix-profile
 .mozilla
 .local/state
-.local/share
+.local/share/*
+!.local/share/yadm
 .pki
 .gnome
 .gnupg
