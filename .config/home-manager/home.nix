@@ -280,7 +280,7 @@
     ];
     userSettings = {
       "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
-      "[python]" = {};
+      "[python]" = {"editor.defaultFormatter" = "ms-python.black-formatter";};
       "[yaml]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
       "editor.copyWithSyntaxHighlighting" = false;
       "editor.fontFamily" = "'Cousine', 'Hack', 'monospace', monospace, 'Droid Sans Fallback'";
