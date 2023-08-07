@@ -50,6 +50,14 @@
           homeDirectory = "/home/${users.work}";
         };
       };
+      "${users.work}@${hosts.work.stationary}" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [./home.nix];
+        extraSpecialArgs = {
+          username = users.work;
+          homeDirectory = "/home/${users.work}";
+        };
+      };
     };
   };
 }
