@@ -86,7 +86,7 @@
     # Fix cursor on non wayland native applications
     XCURSOR_SIZE = "24";
     # VS Code under wayland
-    NIXOS_OZONE_WL = "1";
+    # NIXOS_OZONE_WL = "1";
     # Set default applications
     VISUAL = "vim";
     EDITOR = "vim";
@@ -169,7 +169,6 @@
       '';
     };
     shellAliases = {
-      code = "~/.nix-profile/bin/code --enable-features=WaylandWindowDecorations --ozone-platform=wayland";
       update = "sudo apt update";
       upgrade = "sudo apt upgrade";
       hmu = "nix flake update ~/.config/home-manager";
