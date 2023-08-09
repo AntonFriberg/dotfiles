@@ -295,6 +295,7 @@
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "Nord";
       "workbench.sideBar.location" = "right";
+      "extensions.ignoreRecommendations" = true;
     };
   };
 
