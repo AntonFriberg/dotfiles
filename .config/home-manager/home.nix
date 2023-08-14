@@ -265,6 +265,7 @@
   # Add Visual Studio Code
   programs.vscode = {
     enable = true;
+    mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
       arcticicestudio.nord-visual-studio-code
       bbenoist.nix
