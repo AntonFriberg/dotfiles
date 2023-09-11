@@ -43,7 +43,6 @@
       radeontop
       rclone
       ripgrep
-      rtx
       tealdeer
       vagrant
       yadm
@@ -197,6 +196,20 @@
       # Add to PATH
       fish_add_path -m ~/.local/bin
     '';
+  };
+
+  programs.rtx = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      tools = {
+        python = ["3.10" "3.11"];
+      };
+      settings = {
+        verbose = false;
+        experimental = false;
+      };
+    };
   };
 
   # SSH Agent systemd user service
