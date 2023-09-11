@@ -100,7 +100,7 @@
     PYTHONDONTWRITEBYTECODE = "true";
     PIP_REQUIRE_VIRTUALENV = "true";
     # SSH Agent
-    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent.socket";
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
   };
 
   # SSH configs
@@ -187,12 +187,6 @@
       rtx activate --quiet --shell fish | source
       # Fix for python dependencies under nix
       #fenv 'export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:$LD_LIBRARY_PATH'
-      # Use ssh-agent
-      if test -z (pgrep ssh-agent | string collect)
-        eval (ssh-agent -c)
-        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
-      end
       # Add to PATH
       fish_add_path -m ~/.local/bin
     '';
@@ -213,22 +207,7 @@
   };
 
   # SSH Agent systemd user service
-  systemd.user.services = {
-    ssh-agent = {
-      Unit = {
-        Description = "SSH key agent";
-        Documentation = [
-          "https://wiki.archlinux.org/index.php/SSH_keys#Start_ssh-agent_with_systemd_user"
-        ];
-      };
-      Service = {
-        Type = "simple";
-        Environment = ["SSH_AUTH_SOCK=%t/ssh-agent.socket" "DISPLAY=:0"];
-        ExecStart = "${pkgs.openssh}/bin/ssh-agent -D -a $SSH_AUTH_SOCK";
-      };
-      Install = {WantedBy = ["default.target"];};
-    };
-  };
+  services.ssh-agent.enable = true;
 
   # You might need to install terminfo globally manually
   programs.foot = {
