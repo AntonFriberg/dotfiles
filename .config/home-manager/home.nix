@@ -198,6 +198,12 @@
     settings = {
       tools = {
         python = ["3.10" "3.11"];
+        poetry = {
+          version = "1.6.1";
+        };
+      };
+      plugins = {
+        poetry = "https://github.com/rtx-plugins/rtx-poetry";
       };
       settings = {
         verbose = false;
