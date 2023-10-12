@@ -128,24 +128,12 @@
     enable = true;
     plugins = [
       {
-        # After first install you need to call the setup script manually
-        # fish_path=(status fish-path) exec $fish_path -C "emit _tide_init_install"
         name = "tide";
-        src = pkgs.fetchFromGitHub {
-          owner = "IlanCosman";
-          repo = "tide";
-          rev = "6833806ba2eaa1a2d72a5015f59c284f06c1d2db";
-          sha256 = "1qqkxpi4pl0s507gj4xv7b58ykbqzxbhxmw949ja3srph9i2qbmy";
-        };
+        src = pkgs.fishPlugins.tide.src;
       }
       {
         name = "foreign-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-foreign-env";
-          rev = "b3dd471bcc885b597c3922e4de836e06415e52dd";
-          sha256 = "13wdsvpazivlxk921ccqbk7gl6ya2md8f45rckbn8rn119ckf7fy";
-        };
+        src = pkgs.fishPlugins.foreign-env.src;
       }
       {
         name = "bang-bang";
