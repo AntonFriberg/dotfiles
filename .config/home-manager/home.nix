@@ -136,6 +136,18 @@
         src = pkgs.fishPlugins.foreign-env.src;
       }
       {
+        name = "sponge";
+        src = pkgs.fishPlugins.sponge.src;
+      }
+      {
+        name = "puffer";
+        src = pkgs.fishPlugins.puffer.src;
+      }
+      {
+        name = "forgit";
+        src = pkgs.fishPlugins.forgit.src;
+      }
+      {
         name = "bang-bang";
         src = pkgs.fetchFromGitHub {
           owner = "oh-my-fish";
