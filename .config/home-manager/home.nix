@@ -270,6 +270,7 @@
       bmalehorn.vscode-fish
       esbenp.prettier-vscode
       kamadorueda.alejandra
+      mhutchie.git-graph
       ms-python.python
       ms-python.vscode-pylance
       ms-vscode-remote.remote-ssh
