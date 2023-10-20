@@ -67,6 +67,10 @@
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 
+  # Integrate shell's command-not-found with nix available packages
+  # You need to run nix-index manually to update index database
+  programs.nix-index.enable = true;
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
