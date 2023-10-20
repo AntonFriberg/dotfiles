@@ -18,6 +18,8 @@
     # Add packages
     packages = with pkgs; [
       alejandra
+      ripgrep
+      comma
       delta
       docker-compose
       fuzzel
