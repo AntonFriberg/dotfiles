@@ -203,7 +203,7 @@
     enableFishIntegration = true;
     settings = {
       tools = {
-        python = ["3.10" "3.11"];
+        python = ["3.11" "3.10"];
         poetry = {
           version = "1.6.1";
         };
