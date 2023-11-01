@@ -269,7 +269,8 @@
   # Add Visual Studio Code
   programs.vscode = {
     enable = true;
-    mutableExtensionsDir = false;
+    enableUpdateCheck = false;
+    enableExtensionUpdateCheck = true;
     extensions = with pkgs.vscode-extensions; [
       arcticicestudio.nord-visual-studio-code
       bbenoist.nix
