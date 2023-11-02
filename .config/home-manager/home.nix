@@ -18,10 +18,10 @@
     # Add packages
     packages = with pkgs; [
       alejandra
-      ripgrep
       comma
       delta
       docker-compose
+      fd
       fuzzel
       fzf
       gh
@@ -34,12 +34,12 @@
       ipcalc
       jq
       k9s
+      kubeconform
       kubectl
       kubectl-node-shell
-      kubeconform
-      kubeseal
       kubectx
       kubernetes-helm
+      kubeseal
       ncdu
       openssh
       radeontop
