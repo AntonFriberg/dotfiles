@@ -107,6 +107,8 @@
     PIP_REQUIRE_VIRTUALENV = "true";
     # SSH Agent
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
+    # RTX config
+    RTX_TRUSTED_CONFIG_PATHS = "$HOME/.config/rtx/config.toml";
   };
 
   # SSH configs
