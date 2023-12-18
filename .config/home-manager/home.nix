@@ -19,7 +19,6 @@
     packages = with pkgs; [
       alejandra
       bandwhich
-      bottom
       choose
       comma
       delta
