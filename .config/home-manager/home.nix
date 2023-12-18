@@ -24,6 +24,7 @@
       comma
       delta
       docker-compose
+      dogdns
       fd
       fuzzel
       fzf
