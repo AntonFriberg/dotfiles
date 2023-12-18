@@ -20,6 +20,7 @@
       alejandra
       bandwhich
       bottom
+      choose
       comma
       delta
       docker-compose
