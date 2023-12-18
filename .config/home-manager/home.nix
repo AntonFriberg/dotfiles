@@ -45,6 +45,7 @@
       kubeseal
       ncdu
       openssh
+      ouch
       radeontop
       rclone
       ripgrep
