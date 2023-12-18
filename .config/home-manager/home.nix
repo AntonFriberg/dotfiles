@@ -19,6 +19,7 @@
     packages = with pkgs; [
       alejandra
       bandwhich
+      bottom
       comma
       delta
       docker-compose
