@@ -50,7 +50,6 @@
       rclone
       ripgrep
       tealdeer
-      vagrant
       yadm
       yt-dlp
       (nerdfonts.override {
