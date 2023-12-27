@@ -117,19 +117,17 @@
   # SSH configs
   programs.ssh = {
     enable = true;
+    addKeysToAgent = "yes";
+    compression = true;
+    controlMaster = "auto";
+    controlPersist = "10m";
+    serverAliveInterval = 25;
     includes = [
       "config.d/*"
     ];
     extraConfig = ''
-      AddKeysToAgent yes
       SetEnv TERM=xterm-256color
       ForwardX11 no
-      Compression yes
-      ControlMaster auto
-      ControlPath ~/.ssh/masters/%r@%h-%p
-      ControlPersist 600
-      ServerAliveInterval 25
-      ServerAliveCountMax 3
       GSSAPIAuthentication no
     '';
   };
