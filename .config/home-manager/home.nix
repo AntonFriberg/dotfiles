@@ -111,6 +111,8 @@
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
     # RTX config
     RTX_TRUSTED_CONFIG_PATHS = "$HOME/.config/rtx/config.toml";
+    # # Fix for Red Hat IdM
+    # LD_PRELOAD = "/lib/x86_64-linux-gnu/libnss_sss.so.2";
   };
 
   # SSH configs
