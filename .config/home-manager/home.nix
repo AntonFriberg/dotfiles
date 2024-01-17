@@ -129,7 +129,6 @@
     extraConfig = ''
       SetEnv TERM=xterm-256color
       ForwardX11 no
-      GSSAPIAuthentication no
     '';
   };
 
