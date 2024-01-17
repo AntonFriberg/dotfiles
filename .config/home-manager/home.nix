@@ -25,7 +25,6 @@
       docker-compose
       dogdns
       fd
-      fuzzel
       fzf
       gh
       git
@@ -266,6 +265,19 @@
         dim5 = "8c738c";
         dim6 = "6d96a5";
         dim7 = "aeb3bb";
+      };
+    };
+  };
+
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      # https://codeberg.org/dnkl/fuzzel/src/branch/master/fuzzel.ini
+      colors = {
+        background = "4c566aff";
+        text = "eceff4ff";
+        selection = "8fbcbbff";
+        selection-text = "eceff4ff";
       };
     };
   };
