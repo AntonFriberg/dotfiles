@@ -192,8 +192,6 @@
       end
       # home-manager
       fenv 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}'
-      # Rtx to manage Python installations
-      rtx activate --quiet --shell fish | source
       # Fix for python dependencies under nix
       #fenv 'export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:$LD_LIBRARY_PATH'
       # Add to PATH
@@ -202,6 +200,7 @@
   };
 
   programs.rtx = {
+    # Note that rtx has been renamed mise https://github.com/jdx/mise
     enable = true;
     enableFishIntegration = true;
     settings = {
@@ -212,11 +211,11 @@
         };
       };
       plugins = {
-        poetry = "https://github.com/rtx-plugins/rtx-poetry";
+        poetry = "https://github.com/mise-plugins/mise-poetry";
       };
       settings = {
         verbose = false;
-        experimental = false;
+        experimental = true;
       };
     };
   };
