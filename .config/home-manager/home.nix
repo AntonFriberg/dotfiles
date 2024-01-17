@@ -44,7 +44,6 @@
       kubernetes-helm
       kubeseal
       ncdu
-      openssh
       ouch
       radeontop
       rclone
