@@ -108,8 +108,6 @@
     PIP_REQUIRE_VIRTUALENV = "true";
     # SSH Agent
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
-    # RTX config
-    RTX_TRUSTED_CONFIG_PATHS = "$HOME/.config/rtx/config.toml";
     # # Fix for Red Hat IdM
     # LD_PRELOAD = "/lib/x86_64-linux-gnu/libnss_sss.so.2";
   };
@@ -199,24 +197,27 @@
     '';
   };
 
-  programs.rtx = {
-    # Note that rtx has been renamed mise https://github.com/jdx/mise
+  programs.mise = {
     enable = true;
     enableFishIntegration = true;
-    settings = {
+    globalConfig = {
       tools = {
-        python = ["3.11" "3.10"];
+        python = "3.11";
         poetry = {
-          version = "1.6.1";
+          version = "1.7.1";
         };
       };
       plugins = {
         poetry = "https://github.com/mise-plugins/mise-poetry";
       };
-      settings = {
-        verbose = false;
-        experimental = true;
-      };
+    };
+    settings = {
+      verbose = false;
+      experimental = true;
+      # https://github.com/jdx/mise/issues/1501
+      trusted_config_paths = [
+        "~/.config/mise/config.toml"
+      ];
     };
   };
 
