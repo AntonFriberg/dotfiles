@@ -109,7 +109,7 @@
     # SSH Agent
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
     # # Fix for Red Hat IdM
-    # LD_PRELOAD = "/lib/x86_64-linux-gnu/libnss_sss.so.2";
+    LD_PRELOAD = "/lib/x86_64-linux-gnu/libnss_sss.so.2";
   };
 
   # SSH configs
