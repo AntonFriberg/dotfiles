@@ -46,6 +46,7 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
+          secrets = secrets;
           username = users.work;
           homeDirectory = "/home/${users.work}";
         };
@@ -54,6 +55,7 @@
         inherit pkgs;
         modules = [./home.nix];
         extraSpecialArgs = {
+          secrets = secrets;
           username = users.work;
           homeDirectory = "/home/${users.work}";
         };
