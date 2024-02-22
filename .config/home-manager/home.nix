@@ -238,6 +238,10 @@
         src = pkgs.fishPlugins.forgit.src;
       }
       {
+        name = "fzf-fish";
+        src = pkgs.fishPlugins.fzf-fish.src;
+      }
+      {
         name = "bang-bang";
         src = pkgs.fetchFromGitHub {
           owner = "oh-my-fish";
