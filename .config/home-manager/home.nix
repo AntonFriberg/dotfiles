@@ -285,6 +285,13 @@
     '';
   };
 
+  programs.micro = {
+    enable = true;
+    settings = {
+      colorscheme = "nord-16"; # micro --plugin install nordcolors
+    };
+  };
+
   programs.mise = {
     enable = true;
     enableFishIntegration = true;
