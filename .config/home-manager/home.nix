@@ -260,6 +260,29 @@
           echo "Exported key $item[1]"
         end
       '';
+      ssht = ''
+        # Set the remote server's address
+        set remote_server $argv[1]
+
+        # Export the terminal info to a temporary file
+        set tmp_file (mktemp)
+        infocmp > $tmp_file
+
+        # Transfer the terminfo file to the remote server
+        scp $tmp_file $remote_server:/tmp/
+
+        # Set the name for the remote temporary file
+        set remote_tmp_file "/tmp/"(basename $tmp_file)
+
+        # Load the terminfo on the remote server
+        ssh $remote_server "tic -x $remote_tmp_file"
+
+        # Clean up temporary files
+        rm $tmp_file
+        ssh $remote_server "rm $remote_tmp_file"
+
+        echo "Terminfo for $term_type transferred and installed on $remote_server"
+      '';
     };
     shellAliases = {
       update = "sudo apt update";
