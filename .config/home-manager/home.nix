@@ -122,12 +122,22 @@
       ".mise.toml"
       ".venv"
     ];
+    includes = [
+      {
+        condition = "hasconfig:remote.*.url:ssh://*@*.*.axis.com:*/**";
+        contents = {
+          user = {
+            email = secrets.emails.work;
+          };
+        };
+      }
+    ];
     aliases = {
       # List available aliases
       aliases = "!git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'";
       # Command shortcuts
       ci = "commit";
-      co = "checkhout";
+      co = "checkout";
       st = "status";
       # Display tree-like log, default log is not ideal
       lg = "log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'";
