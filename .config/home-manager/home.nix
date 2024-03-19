@@ -76,44 +76,45 @@
   systemd.user.startServices = "sd-switch";
 
   # Environment variables to set at login
-  home.sessionVariables = {
-    # Set XDG directories
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    XDG_LIB_HOME = "$HOME/.local/lib";
-    XDG_CACHE_HOME = "$HOME/.cache";
-    XDG_BACKEND = "wayland";
-    XDG_CURRENT_DESKTOP = "sway";
-    # Tell applications to use wayland
-    XDG_SESSION_TYPE = "wayland";
-    # GDK_BACKEND = "wayland";
-    MOZ_ENABLE_WAYLAND = "1";
-    # Fix cursor on non wayland native applications
-    XCURSOR_SIZE = "24";
-    # VS Code under wayland
-    # NIXOS_OZONE_WL = "1";
-    # Set default applications
-    VISUAL = "vim";
-    EDITOR = "vim";
-    TERMINAL = "foot";
-    BROWSER = "firefox";
-    PAGER = "less";
-    DESKTOP = "sway";
-    # Respect XDG directories
-    DOCKER_CONFIG = "$HOME/.config/docker";
-    LESSHISTFILE = "-"; # Disable less history
-    # Other configs
-    PYTHONDONTWRITEBYTECODE = "true";
-    PIP_REQUIRE_VIRTUALENV = "true";
-    # SSH Agent
-    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
-    # # Fix for Red Hat IdM
-    LD_PRELOAD = "/lib/x86_64-linux-gnu/libnss_sss.so.2";
-  };
+  home.sessionVariables =
+    {
+      # Set XDG directories
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      XDG_LIB_HOME = "$HOME/.local/lib";
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_BACKEND = "wayland";
+      XDG_CURRENT_DESKTOP = "sway";
+      # Tell applications to use wayland
+      XDG_SESSION_TYPE = "wayland";
+      # GDK_BACKEND = "wayland";
+      MOZ_ENABLE_WAYLAND = "1";
+      # Fix cursor on non wayland native applications
+      XCURSOR_SIZE = "24";
+      # VS Code under wayland
+      # NIXOS_OZONE_WL = "1";
+      # Set default applications
+      VISUAL = "vim";
+      EDITOR = "vim";
+      TERMINAL = "foot";
+      BROWSER = "firefox";
+      PAGER = "less";
+      DESKTOP = "sway";
+      # Respect XDG directories
+      DOCKER_CONFIG = "$HOME/.config/docker";
+      LESSHISTFILE = "-"; # Disable less history
+      # Other configs
+      PYTHONDONTWRITEBYTECODE = "true";
+      PIP_REQUIRE_VIRTUALENV = "true";
+      # SSH Agent
+      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
+      # # Fix for Red Hat IdM
+      LD_PRELOAD = "/lib/x86_64-linux-gnu/libnss_sss.so.2";
+    }
+    // secrets.env;
 
   # Git config
-
   programs.git = {
     enable = true;
     userName = "Anton Friberg";
