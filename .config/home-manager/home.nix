@@ -33,6 +33,7 @@
       helmfile
       httpie
       ipcalc
+      jira-cli-go
       jq
       k9s
       kubeconform
@@ -293,6 +294,51 @@
 
         echo "Terminfo for $term_type transferred and installed on $remote_server"
       '';
+      fast_jira_create_issue = ''
+        set project "DDM" # Replace with your actual project key
+        set available_components "Data Management" "Data Analysis" "Data Governance" "support" "Visualizations"
+        set types "Story" "Task" "Bug"
+
+        # Fetch epics and use fzf for selection
+        set selectedEpic (jira epic list --project $project --plain --no-headers --table --status "In progress" | awk 'BEGIN{FS="\\t"}{print $2 " " $3 " " $4}' | fzf --prompt="Select Epic: ")
+
+        set epicKey (echo $selectedEpic | awk '{print $1}')
+
+        if test -z "$epicKey"
+            echo "No epic selected, exiting..."
+            return 1
+        end
+
+        # Information output for user confirmation
+        echo "Selected Epic ID: $epicKey"
+
+        # Let user select issue type
+        set type (printf '%s\n' $types | fzf --prompt="Select Issue Type: ")
+
+        if test -z "$type"
+            echo "No issue type selected, exiting..."
+            return 1
+        end
+
+        echo "Selected Issue type: $type"
+
+
+
+        # Let user select components
+        set raw_components (printf '%s\n' $available_components | fzf --multi --prompt="Select Components (TAB for multiple): ")
+        if test -z "$raw_components"
+            echo "No component, exiting..."
+            return 1
+        end
+        set components (printf '--component "%s" ' $raw_components)
+        echo "Selected Components: $components"
+
+        # Create Jira issue command
+        set cmd "jira issue create --project $project --type $type $components --parent $epicKey"
+
+        # Execute command
+        eval $cmd
+      '';
     };
     shellAliases = {
       update = "sudo apt update";
@@ -301,6 +347,7 @@
       hms = "home-manager switch --flake ~/.config/home-manager";
       hmgc = "nix-collect-garbage --delete-older-than 30d";
       bandwhich = "sudo $(which bandwhich)";
+      jci = "fast_jira_create_issue";
     };
     shellInit = ''
       # Disable help message
