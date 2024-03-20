@@ -296,49 +296,51 @@
         echo "Terminfo for $term_type transferred and installed on $remote_server"
       '';
       fast_jira_create_issue = ''
-        set project "DDM" # Replace with your actual project key
-        set available_components "Data Management" "Data Analysis" "Data Governance" "support" "Visualizations"
-        set types "Story" "Task" "Bug"
+        # Creates a Jira issue quickly by selecting an epic, issue type, and components using interactive prompts.
 
-        # Fetch epics and use fzf for selection
-        set selectedEpic (jira epic list --project $project --plain --no-headers --table --status "In progress" | awk 'BEGIN{FS="\\t"}{print $2 " " $3 " " $4}' | fzf --prompt="Select Epic: ")
+        # Configuration: Set your project key and available components here.
+        set project_key "DDM" # Project key, replace "DDM" with your actual project key.
+        set available_components "Data Management" "Data Analysis" "Data Governance" "Support" "Visualizations"
+        set issue_types "Story" "Task" "Bug"
 
-        set epicKey (echo $selectedEpic | awk '{print $1}')
+        # Select an epic from the list of epics in progress using fzf for filtering and selection.
+        set selected_epic (jira epic list --project $project_key --plain --no-headers --table --status "In progress" | awk 'BEGIN{FS="\t"}{print $2 " " $3 " " $4}' | fzf --prompt="Select Epic: ")
+        set epic_key (echo $selected_epic | awk '{print $1}')
 
-        if test -z "$epicKey"
+        if test -z "$epic_key"
             echo "No epic selected, exiting..."
             return 1
         end
 
-        # Information output for user confirmation
-        echo "Selected Epic ID: $epicKey"
+        echo "Selected Epic ID: $epic_key"
 
-        # Let user select issue type
-        set type (printf '%s\n' $types | fzf --prompt="Select Issue Type: ")
+        # Let the user select the issue type with fzf.
+        set issue_type (printf '%s\n' $issue_types | fzf --prompt="Select Issue Type: ")
 
-        if test -z "$type"
+        if test -z "$issue_type"
             echo "No issue type selected, exiting..."
             return 1
         end
 
-        echo "Selected Issue type: $type"
+        echo "Selected Issue Type: $issue_type"
 
+        # Allow the user to select one or more components for the issue.
+        set selected_components (printf '%s\n' $available_components | fzf --multi --prompt="Select Components (TAB for multiple): ")
 
-
-        # Let user select components
-        set raw_components (printf '%s\n' $available_components | fzf --multi --prompt="Select Components (TAB for multiple): ")
-        if test -z "$raw_components"
-            echo "No component, exiting..."
+        if test -z "$selected_components"
+            echo "No components selected, exiting..."
             return 1
         end
-        set components (printf '--component "%s" ' $raw_components)
-        echo "Selected Components: $components"
 
-        # Create Jira issue command
-        set cmd "jira issue create --project $project --type $type $components --parent $epicKey"
+        # Format the selected components for the Jira issue creation command.
+        set components_formatted (printf '--component "%s" ' $selected_components)
+        echo "Selected Components: $components_formatted"
 
-        # Execute command
-        eval $cmd
+        # Construct the command to create a Jira issue with the selected epic, issue type, and components.
+        set create_command "jira issue create --project $project_key --type $issue_type $components_formatted --parent $epic_key"
+
+        # Execute the command to create the Jira issue.
+        eval $create_command
       '';
     };
     shellAliases = {
