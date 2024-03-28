@@ -381,6 +381,7 @@
     globalConfig = {
       tools = {
         python = "3.11";
+        node = "20";
         poetry = {
           version = "1.7.1";
         };
