@@ -54,5 +54,5 @@ bootstrap_zsh() {
     sudo tee --append /etc/zsh/zshenv >/dev/null 2>&1
 }
 
-bootstrap_zinit
-bootstrap_zsh
+#bootstrap_zinit
+#bootstrap_zsh
