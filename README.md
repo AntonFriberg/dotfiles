@@ -16,6 +16,11 @@ Based on the [nord colorscheme] and managed by [yadm].
 [zinit]: https://github.com/zdharma/zinit
 
 ## Screenshots
+### Wallpaper
+[Wallpaper published on Unsplash] which grants you an irrevocable, nonexclusive, worldwide copyright license to download, copy, modify, distribute, perform, and use images from Unsplash for free. See [Unsplash license] for more info.
+
+[wallpaper published on unsplash]: https://unsplash.com/photos/snow-covered-mountain-under-white-clouds-id_Rjz1bsoI
+[unsplash license]: https://unsplash.com/license
 ### Clean
 ![Clean](.config/yadm/screenshots/clean.png)
 ### Dirty
