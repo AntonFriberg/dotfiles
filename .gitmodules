@@ -1,6 +1,0 @@
-[submodule ".nano"]
-  path = .nano
-  url = https://github.com/scopatz/nanorc.git
-[submodule ".color-scripts"]
-  path = .color-scripts
-  url = https://github.com/stark/Color-Scripts.git
