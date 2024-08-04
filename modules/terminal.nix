@@ -258,4 +258,20 @@
       colorscheme = "nord-16"; # micro --plugin install nordcolors
     };
   };
+
+  programs.bat = {
+    enable = true;
+    extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
+    config = {
+      theme = "Nord";
+      italic-text = "never";
+      # Show line numbers, Git modifications and file header (but no grid)
+      style = "numbers,changes,header,grid";
+      # Add mouse scrolling support in less (does not work with older
+      # versions of "less").
+      pager = "less -FR";
+      # Use "gitignore" highlighting for ".ignore" files
+      map-syntax = [".ignore:.gitignore" "*.jenkinsfile:Groovy"];
+    };
+  };
 }
