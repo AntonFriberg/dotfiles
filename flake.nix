@@ -24,6 +24,7 @@
       };
       modules = [
         ./modules/home.nix
+        ./modules/terminal.nix
       ];
     };
   };
