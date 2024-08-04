@@ -93,3 +93,5 @@ home-manager switch --flake ~/.config/home-manager
 
 That is it. If the system and user is matching any available setup it will
 install everything for you.
+
+[Determinate Nix Installer]: https://determinate.systems/posts/determinate-nix-installer/
