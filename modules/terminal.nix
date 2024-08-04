@@ -107,6 +107,9 @@
     '';
   };
 
+  # SSH Agent systemd user service
+  services.ssh-agent.enable = true;
+
   programs.fish = {
     enable = true;
     plugins = [
