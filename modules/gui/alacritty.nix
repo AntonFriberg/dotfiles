@@ -7,6 +7,7 @@
     enable = true;
     package = config.lib.nixGL.wrap pkgs.alacritty;
     settings = {
+      shell.program = "/home/antonfr/.nix-profile/bin/fish";
       window = {
         padding = {
           x = 12;
