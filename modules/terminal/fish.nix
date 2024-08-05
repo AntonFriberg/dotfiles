@@ -122,6 +122,7 @@
       hmu = "nix flake update --flake ~/.config/home-manager";
       hms = "home-manager switch --flake ~/.config/home-manager";
       hmgc = "nix-collect-garbage --delete-older-than 30d";
+      hmo = "hmgc && nix store optimise";
       bandwhich = "sudo $(which bandwhich)";
       jci = "fast_jira_create_issue";
     };
