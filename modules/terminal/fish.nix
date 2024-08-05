@@ -119,7 +119,7 @@
     shellAliases = {
       update = "sudo apt update";
       upgrade = "sudo apt upgrade";
-      hmu = "nix flake update ~/.config/home-manager";
+      hmu = "nix flake update --flake ~/.config/home-manager";
       hms = "home-manager switch --flake ~/.config/home-manager";
       hmgc = "nix-collect-garbage --delete-older-than 30d";
       bandwhich = "sudo $(which bandwhich)";
