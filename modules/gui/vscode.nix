@@ -40,6 +40,7 @@
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "Nord";
       "workbench.iconTheme" = "vscode-icons";
+      "vsicons.dontShowNewVersionMessage" = true;
       "workbench.sideBar.location" = "right";
       "extensions.ignoreRecommendations" = true;
     };
