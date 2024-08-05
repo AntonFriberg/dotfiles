@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.git = {
     enable = true;
+    package = pkgs.gitAndTools.gitFull;
     userName = "Anton Friberg";
     userEmail = "anton.friberg@outlook.com";
     ignores = [
