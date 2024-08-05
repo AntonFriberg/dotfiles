@@ -11,7 +11,6 @@
       url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = {
@@ -33,7 +32,7 @@
       };
       modules = [
         ./modules/home.nix
-        ./modules/terminal.nix
+        ./modules/terminal
         ./modules/gui
       ];
     };
