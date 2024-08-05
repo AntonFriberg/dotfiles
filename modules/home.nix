@@ -5,7 +5,7 @@
     stateVersion = "23.11";
     sessionVariables = {
       # Set default applications
-      SHELL = "fish";
+      SHELL = "${homeDirectory}/.nix-profile/bin/fish";
       TERMINAL = "alacritty";
       VISUAL = "vim";
       EDITOR = "vim";
