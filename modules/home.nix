@@ -1,11 +1,13 @@
 {...}: {
-  home = {
-    username = "antonfr";
-    homeDirectory = "/home/antonfr";
+  home = let
+    user = "antonfr";
+  in {
+    username = user;
+    homeDirectory = "/home/${user}";
     stateVersion = "23.11";
     sessionVariables = {
       # Set default applications
-      SHELL = "${homeDirectory}/.nix-profile/bin/fish";
+      SHELL = "$HOME/.nix-profile/bin/fish";
       TERMINAL = "alacritty";
       VISUAL = "vim";
       EDITOR = "vim";
