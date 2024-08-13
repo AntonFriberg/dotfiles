@@ -20,7 +20,7 @@
       ms-vscode-remote.remote-ssh
       redhat.vscode-yaml
       tamasfe.even-better-toml
-      vscode-icons-team.vscode-icons
+      equinusocio.vsc-material-theme-icons
     ];
     userSettings = {
       "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
@@ -39,8 +39,7 @@
       "window.titleBarStyle" = "custom";
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "Nord";
-      "workbench.iconTheme" = "vscode-icons";
-      "vsicons.dontShowNewVersionMessage" = true;
+      "workbench.iconTheme" = "material-icon-theme";
       "workbench.sideBar.location" = "right";
       "extensions.ignoreRecommendations" = true;
     };
