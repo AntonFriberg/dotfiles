@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./fish.nix
     ./git.nix
@@ -6,50 +10,52 @@
   ];
 
   # Add packages
-  home.packages = with pkgs; [
-    alejandra
-    bandwhich
-    choose
-    comma
-    delta
-    docker-compose
-    dogdns
-    fd
-    fzf
-    git-crypt
-    glances
-    go-migrate
-    helmfile
-    httpie
-    ipcalc
-    jira-cli-go
-    jq
-    k9s
-    kubeconform
-    kubectl
-    kubectl-node-shell
-    kubectx
-    kubernetes-helm
-    kubeseal
-    ncdu
-    ouch
-    radeontop
-    rclone
-    ripgrep
-    tealdeer
-    yt-dlp
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "FiraCode"
-        "FiraMono"
-        "CascadiaCode"
-        "Cousine"
-        "DroidSansMono"
-        "JetBrainsMono"
-        "SourceCodePro"
-      ];
-    })
+  home.packages = lib.mkMerge [
+    (with pkgs; [
+      alejandra
+      bandwhich
+      choose
+      comma
+      delta
+      docker-compose
+      dogdns
+      fd
+      fzf
+      git-crypt
+      glances
+      go-migrate
+      helmfile
+      httpie
+      ipcalc
+      jira-cli-go
+      jq
+      k9s
+      kubeconform
+      kubectl
+      kubectl-node-shell
+      kubectx
+      kubernetes-helm
+      kubeseal
+      ncdu
+      ouch
+      radeontop
+      rclone
+      ripgrep
+      tealdeer
+      yt-dlp
+      (nerdfonts.override {
+        fonts = [
+          "Hack"
+          "FiraCode"
+          "FiraMono"
+          "CascadiaCode"
+          "Cousine"
+          "DroidSansMono"
+          "JetBrainsMono"
+          "SourceCodePro"
+        ];
+      })
+    ])
   ];
 
   # Allow fontconfig to discover fonts and configurations installed through home.packages
