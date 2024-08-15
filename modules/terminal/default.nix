@@ -13,10 +13,10 @@
   home.packages = lib.mkMerge [
     (with pkgs; [
       alejandra
-      bandwhich
+      # bandwhich
       choose
       comma
-      delta
+      # delta
       docker-compose
       dogdns
       fd
