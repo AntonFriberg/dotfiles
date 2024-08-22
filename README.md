@@ -154,18 +154,18 @@ Then it works like this.
 
 ```sh
 # Trust the .mise.toml file in the project dir
-❯ mise trust project/.mise.toml
+❯ mise trust project-dir/.mise.toml
 # Navigate into the project dir which triggers mise hook
-❯ cd project/
+❯ cd project-dir/
 mise missing: python@3.10.14
 # Mise alerts that tools are missing from installation
 ❯ mise install
-mise python@3.10.14 ✓ installed                                              mise creating venv at: ~/git/github/dagster-project-example/.venv
+mise python@3.10.14 ✓ installed                                              mise creating venv at: ~/project-dir/.venv
 # Mise installs Python version and activates our virtualenv
 ❯ python --version & which python & which pip
 Python 3.10.14
-/home/antonfr/git/github/dagster-project-example/.venv/bin/python
-/home/antonfr/git/github/dagster-project-example/.venv/bin/pip
+/home/antonfr/project-dir/.venv/bin/python
+/home/antonfr/project-dir/.venv/bin/pip
 ```
 
 This means that I can quickly switch between different project specific tool
