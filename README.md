@@ -100,9 +100,9 @@ install everything for you.
 
 I prefer to keep Python and Javascript development environments outside of Nix
 due to some issues I have experienced and known performance issues due to the
-reproducible builds in Nix. Instead I install these via Mise-en-Place tool.
+reproducible builds in Nix. Instead I install these via [Mise-en-Place] tool.
 
-Mise-en-Place is installed using Nix as usual and configured in `modules/terminal/mise.nix`. Here I specify which tools I want access to globally.
+[Mise-en-Place] is installed using Nix as usual and configured in `modules/terminal/mise.nix`. Here I specify which tools I want access to globally.
 
 ```nix
 {...}: {
@@ -170,3 +170,5 @@ Python 3.10.14
 
 This means that I can quickly switch between different project specific tool
 versions by simply navigating into them.
+
+[Mise-en-Place]: https://mise.jdx.dev/
