@@ -24,11 +24,11 @@ Wallpaper [published on Unsplash] which grants you an irrevocable, nonexclusive,
 [published on unsplash]: https://unsplash.com/photos/snow-covered-mountain-under-white-clouds-id_Rjz1bsoI
 [unsplash license]: https://unsplash.com/license
 ### Clean
-![Clean](.config/yadm/screenshots/clean.png)
+![Clean](old/config/yadm/screenshots/clean.png)
 ### Dirty
-![Dirty](.config/yadm/screenshots/dirty.png)
+![Dirty](old/config/yadm/screenshots/dirty.png)
 ### Editor
-![Editor](.config/yadm/screenshots/editor.png)
+![Editor](old/config/yadm/screenshots/editor.png)
 
 
 ## Installation & Management
@@ -95,3 +95,78 @@ That is it. If the system and user is matching any available setup it will
 install everything for you.
 
 [Determinate Nix Installer]: https://determinate.systems/posts/determinate-nix-installer/
+
+## Python & Javascript Development
+
+I prefer to keep Python and Javascript development environments outside of Nix
+due to some issues I have experienced and known performance issues due to the
+reproducible builds in Nix. Instead I install these via Mise-en-Place tool.
+
+Mise-en-Place is installed using Nix as usual and configured in `modules/terminal/mise.nix`. Here I specify which tools I want access to globally.
+
+```nix
+{...}: {
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = true;
+    globalConfig = {
+      tools = {
+        python = "3.12";
+        node = "20";
+      };
+    };
+  };
+}
+```
+
+After activating my home-manager environment I have access to `mise` and can
+run the following to install python and nodejs.
+
+```sh
+# Check that mise is installed
+❯ mise --version
+2024.5.9 linux-x64 (2024-08-12)
+# Install configured global tools
+❯ mise install
+mise node@20.17.0 ✓ installed
+mise python@3.12.5 ✓ installed
+# Check that it is working
+❯ python --version && which python
+Python 3.12.5
+/home/antonfr/.local/share/mise/installs/python/3.12/bin/python
+❯ node --version && which node
+v20.17.0
+/home/antonfr/.local/share/mise/installs/node/20/bin/node
+```
+
+For local development where I might want different versions of Python or NodeJS
+I utilize a project specific `.mise.toml` file.
+
+```toml
+[tools]
+python = "3.10"
+
+[env]
+_.python.venv = { path = ".venv", create = true }
+```
+
+Then it works like this.
+
+```sh
+# Trust the .mise.toml file in the project dir
+❯ mise trust project/.mise.toml
+# Navigate into the project dir which triggers mise hook
+❯ cd project/
+mise missing: python@3.10.14
+# Mise alerts that tools are missing from installation
+❯ mise install
+mise python@3.10.14 ✓ installed                                              mise creating venv at: ~/git/github/dagster-project-example/.venv
+# Mise installs Python version and activates our virtualenv
+❯ python --version & which python & which pip
+Python 3.10.14
+/home/antonfr/git/github/dagster-project-example/.venv/bin/python
+/home/antonfr/git/github/dagster-project-example/.venv/bin/pip
+```
+
+This means that I can quickly switch between different project specific tool
+versions by simply navigating into them.
