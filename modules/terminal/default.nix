@@ -6,6 +6,7 @@
   imports = [
     ./fish.nix
     ./git.nix
+    ./mise.nix
     ./ssh.nix
   ];
 
