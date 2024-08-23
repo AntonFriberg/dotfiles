@@ -62,6 +62,8 @@
   # Allow fontconfig to discover fonts and configurations installed through home.packages
   fonts.fontconfig.enable = true;
 
+  programs.nix-index.enable = true;
+
   programs.micro = {
     enable = true;
     settings = {
