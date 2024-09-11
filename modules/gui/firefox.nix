@@ -5,7 +5,7 @@
 }: {
   programs.firefox = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.firefox-devedition-unwrapped;
+    package = config.lib.nixGL.wrap pkgs.firefox-devedition-bin;
     profiles = {
       default = {
         id = 0;
