@@ -96,6 +96,33 @@ install everything for you.
 
 [Determinate Nix Installer]: https://determinate.systems/posts/determinate-nix-installer/
 
+### Troubleshooting
+
+No prompt in fish after initial startup? Run the following.
+
+```fish
+tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Many icons' --transient=No
+```
+
+Unable to start Electron apps such as Chrome, Visual Studio Code, etc from Nix
+on Ubuntu 24?
+
+This is due security changes in AppArmor on Ubuntu 24. See https://github.com/NixOS/nixpkgs/issues/121694#issuecomment-2159420924
+
+Current workaround is to disable the restriction. This can be done for the current
+session with the following command.
+
+```fish
+echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
+```
+
+Or perminently by editing the file `/etc/sysctl.d/60-apparmor-namespace.conf`
+
+```conf
+# Workaround for Electron apps from nixpkgs
+kernel.apparmor_restrict_unprivileged_userns=0
+```
+
 ## Python & Javascript Development
 
 I prefer to keep Python and Javascript development environments outside of Nix
