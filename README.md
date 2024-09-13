@@ -98,30 +98,54 @@ install everything for you.
 
 ### Troubleshooting
 
-No prompt in fish after initial startup? Run the following.
+- **No prompt in fish after initial startup? Run the following.**
 
-```fish
-tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Many icons' --transient=No
-```
+  ```fish
+  tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Many icons' --transient=No
+  ```
 
-Unable to start Electron apps such as Chrome, Visual Studio Code, etc from Nix
-on Ubuntu 24?
+- **Unable to start Electron apps such as Chrome, Visual Studio Code, etc from Nix
+  on Ubuntu 24 due to sandbox errors?**
 
-This is due security changes in AppArmor on Ubuntu 24. See https://github.com/NixOS/nixpkgs/issues/121694#issuecomment-2159420924
+  This is due security changes in AppArmor on Ubuntu 24.
+  See https://github.com/NixOS/nixpkgs/issues/121694#issuecomment-2159420924
 
-Current workaround is to disable the restriction. This can be done for the current
-session with the following command.
+  Current workaround is to disable the restriction. This can be done for the current
+  session with the following command.
 
-```fish
-echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
-```
+  ```fish
+  echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
+  ```
 
-Or perminently by editing the file `/etc/sysctl.d/60-apparmor-namespace.conf`
+  Or perminently by editing the file `/etc/sysctl.d/60-apparmor-namespace.conf`
 
-```conf
-# Workaround for Electron apps from nixpkgs
-kernel.apparmor_restrict_unprivileged_userns=0
-```
+  ```conf
+  # Workaround for Electron apps from nixpkgs
+  kernel.apparmor_restrict_unprivileged_userns=0
+  ```
+
+- **Different cursor or blurry rendering in Electron apps?**
+
+  This is due to apps running in XWayland instead of native Wayland rendering.
+  Starting the application with extra command arguments forces native wayland.
+
+  ```
+  --enable-features=UseOzonePlatform
+  --enable-features=WaylandWindowDecoration
+  --ozone-platform=wayland
+  ```
+
+  If staring the application in Gnome it can be tricky to get the arguments into
+  the application. The easiest is probably to simply copy the desktop file from
+  `~/.nix-profile/share/applications` to `~/.local/share/applications` and edit
+  the `Exec=` line.
+
+  ```sh
+  $ diff ~/.nix-profile/share/applications/spotify.desktop ~/.local/share/applications/spotify.desktop
+  < Exec=spotify %U
+  ---
+  > Exec=spotify --enable-features=UseOzonePlatform --enable-features=WaylandWindowDecoration --ozone-platform=wayland  %U
+  ```
 
 ## Python & Javascript Development
 
