@@ -8,7 +8,8 @@
     package = config.lib.nixGL.wrap pkgs.chromium;
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
-      "--ozone-platform=wayland"
+      "--enable-features=WaylandWindowDecorations"
+      "--ozone-platform-hint=auto"
     ];
   };
 }
