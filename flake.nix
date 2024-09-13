@@ -15,13 +15,18 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
-    nixpkgs,
+    firefox-addons,
     home-manager,
-    nixGL,
     nix-index-database,
+    nixGL,
+    nixpkgs,
     ...
   }: {
     homeConfigurations."antonfr" = home-manager.lib.homeManagerConfiguration {
@@ -34,6 +39,7 @@
       };
       extraSpecialArgs = {
         inherit nixGL;
+        inherit firefox-addons;
       };
       modules = [
         nix-index-database.hmModules.nix-index

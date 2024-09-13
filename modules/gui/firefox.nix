@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  firefox-addons,
   ...
 }: {
   programs.firefox = {
@@ -11,6 +12,11 @@
         id = 0;
         name = "dev-edition-default";
         isDefault = true;
+        extensions = with firefox-addons.packages."${pkgs.system}"; [
+          ublock-origin
+          bitwarden
+          istilldontcareaboutcookies
+        ];
         settings = {
           "browser.startup.homepage" = "https://google.com";
           "browser.search.defaultengine" = "Google";
