@@ -7,9 +7,9 @@
     enable = true;
     package = config.lib.nixGL.wrap pkgs.firefox-devedition-bin;
     profiles = {
-      default = {
+      dev-edition-default = {
         id = 0;
-        name = "default";
+        name = "dev-edition-default";
         isDefault = true;
         settings = {
           "browser.startup.homepage" = "https://google.com";
