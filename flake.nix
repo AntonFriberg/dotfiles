@@ -19,11 +19,16 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     firefox-addons,
     home-manager,
+    hyprpanel,
     nix-index-database,
     nixGL,
     nixpkgs,
@@ -36,6 +41,9 @@
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
+        overlays = [
+          hyprpanel.overlay
+        ];
       };
       extraSpecialArgs = {
         inherit nixGL;
