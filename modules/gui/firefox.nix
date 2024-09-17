@@ -23,6 +23,7 @@
           "browser.startup.page" = 3; # Resume previous session on startup
           "browser.aboutConfig.showWarning" = false; # I sometimes know what I'm doing
           "browser.translations.neverTranslateLanguages" = "sv"; # No need to translate swedish
+          "privacy.clearOnShutdown.history" = false; # We want to save history on exit
         };
       };
     };
