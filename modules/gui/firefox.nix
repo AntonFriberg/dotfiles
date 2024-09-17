@@ -36,6 +36,11 @@
           "browser.uitour.enabled" = false; # no tutorial please
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          # disable annoying web features
+          "dom.push.enabled" = false; # no notifications, really...
+          "dom.push.connection.enabled" = false;
+          "dom.battery.enabled" = false; # you don't need to see my battery...
+          "dom.private-attribution.submission.enabled" = false; # https://news.ycombinator.com/item?id=40974112
         };
       };
     };
