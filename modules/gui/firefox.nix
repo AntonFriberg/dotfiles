@@ -21,6 +21,7 @@
           # General
           "browser.search.defaultengine" = "Google";
           "browser.startup.page" = 3; # Resume previous session on startup
+          "browser.aboutConfig.showWarning" = false; # I sometimes know what I'm doing
         };
       };
     };
