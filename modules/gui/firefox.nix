@@ -18,8 +18,9 @@
           istilldontcareaboutcookies
         ];
         settings = {
-          "browser.startup.homepage" = "https://google.com";
+          # General
           "browser.search.defaultengine" = "Google";
+          "browser.startup.page" = 3; # Resume previous session on startup
         };
       };
     };
