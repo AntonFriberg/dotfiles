@@ -54,6 +54,7 @@
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui
+        ./overlays
       ];
     };
   };
