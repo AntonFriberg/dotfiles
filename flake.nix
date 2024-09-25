@@ -49,11 +49,14 @@
         inherit nixGL;
         inherit firefox-addons;
       };
+      # Useful stuff for managing modules between hosts
+      # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
       modules = [
         nix-index-database.hmModules.nix-index
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui
+        ./modules/work
         ./overlays
       ];
     };
