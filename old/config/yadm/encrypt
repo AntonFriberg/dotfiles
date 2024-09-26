@@ -1,4 +1,0 @@
-# https://yadm.io/docs/encryption#
-.aws/credentials
-.config/home-manager/secrets.nix
-.config/rclone/*
