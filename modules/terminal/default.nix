@@ -67,9 +67,16 @@
   programs.micro = {
     enable = true;
     settings = {
-      colorscheme = "nord-16"; # micro --plugin install nordcolors
+      colorscheme = "nord-16"; # installed via below
     };
   };
+
+  xdg.configFile."micro/colorschemes/nord-16.micro".source = "${pkgs.fetchFromGitHub {
+    owner = "KiranWells";
+    repo = "micro-nord-tc-colors";
+    rev = "132e847cb02ee20bfae566212d0358f0f98313cb";
+    sha256 = "m1qOvnfOCE8itE/LkDWeZ7yyIUXcAlAvw8FPWZeGfvw="; # nix flake prefetch github:KiranWells/micro-nord-tc-colors/132e847cb02ee20bfae566212d0358f0f98313cb
+  }}/colorschemes/nord-16.micro";
 
   programs.bat = {
     enable = true;
