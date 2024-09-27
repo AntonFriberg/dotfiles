@@ -117,6 +117,7 @@
       '';
     };
     shellAliases = {
+      sudo = "sudo --preserve-env=PATH env"; # Fixes nix packages under sudo
       update = "sudo apt update";
       upgrade = "sudo apt upgrade";
       hmu = "nix flake update --flake ~/.config/home-manager";
