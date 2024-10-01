@@ -101,7 +101,7 @@ install everything for you.
 - **No prompt in fish after initial startup? Run the following.**
 
   ```fish
-  tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Many icons' --transient=No
+  tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Many icons' --transient=No
   ```
 
 - **Unable to start Electron apps such as Chrome, Visual Studio Code, etc from Nix
