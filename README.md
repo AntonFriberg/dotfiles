@@ -104,6 +104,21 @@ install everything for you.
   tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Many icons' --transient=No
   ```
 
+- **Unable to start Nix applications due to errors such as `user: unknown userid 11789`**
+
+  This happened on work computers after they were omborded with Red Hat IdM. I found two possible
+  solutions.
+
+  1. Specify path to shared library for libnss for nix program
+      ```sh
+      $ LD_PRELOAD="/lib/x86_64-linux-gnu/libnss_sss.so.2" <nix program>
+      ```
+  2. Install Name Service Cache Daemon (nscd)
+      ```sh
+      # For Debian/Ubuntu
+      $ sudo apt install nscd
+      ```
+
 - **Unable to start Electron apps such as Chrome, Visual Studio Code, etc from Nix
   on Ubuntu 24 due to sandbox errors?**
 
