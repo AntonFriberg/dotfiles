@@ -37,6 +37,7 @@
       kubectx
       kubernetes-helm
       kubeseal
+      mmv
       ncdu
       ouch
       radeontop
