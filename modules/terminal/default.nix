@@ -6,6 +6,7 @@
   imports = [
     ./fish.nix
     ./git.nix
+    ./kubernetes.nix
     ./mise.nix
     ./ssh.nix
   ];
@@ -30,13 +31,6 @@
       ipcalc
       jira-cli-go
       jq
-      k9s
-      kubeconform
-      kubectl
-      kubectl-node-shell
-      kubectx
-      kubernetes-helm
-      kubeseal
       mmv
       ncdu
       ouch
