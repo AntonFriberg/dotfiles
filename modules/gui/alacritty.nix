@@ -7,7 +7,9 @@
     enable = true;
     package = config.lib.nixGL.wrap pkgs.alacritty;
     settings = {
-      shell.program = "${config.home.homeDirectory}/.nix-profile/bin/fish";
+      terminal = {
+        shell.program = "${config.home.homeDirectory}/.nix-profile/bin/fish";
+      };
       window = {
         padding = {
           x = 12;
