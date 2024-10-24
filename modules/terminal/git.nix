@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    userName = "Anton Friberg";
+    userName = "Anton Frost";
     userEmail = "anton.friberg@outlook.com";
     ignores = [
       ".env"
@@ -14,7 +14,7 @@
         condition = "hasconfig:remote.*.url:ssh://*@*.*.axis.com:*/**";
         contents = {
           user = {
-            email = "anton.friberg@axis.com";
+            email = "anton.frost@axis.com";
           };
         };
       }
