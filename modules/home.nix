@@ -25,6 +25,7 @@
       # Python config
       PYTHONDONTWRITEBYTECODE = "true";
       PIP_REQUIRE_VIRTUALENV = "true";
+      POETRY_VIRTUALENVS_IN_PROJECT = "true";
       # SSH Agent
       SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
     };
