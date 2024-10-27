@@ -1,0 +1,25 @@
+name: Build Home Manager Configuration
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch: # allows manual triggering
+
+jobs:
+  build-home-manager:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Configure Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Validate flake lockfile
+        uses: DeterminateSystems/flake-checker-action@main
+
+      - name: Build Home Manager
+        run: nix shell nixpkgs#home-manager -c home-manager build --flake .#antonfr
