@@ -51,38 +51,13 @@ configurations, user services, and much more.
 Install Nix package manager using the [Determinate Nix Installer]
 
 ```sh
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+curl -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-Make sure that it is working correctly.
+Install Home-Manager and swith to this repos configuration.
 
 ```sh
-$ nix run "nixpkgs#hello"
-Hello, world!
-```
-
-Start a new Nix shell with two packages installed, `home-manager` and `git`.
-
-```sh
-nix shell "nixpkgs#home-manager" "nixpkgs#git"
-```
-
-Make sure that the dependencies gets installed correctly and are available.
-
-```sh
-$ home-manager --version
-24.11-pre
-$ git --version
-git version 2.45.2
-```
-
-Clone this repository to user config path and apply.
-
-```sh
-git clone https://github.com/AntonFriberg/dotfiles.git ~/.config/home-manager
-```
-```sh
-home-manager switch --flake ~/.config/home-manager
+$ nix run "nixpkgs#home-manager" -- switch --flake github:antonfriberg/dotfiles
 ```
 
 That is it. If the system and user is matching any available setup it will
