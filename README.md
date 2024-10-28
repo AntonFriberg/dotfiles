@@ -18,18 +18,12 @@ My personal dotfiles manging packages, scripts and configuration on [Ubuntu],
 [Visual Studio Code]: https://github.com/microsoft/vscode
 
 ## Screenshots
+
+Currently I have no screenshots since I am working on the Hyprland
+configurations.
+
 ### Wallpaper
 Wallpaper [published on Unsplash] which grants you an irrevocable, nonexclusive, worldwide copyright license to download, copy, modify, distribute, perform, and use images from Unsplash for free. See [Unsplash license] for more info.
-
-[published on unsplash]: https://unsplash.com/photos/snow-covered-mountain-under-white-clouds-id_Rjz1bsoI
-[unsplash license]: https://unsplash.com/license
-### Clean
-![Clean](old/config/yadm/screenshots/clean.png)
-### Dirty
-![Dirty](old/config/yadm/screenshots/dirty.png)
-### Editor
-![Editor](old/config/yadm/screenshots/editor.png)
-
 
 ## Installation & Management
 
