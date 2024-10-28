@@ -207,3 +207,84 @@ This means that I can quickly switch between different project specific tool
 versions by simply navigating into them.
 
 [Mise-en-Place]: https://mise.jdx.dev/
+
+## Uninstall
+
+This is one of best features of Nix and it extends to Home-Manager as well. To
+uninstall we basically only need to do
+
+```bash
+$ sudo rm -rf /nix
+```
+
+That is it.
+
+However, there will be some stuff left over such as groups, temporary files,
+shell profile configurations, and other minor stuff. A better way to uninstall
+Nix is to use the Determinate Installer that I recommend you use to install
+Nix.
+
+```bash
+$ /nix/nix-installer uninstall
+Nix uninstall plan (v0.27.0)
+
+Planner: linux
+
+Configured settings:
+* nix_build_group_id: 30001
+
+Planned actions:
+* Remove upstream Nix daemon service
+* Remove the directory `/etc/tmpfiles.d` if no other contents exists
+* Unconfigure the shell profiles
+* Remove the Nix configuration in `/etc/nix/nix.conf`
+* Unset the default Nix profile
+* Remove Nix users and group
+* Remove the directory tree in `/nix`
+* Remove the directory `/nix`
+
+
+Proceed? ([Y]es/[n]o/[e]xplain):
+```
+
+This removes everything **properly**, including all files created in home
+catalog by Home Manager! Full cleanup of your configurations and the
+applications themselves in a single command!
+
+This works due to how Nix works which Home-Manager utilizes.
+
+Home-Manager does not place any configuration files in your home catalog.
+Instead, it creates symlinks which reference generated files on a path unique
+to the current iteration of inputs. So if any dependency or configuration
+changes the generated files will be placed under a new directory. This makes
+it really easy to revert a change by going back to the previous
+generation, as seen the [Rollbacks section of the documentation].
+
+So if we look at a generated configuration file.
+
+```bash
+$ ls -al
+lrwxrwxrwx 1 antonfr antonfr 81 Oct 28 21:40 /home/antonfr/.config/git/config -> /nix/store/x3r12ppqhjgzdv2jx63cjflfc10qjn5b-home-manager-files/.config/git/config
+```
+
+We see that the contents are actually under /nix so once /nix is removed with
+the uninstaller it also removes all references to /nix. Removing everything
+neatly and without issues.
+
+It does not remove local state, cache or temporary files which are unique for
+each application and version. This is left up to the user. But this fact
+also allows us to do something pretty nifty.
+
+```
+# Uninstall everything
+$ /nix/nix-installer uninstall
+# Reinstall Nix
+$ curl -L https://install.determinate.systems/nix | sh -s -- install
+# Recreate the entire setup back again
+$ nix run "nixpkgs#home-manager" -- switch --flake github:antonfriberg/dotfiles
+```
+
+The above makes it pretty fool-proof if you ever manage to break Nix or
+Home-Manager setup in any way. Simply tear everything down and recreate it.
+
+[Rollbacks section of the documentation]:https://nix-community.github.io/home-manager/index.xhtml#sec-usage-rollbacks
