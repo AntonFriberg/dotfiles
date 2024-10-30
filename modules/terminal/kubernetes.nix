@@ -10,6 +10,11 @@
       kubectl
       kubectl-node-shell
       kubectl-tree
+      kubectl-images
+      kubectl-explore
+      kubectl-validate
+      kubectl-view-secret
+      kubectl-view-allocations
       kubectx
       kubernetes-helm
       kubeseal
