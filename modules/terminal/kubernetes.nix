@@ -9,6 +9,7 @@
       kubeconform
       kubectl
       kubectl-node-shell
+      kubectl-tree
       kubectx
       kubernetes-helm
       kubeseal
