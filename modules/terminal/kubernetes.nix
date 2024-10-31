@@ -9,6 +9,7 @@
       kubeconform
       kubectl
       kubectl-node-shell
+      kubectl-cnpg
       kubectl-tree
       kubectl-images
       kubectl-explore
