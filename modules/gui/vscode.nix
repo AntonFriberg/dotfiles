@@ -39,7 +39,7 @@
       "window.titleBarStyle" = "custom";
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "Nord";
-      "workbench.iconTheme" = "material-icon-theme";
+      "workbench.iconTheme" = "eq-material-theme-icons";
       "workbench.sideBar.location" = "right";
       "extensions.ignoreRecommendations" = true;
     };
