@@ -46,6 +46,7 @@
       rclone
       ripgrep
       tealdeer
+      uv
       yt-dlp
     ])
   ];
