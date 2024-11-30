@@ -33,24 +33,20 @@
       jq
       mmv
       ncdu
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.cousine
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.hack
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.sauce-code-pro
       ouch
       radeontop
       rclone
       ripgrep
       tealdeer
       yt-dlp
-      (nerdfonts.override {
-        fonts = [
-          "Hack"
-          "FiraCode"
-          "FiraMono"
-          "CascadiaCode"
-          "Cousine"
-          "DroidSansMono"
-          "JetBrainsMono"
-          "SourceCodePro"
-        ];
-      })
     ])
   ];
 
