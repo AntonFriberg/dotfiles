@@ -29,6 +29,9 @@
       # SSH Agent
       SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
     };
+    sessionPath = [
+      "$XDG_CACHE_HOME/.bun/bin"
+    ];
   };
 
   programs.home-manager.enable = true;
