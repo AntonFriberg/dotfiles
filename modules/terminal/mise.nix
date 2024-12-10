@@ -10,9 +10,6 @@
           version = "1.8";
         };
       };
-      plugins = {
-        poetry = "https://github.com/mise-plugins/mise-poetry";
-      };
     };
     settings = {
       verbose = false;
