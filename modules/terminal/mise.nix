@@ -6,6 +6,7 @@
       tools = {
         python = "3.12";
         bun = "1.1";
+        node = "lts";
         poetry = {
           version = "1.8";
         };
