@@ -123,10 +123,10 @@
 
         # Rezie active window
 
-        "${modifier}, Control left, resizeactive, -10 0"
-        "${modifier}, Control right, resizeactive, 10 0"
-        "${modifier}, Control up, resizeactive, 0 -10"
-        "${modifier}, Control down, resizeactive, 0 10"
+        "${modifier}+Ctrl, left, resizeactive, -10 0"
+        "${modifier}+Ctrl, right, resizeactive, 10 0"
+        "${modifier}+Ctrl, up, resizeactive, 0 -10"
+        "${modifier}+Ctrl, down, resizeactive, 0 10"
         # Screenshot bindings
         ", Print, exec, grim ${screenshot_dir}/$(date +'%Y-%m-%d_%H-%M-%S').png"
         "Shift, Print, exec, grim -g \"$(slurp)\" ${screenshot_dir}/$(date +'%Y-%m-%d_%H-%M-%S').png"
