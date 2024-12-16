@@ -35,7 +35,7 @@
 
       input = {
         kb_layout = "us,se";
-        kb_variant = ",swerty";
+        kb_variant = ",";
         kb_model = "";
         kb_options = "grp:win_space_toggle";
         kb_rules = "";
