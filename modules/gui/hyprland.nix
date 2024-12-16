@@ -88,8 +88,8 @@
         "${modifier}, S, swapsplit,"
 
         # Second level bindings
-        "${modifier}, Shift Q, killactive,"
-        "${modifier}, Shift Space, togglefloating,"
+        "${modifier} Shift, Q, killactive,"
+        "${modifier} Shift, Space, togglefloating,"
 
         # Move focus with modifier + arrow keys
         "${modifier}, left, movefocus, l"
