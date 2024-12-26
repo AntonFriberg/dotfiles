@@ -11,6 +11,9 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +34,7 @@
     hyprpanel,
     nix-index-database,
     nixGL,
+    ghostty,
     nixpkgs,
     ...
   }: {
@@ -48,6 +52,7 @@
       extraSpecialArgs = {
         inherit nixGL;
         inherit firefox-addons;
+        inherit ghostty;
       };
       # Useful stuff for managing modules between hosts
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
