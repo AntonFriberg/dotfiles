@@ -45,14 +45,12 @@
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
-        overlays = [
-          hyprpanel.overlay
-        ];
       };
       extraSpecialArgs = {
         inherit nixGL;
         inherit firefox-addons;
         inherit ghostty;
+        inherit hyprpanel;
       };
       # Useful stuff for managing modules between hosts
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
