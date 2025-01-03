@@ -20,6 +20,7 @@
   home.packages = lib.mkMerge [
     (with pkgs; [
       (config.lib.nixGL.wrap spotify)
+      (config.lib.nixGL.wrap zed-editor)
       fuzzel
       grim
       slurp
