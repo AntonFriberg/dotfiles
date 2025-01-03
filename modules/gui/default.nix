@@ -1,6 +1,5 @@
 {
   config,
-  ghostty,
   lib,
   pkgs,
   ...
@@ -14,12 +13,12 @@
     ./nixgl.nix
     ./hyprland.nix
     ./mpv.nix
+    ./ghostty.nix
   ];
 
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
-      (config.lib.nixGL.wrap ghostty.packages.x86_64-linux.default)
       (config.lib.nixGL.wrap spotify)
       fuzzel
       grim
