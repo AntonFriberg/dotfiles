@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   config,
   hyprpanel,
   ...
@@ -8,7 +9,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.hyprland;
+    package = config.lib.nixGL.wrap pkgs-stable.hyprland;
 
     systemd.enable = true;
     xwayland.enable = true;
