@@ -85,7 +85,7 @@
         "${modifier}, D, exec, ${menu}"
         "${modifier}, E, exec, ${file_explorer}"
         "${modifier}, L, exec, ${lock_screen}"
-        "${modifier}, F, exec, fullscreen"
+        "${modifier}, F, fullscreen"
         "${modifier}, W, togglegroup,"
         "${modifier}, P, pseudo,"
         "${modifier}, T, togglesplit,"
