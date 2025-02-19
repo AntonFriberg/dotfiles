@@ -6,16 +6,18 @@
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
+      kind
       kubeconform
       kubectl
-      kubectl-node-shell
       kubectl-cnpg
-      kubectl-tree
-      kubectl-images
       kubectl-explore
+      kubectl-images
+      kubectl-neat
+      kubectl-node-shell
+      kubectl-tree
       kubectl-validate
-      kubectl-view-secret
       kubectl-view-allocations
+      kubectl-view-secret
       kubectx
       kubernetes-helm
       kubeseal
