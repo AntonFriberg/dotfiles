@@ -7,6 +7,7 @@
   home.packages = lib.mkMerge [
     (with pkgs; [
       clickhouse
+      aws-signing-helper
     ])
   ];
 
