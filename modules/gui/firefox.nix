@@ -12,7 +12,7 @@
         id = 0;
         name = "dev-edition-default";
         isDefault = true;
-        extensions = with firefox-addons.packages."${pkgs.system}"; [
+        extensions.packages = with firefox-addons.packages."${pkgs.system}"; [
           ublock-origin
           bitwarden
           istilldontcareaboutcookies
