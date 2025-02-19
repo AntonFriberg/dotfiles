@@ -48,6 +48,7 @@
       tealdeer
       uv
       yt-dlp
+      yq-go
     ])
   ];
 
