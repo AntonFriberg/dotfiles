@@ -73,7 +73,7 @@
 
         # Configuration: Set your project key and available components here.
         set project_key "DDM" # Project key, replace "DDM" with your actual project key.
-        set available_components "Data Management" "Data Analysis" "Data Governance" "Support" "Visualizations"
+        set available_components "Data Management" "Data Analysis" "Data Governance" "Support" "Visualizations" "Mopo" "IDD Core"
         set issue_types "Story" "Task" "Bug"
 
         # Select an epic from the list of epics in progress using fzf for filtering and selection.
