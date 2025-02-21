@@ -127,6 +127,7 @@
       bandwhich = "sudo $(which bandwhich)";
       jci = "fast_jira_create_issue";
       ktemplate = "kubectl create --dry-run=client -o yaml";
+      k = "kubectl";
     };
     shellInit = ''
       # Disable help message
