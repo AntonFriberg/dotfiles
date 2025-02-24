@@ -4,8 +4,9 @@
   ...
 }: let
   fish_start_logic = ''
-    if command -v fish >/dev/null 2>&1; then
-      exec fish
+    if [ -x "$HOME/.nix-profile/bin/fish" ]; then
+        export PATH="$HOME/.nix-profile/bin:$PATH" # Add to PATH
+        exec fish
     fi
   '';
 in {
