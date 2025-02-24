@@ -2,7 +2,13 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  fish_start_logic = ''
+    if command -v fish >/dev/null 2>&1; then
+      exec fish
+    fi
+  '';
+in {
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
@@ -10,6 +16,13 @@
       aws-signing-helper
     ])
   ];
+
+  # Bash configuration
+  # Workaround since chsh -s is not persisted on company laptop
+  home.file = {
+    ".bashrc".text = fish_start_logic;
+    ".zshrc".text = fish_start_logic;
+  };
 
   # Take system packages for git and ssh since I could not get Nix to support GSSAPIKeyExchange that is enabled at work.
   # https://github.com/nix-community/home-manager/issues/4763#issuecomment-1986996921
