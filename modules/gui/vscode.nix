@@ -29,7 +29,7 @@
         "[python]" = {"editor.defaultFormatter" = "charliermarsh.ruff";};
         "[yaml]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
         "editor.copyWithSyntaxHighlighting" = false;
-        "editor.fontFamily" = "'Cousine', 'Hack', 'monospace', monospace, 'Droid Sans Fallback'";
+        "editor.fontFamily" = "'Cousine Nerd Font', 'Hack Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'";
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "boundary";
         "editor.rulers" = [80 120];
