@@ -14,6 +14,8 @@
     settings = {
       exec-once = [
         "waybar" # Start waybar when Hyprland starts
+        "nm-applet --indicator" # Network Manager applet
+        "blueman-applet" # Bluetooth applet
       ];
 
       monitor = [
@@ -152,8 +154,12 @@
       ];
 
       bindle = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
     };
   };
@@ -163,14 +169,14 @@
     enable = true;
     style = ''
       * {
-        font-family: JetBrainsMono NerdFont, SourceHanSansJP;
+        font-family: Hack Nerd Font;
         font-weight: bold;
-        font-size: 13px;
+        font-size: 14px;
       }
 
       window#waybar {
-        background-color: transparent;
         color: #d8dee9;
+        background-color: transparent;
       }
 
       window#waybar > box {
@@ -205,8 +211,8 @@
       }
 
       #workspaces button:hover {
-        background: #2e3440;
         color: #d8dee9;
+        background: #2e3440;
       }
 
       #date,
@@ -257,7 +263,7 @@
         margin-top: 4px;
         margin-bottom: 4px;
         border-radius: 6px;
-        background: radial-gradient(circle, #5e81ac, #3b4252)
+        background: #5e81ac;
       }
 
       #language {
@@ -272,6 +278,28 @@
       }
 
       #temperature {
+        color: #d8dee9;
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+      }
+
+      #network {
+        color: #d8dee9;
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+      }
+
+      #backlight {
         color: #d8dee9;
         background: #3b4252;
         padding: 0 0.6em;
@@ -299,65 +327,95 @@
         position = "top";
         height = 30;
 
-        modules-left = ["custom/launcher" "pulseaudio" "hyprland/language" "hyprland/workspaces"];
+        modules-left = ["custom/launcher" "hyprland/language" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right = ["clock#date" "clock#time" "temperature" "battery"];
-
+        modules-right = ["network" "backlight" "battery" "pulseaudio" "tray" "clock#date" "clock#time"];
         "hyprland/workspaces" = {
           on-click = "activate";
           format = "{icon}";
           format-icons = {
-            "1" = "<span color=\"#d8dee9\">一</span>";
-            "2" = "<span color=\"#d8dee9\">二</span>";
-            "3" = "<span color=\"#d8dee9\">三</span>";
-            "4" = "<span color=\"#d8dee9\">四</span>";
-            "5" = "<span color=\"#d8dee9\">五</span>";
-            "6" = "<span color=\"#d8dee9\">六</span>";
-            "7" = "<span color=\"#d8dee9\">七</span>";
-            "8" = "<span color=\"#d8dee9\">八</span>";
-            "9" = "<span color=\"#d8dee9\">九</span>";
+            "1" = "一";
+            "2" = "二";
+            "3" = "三";
+            "4" = "四";
+            "5" = "五";
+            "6" = "六";
+            "7" = "七";
+            "8" = "八";
+            "9" = "九";
+            "10" = "十";
           };
         };
 
         "clock#time" = {
           interval = 1;
-          format = " {:%H:%M:%S}";
+          format = "{:%H:%M:%S}";
           tooltip = false;
         };
 
         "clock#date" = {
           interval = 10;
-          format = " {:%e %b}";
+          format = " {:%e %b}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
         "pulseaudio" = {
           format = "{icon} {volume}%";
-          format-muted = " muted";
+          format-muted = " muted";
           scroll-step = 5;
-          on-click = "pactl set-sink-mute 0 toggle";
+          on-click = "pavucontrol";
           format-icons = {
             "headphone" = " ";
             "hands-free" = " ";
             "headset" = " ";
-            "default" = ["" "" "墳" " "];
+            "default" = ["" ""];
           };
         };
 
+        "backlight" = {
+          device = "intel_backlight";
+          format = "{icon} {percent}%";
+          format-icons = ["" "" "" "" "" "" "" "" "" "" "" "" "" ""];
+        };
+
         "battery" = {
+          tooltip = true;
           states = {
             warning = 30;
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-charging = "{capacity}%  ";
-          format-plugged = "{capacity}%  ";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
           format-alt = "{time} {icon}";
-          format-icons = [" " " " " " " " " "];
+          format-icons = [
+            "" # Icon: battery-full
+            "" # Icon: battery-three-quarters
+            "" # Icon: battery-half
+            "" # Icon: battery-quarter
+            "" # Icon: battery-empty
+          ];
         };
 
-        "battery#bat2" = {
-          bat = "bat2";
+        "temperature" = {
+          critical-threshold = 80;
+          tooltip = true;
+          format = "{icon} {temperatureC}°C";
+          format-icons = [
+            "" # Icon: temperature-empty
+            "" # Icon: temperature-quarter
+            "" # Icon: temperature-half
+            "" # Icon: temperature-three-quarters
+            "" # Icon: temperature-full
+          ];
+        };
+
+        "network" = {
+          interval = 5;
+          format-wifi = "  {essid} ({signalStrength}%)";
+          format-ethernet = "󰈀  {ifname}: {ipaddr}/{cidr}";
+          format-disconnected = "󰖪  Disconnected";
+          tooltip-format = "{ifname}: {ipaddr}";
         };
 
         "hyprland/window" = {
@@ -366,20 +424,14 @@
         };
 
         "hyprland/language" = {
-          format = " {}";
+          format = "  {}";
           interval = 1;
           format-en = "US";
           format-sv = "SE";
         };
 
-        "temperature" = {
-          critical-threshold = 80;
-          format = "{icon} {temperatureC}°C";
-          format-icons = [""];
-        };
-
         "custom/launcher" = {
-          format = "<span color='#d8dee9'> 本 </span>";
+          format = " ";
           on-click = "fuzzel";
         };
       };
