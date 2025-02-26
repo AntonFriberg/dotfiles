@@ -13,6 +13,7 @@
 
     settings = {
       exec-once = [
+        "waybar" # Start waybar when Hyprland starts
       ];
 
       monitor = [
@@ -21,16 +22,31 @@
 
       general = {
         gaps_in = 5;
-        gaps_out = 5;
-        border_size = 10;
-        layout = "dwindle";
+        gaps_out = 10;
+        border_size = 3;
+        layout = "master";
+        "col.active_border" = "rgb(5e81ac)";
+        "col.inactive_border" = "rgb(2e3440)";
         resize_on_border = true;
       };
 
-      dwindle = {
-        pseudotile = "yes";
-        preserve_split = "yes";
-        # no_gaps_when_only = "yes";
+      misc = {
+        disable_splash_rendering = true;
+        force_default_wallpaper = 1;
+      };
+
+      decoration = {
+        rounding = 1;
+        blur = {
+          enabled = false;
+          size = 0;
+          passes = 0;
+        };
+        shadow = {
+          range = 12;
+          render_power = 2;
+          color = "rgb(101010)";
+        };
       };
 
       input = {
@@ -47,11 +63,6 @@
         };
         sensitivity = 0;
         float_switch_override_focus = 2;
-      };
-
-      misc = {
-        disable_splash_rendering = true;
-        force_default_wallpaper = 1;
       };
 
       gestures = {
@@ -121,8 +132,11 @@
         "${modifier} Shift, 9, movetoworkspace, 9"
         "${modifier} Shift, 0, movetoworkspace, 10"
 
-        # Rezie active window
+        # Navigate between workspaces with modifier + Alt + arrow keys
+        "${modifier} Alt, left, workspace, e-1" # Go to workspace on the left
+        "${modifier} Alt, right, workspace, e+1" # Go to workspace on the right
 
+        # Rezie active window
         "${modifier}+Ctrl, left, resizeactive, -10 0"
         "${modifier}+Ctrl, right, resizeactive, 10 0"
         "${modifier}+Ctrl, up, resizeactive, 0 -10"
@@ -141,6 +155,265 @@
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
+    };
+  };
+
+  # Waybar configuration
+  programs.waybar = {
+    enable = true;
+    style = ''
+      * {
+        font-family: JetBrainsMono NerdFont, SourceHanSansJP;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      window#waybar {
+        background-color: transparent;
+        color: #d8dee9;
+      }
+
+      window#waybar > box {
+          margin: 0px 0px 5px 0px;
+          background-color: #2e3440;
+          box-shadow: 1 1 3 1px #151515;
+      }
+
+      #workspaces button {
+        padding: 0 0.6em;
+        color: #d8dee9;
+        border-radius: 6px;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+
+      #workspaces button.active {
+        color: #d8dee9;
+        background: #434c5e;
+      }
+
+      #workspaces button.focused {
+        color: #d8dee9;
+        background: #434c5e;
+      }
+
+      #workspaces button.urgent {
+        color: #bf616a;
+        background: #d8dee9;
+      }
+
+      #workspaces button:hover {
+        background: #2e3440;
+        color: #d8dee9;
+      }
+
+      #date,
+      #battery,
+      #clock,
+      #pulseaudio,
+      #workspaces,
+      #window,
+      #language,
+      #temperature,
+      #text,
+
+      #tray {
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+      }
+
+      #tray {
+        margin-right: 6px;
+      }
+
+      #pulseaudio {
+        margin-right: 6px;
+        color: #d8dee9;
+      }
+
+      #clock {
+        color: #d8dee9;
+        margin-right: 6px;
+      }
+
+      #battery {
+        color: #d8dee9;
+        margin-right: 6px;
+      }
+
+      #window {
+        color: #d8dee9;
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+        background: radial-gradient(circle, #5e81ac, #3b4252)
+      }
+
+      #language {
+        color: #d8dee9;
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+      }
+
+      #temperature {
+        color: #d8dee9;
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+      }
+
+      #custom-launcher {
+        color: #d8dee9;
+        background: #3b4252;
+        padding: 0 0.6em;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+      }
+    '';
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+
+        modules-left = ["custom/launcher" "pulseaudio" "hyprland/language" "hyprland/workspaces"];
+        modules-center = ["hyprland/window"];
+        modules-right = ["clock#date" "clock#time" "temperature" "battery"];
+
+        "hyprland/workspaces" = {
+          on-click = "activate";
+          format = "{icon}";
+          format-icons = {
+            "1" = "<span color=\"#d8dee9\">一</span>";
+            "2" = "<span color=\"#d8dee9\">二</span>";
+            "3" = "<span color=\"#d8dee9\">三</span>";
+            "4" = "<span color=\"#d8dee9\">四</span>";
+            "5" = "<span color=\"#d8dee9\">五</span>";
+            "6" = "<span color=\"#d8dee9\">六</span>";
+            "7" = "<span color=\"#d8dee9\">七</span>";
+            "8" = "<span color=\"#d8dee9\">八</span>";
+            "9" = "<span color=\"#d8dee9\">九</span>";
+          };
+        };
+
+        "clock#time" = {
+          interval = 1;
+          format = " {:%H:%M:%S}";
+          tooltip = false;
+        };
+
+        "clock#date" = {
+          interval = 10;
+          format = " {:%e %b}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        };
+
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          format-muted = " muted";
+          scroll-step = 5;
+          on-click = "pactl set-sink-mute 0 toggle";
+          format-icons = {
+            "headphone" = " ";
+            "hands-free" = " ";
+            "headset" = " ";
+            "default" = ["" "" "墳" " "];
+          };
+        };
+
+        "battery" = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{icon} {capacity}%";
+          format-charging = "{capacity}%  ";
+          format-plugged = "{capacity}%  ";
+          format-alt = "{time} {icon}";
+          format-icons = [" " " " " " " " " "];
+        };
+
+        "battery#bat2" = {
+          bat = "bat2";
+        };
+
+        "hyprland/window" = {
+          format = " {} ";
+          max-length = 50;
+        };
+
+        "hyprland/language" = {
+          format = " {}";
+          interval = 1;
+          format-en = "US";
+          format-sv = "SE";
+        };
+
+        "temperature" = {
+          critical-threshold = 80;
+          format = "{icon} {temperatureC}°C";
+          format-icons = [""];
+        };
+
+        "custom/launcher" = {
+          format = "<span color='#d8dee9'> 本 </span>";
+          on-click = "fuzzel";
+        };
+      };
+    };
+  };
+
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        terminal = "${pkgs.alacritty}/bin/alacritty";
+        layer = "overlay";
+        width = 30;
+        font = "JetBrainsMono NerdFont:weight=bold:size=10";
+        inner-pad = 10;
+        lines = 15;
+        border-width = 2;
+        border-radius = 6;
+        horizontal-pad = 20;
+        vertical-pad = 20;
+      };
+      colors = {
+        # Nord color palette
+        background = "2e3440ff"; # Dark blue-grey background
+        text = "d8dee9ff"; # Light blue-grey text
+        match = "88c0d0ff"; # Light blue for matched text
+        selection = "4c566aff"; # Lighter blue-grey for selected item
+        selection-text = "eceff4ff"; # Almost white for text in selected item
+        border = "5e81acff"; # Medium blue for border
+      };
+      border = {
+        width = 2;
+        radius = 6;
+      };
     };
   };
 }
