@@ -20,16 +20,11 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     firefox-addons,
     home-manager,
-    hyprpanel,
     nix-index-database,
     nixGL,
     nixpkgs-stable,
@@ -56,7 +51,6 @@
         inherit pkgs-stable;
         inherit nixGL;
         inherit firefox-addons;
-        inherit hyprpanel;
       };
       # Useful stuff for managing modules between hosts
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
