@@ -23,6 +23,7 @@
       (config.lib.nixGL.wrap zed-editor)
       grim
       slurp
+      swaybg
     ])
   ];
 }

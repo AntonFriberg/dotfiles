@@ -18,6 +18,11 @@
         "blueman-applet" # Bluetooth applet
       ];
 
+      exec = [
+        # Set wallpaper
+        "${pkgs.swaybg}/bin/swaybg --image ${config.home.homeDirectory}/Pictures/wallpaper.jpeg"
+      ];
+
       monitor = [
         ",preferred,auto,1"
       ];
