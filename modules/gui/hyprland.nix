@@ -201,6 +201,24 @@
     text-wrong-color=3b4252ff
   '';
 
+  # Hypridle
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        lock_cmd = "hyprctl dispatch exec swaylock";
+      };
+      listener = [
+        {
+          timeout = 1200;
+          on-timeout = "hyprctl dispatch dpms off"; # screen off
+          on-resume = "hyprctl dispatch dpms on"; # screen on
+        }
+      ];
+    };
+  };
+
   # Waybar configuration
   programs.waybar = {
     enable = true;
@@ -482,7 +500,7 @@
         terminal = "${pkgs.alacritty}/bin/alacritty";
         layer = "overlay";
         width = 30;
-        font = "JetBrainsMono NerdFont:weight=bold:size=10";
+        font = "Hack Nerd Font:weight=bold:size=10";
         inner-pad = 10;
         lines = 15;
         border-width = 2;
