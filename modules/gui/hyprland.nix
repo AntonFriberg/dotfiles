@@ -87,7 +87,7 @@
         terminal = "alacritty";
         menu = "fuzzel";
         file_explorer = "nautilus";
-        lock_screen = "hyprlock";
+        lock_screen = "swaylock";
         screenshot_dir = "$HOME/Pictures/Screenshots";
       in [
         # Exit
@@ -168,6 +168,38 @@
       ];
     };
   };
+
+  # Swaylock configuration (1.7.2)
+  # Note: Lock screens are really tricky to install outside OS native, swaylock usually exists
+  xdg.configFile."swaylock/config".text = ''
+    ignore-empty-password
+    show-failed-attempts
+    image=/home/antonfr/Pictures/wallpaper_dark.jpg
+    show-keyboard-layout
+    indicator-caps-lock
+    bs-hl-color=b48eadff
+    caps-lock-bs-hl-color=d08770ff
+    caps-lock-key-hl-color=ebcb8bff
+    font-size=40
+    indicator-radius=100
+    indicator-thickness=10
+    inside-color=2e3440ff
+    inside-clear-color=81a1c1ff
+    inside-ver-color=5e81acff
+    inside-wrong-color=bf616aff
+    key-hl-color=a3be8cff
+    layout-bg-color=2e3440ff
+    line-uses-ring
+    ring-color=3b4252ff
+    ring-clear-color=88c0d0ff
+    ring-ver-color=81a1c1ff
+    ring-wrong-color=d08770ff
+    separator-color=3b4252ff
+    text-color=eceff4ff
+    text-clear-color=3b4252ff
+    text-ver-color=3b4252ff
+    text-wrong-color=3b4252ff
+  '';
 
   # Waybar configuration
   programs.waybar = {
