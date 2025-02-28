@@ -206,8 +206,9 @@
     enable = true;
     settings = {
       general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-        lock_cmd = "hyprctl dispatch exec swaylock";
+        lock_cmd = "hyprctl dispatch exec swaylock"; # logout triggered
+        after_sleep_cmd = "hyprctl dispatch dpms on"; # screen on
+        before_sleep_cmd = "hyprctl dispatch exec swaylock"; # lock lid close
       };
       listener = [
         {
