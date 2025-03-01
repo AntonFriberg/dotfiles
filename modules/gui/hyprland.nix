@@ -151,6 +151,12 @@
         "${modifier}, up, movefocus, u"
         "${modifier}, down, movefocus, d"
 
+        # Move window with modifier + Shift + arrow keys
+        "${modifier} Shift, left, movewindow, l"
+        "${modifier} Shift, right, movewindow, r"
+        "${modifier} Shift, up, movewindow, u"
+        "${modifier} Shift, down, movewindow, d"
+
         # Switch workspaces with modifier + [0-9]
         "${modifier}, 1, workspace, 1"
         "${modifier}, 2, workspace, 2"
