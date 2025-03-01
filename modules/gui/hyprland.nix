@@ -67,10 +67,15 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 3;
-        layout = "master";
+        layout = "dwindle";
         "col.active_border" = "rgb(5e81ac)";
         "col.inactive_border" = "rgb(2e3440)";
         resize_on_border = true;
+      };
+
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
       };
 
       misc = {
