@@ -8,17 +8,53 @@
     enable = true;
     package = config.lib.nixGL.wrap pkgs-stable.hyprland;
 
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      variables = ["--all"];
+    };
+
     xwayland.enable = true;
 
     settings = {
+      env = [
+        # Cursor fixes
+        "XCURSOR_SIZE,24"
+        "XCURSOR_THEME, "
+        "HYPRCURSOR_THEME,Adwaita"
+        "HYPRCURSOR_SIZE,24"
+        # Common Wayland fixes
+        "GDK_BACKEND,wayland"
+        "QT_QPA_PLATFORM,wayland"
+        "SDL_VIDEODRIVER,wayland"
+        "CLUTTER_BACKEND,wayland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        # Java application fixes
+        "_JAVA_AWT_WM_NONREPARENTING,1"
+        # Hardware rendering
+        "MOZ_ENABLE_WAYLAND,1"
+        "MOZ_ACCELERATED,1"
+        "MOZ_WEBRENDER,1"
+        # Chrome based apps
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+      ];
       exec-once = [
         "waybar" # Start waybar when Hyprland starts
         "nm-applet --indicator" # Network Manager applet
         "blueman-applet" # Bluetooth applet
+        # Compatibility with Gnome applications
+        "dbus-update-activation-environment --systemd --all"
+        "gnome-keyring-daemon --start --components=secrets"
       ];
 
       exec = [
+        # GTK fixes
+        "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
+        "gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'"
+        "gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'"
+        "gsettings set org.gnome.desktop.interface font-name 'Ubuntu 11'"
         # Set wallpaper
         "${pkgs.swaybg}/bin/swaybg --image ${config.home.homeDirectory}/Pictures/wallpaper.jpg"
       ];
