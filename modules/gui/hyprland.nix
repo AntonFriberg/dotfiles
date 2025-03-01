@@ -4,6 +4,25 @@
   config,
   ...
 }: {
+  # Theme fixes https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#fixing-problems-with-themes
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
+    size = 24;
+  };
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Nordic";
+      package = pkgs.nordic;
+    };
+    iconTheme = {
+      name = "Nordic-blueish";
+      package = pkgs.nordic;
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs-stable.hyprland;
@@ -17,11 +36,6 @@
 
     settings = {
       env = [
-        # Cursor fixes
-        "XCURSOR_SIZE,24"
-        "XCURSOR_THEME, "
-        "HYPRCURSOR_THEME,Adwaita"
-        "HYPRCURSOR_SIZE,24"
         # Common Wayland fixes
         "GDK_BACKEND,wayland"
         "QT_QPA_PLATFORM,wayland"
@@ -50,11 +64,6 @@
       ];
 
       exec = [
-        # GTK fixes
-        "gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"
-        "gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'"
-        "gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'"
-        "gsettings set org.gnome.desktop.interface font-name 'Ubuntu 11'"
         # Set wallpaper
         "${pkgs.swaybg}/bin/swaybg --image ${config.home.homeDirectory}/Pictures/wallpaper.jpg"
       ];
