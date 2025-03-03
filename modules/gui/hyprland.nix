@@ -442,6 +442,10 @@
         position = "top";
         height = 30;
 
+        # output = [
+        #   "DP-4"
+        # ];
+
         modules-left = ["custom/launcher" "hyprland/language" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
         modules-right = ["network" "backlight" "battery" "pulseaudio" "tray" "clock#date" "clock#time"];
