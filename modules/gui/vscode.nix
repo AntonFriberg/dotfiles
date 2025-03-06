@@ -14,7 +14,7 @@
         bbenoist.nix
         bmalehorn.vscode-fish
         charliermarsh.ruff
-        equinusocio.vsc-material-theme-icons
+        pkief.material-icon-theme
         esbenp.prettier-vscode
         kamadorueda.alejandra
         mhutchie.git-graph
@@ -41,7 +41,7 @@
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = 1;
         "workbench.colorTheme" = "Nord";
-        "workbench.iconTheme" = "eq-material-theme-icons";
+        "workbench.iconTheme" = "pkief.material-icon-theme";
         "workbench.sideBar.location" = "right";
         "extensions.ignoreRecommendations" = true;
       };
