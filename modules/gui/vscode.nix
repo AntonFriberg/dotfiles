@@ -1,15 +1,16 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   ...
 }: {
   programs.vscode = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.vscode;
+    package = config.lib.nixGL.wrap pkgs-stable.vscode;
     profiles.default = {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = true;
-      extensions = with pkgs.vscode-extensions; [
+      extensions = with pkgs-stable.vscode-extensions; [
         arcticicestudio.nord-visual-studio-code
         bbenoist.nix
         bmalehorn.vscode-fish
@@ -41,7 +42,7 @@
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = 1;
         "workbench.colorTheme" = "Nord";
-        "workbench.iconTheme" = "pkief.material-icon-theme";
+        "workbench.iconTheme" = "material-icon-theme";
         "workbench.sideBar.location" = "right";
         "extensions.ignoreRecommendations" = true;
       };
