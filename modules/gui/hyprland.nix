@@ -567,8 +567,6 @@
         font = "Hack Nerd Font:weight=bold:size=10";
         inner-pad = 10;
         lines = 15;
-        border-width = 2;
-        border-radius = 6;
         horizontal-pad = 20;
         vertical-pad = 20;
       };
