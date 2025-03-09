@@ -37,8 +37,8 @@
     settings = {
       env = [
         # Common Wayland fixes
-        "GDK_BACKEND,wayland"
-        "QT_QPA_PLATFORM,wayland"
+        "GDK_BACKEND,wayland,x11,*"
+        "QT_QPA_PLATFORM,wayland;xcb"
         "SDL_VIDEODRIVER,wayland"
         "CLUTTER_BACKEND,wayland"
         "XDG_CURRENT_DESKTOP,Hyprland"
