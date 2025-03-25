@@ -19,7 +19,7 @@
         ];
         settings = {
           # General
-          "browser.search.defaultengine" = "Google";
+          "browser.search.defaultengine" = "google";
           "browser.startup.page" = 3; # Resume previous session on startup
           "browser.aboutConfig.showWarning" = false; # I sometimes know what I'm doing
           "browser.translations.neverTranslateLanguages" = "sv"; # No need to translate swedish
@@ -44,22 +44,22 @@
         };
         search = {
           force = true;
-          default = "Google";
-          order = ["Google" "Youtube" "GitHub" "HackerNews" "Kagi" "Nix Packages" "Home Manager" "NixOS Options"];
+          default = "google";
+          order = ["google" "youtube" "GitHub" "HackerNews" "Kagi" "Nix Packages" "Home Manager" "NixOS Options"];
           engines = {
-            "Bing".metaData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
-            "Wikipedia (en)".metaData.hidden = true;
-            "DuckDuckGo".metaData.hidden = true;
+            "bing".metaData.hidden = true;
+            "amazondotcom-us".metaData.hidden = true;
+            "wikipedia".metaData.hidden = true;
+            "ddg".metaData.hidden = true;
 
             "Goalie" = {
-              iconUpdateURL = "https://go.se.axis.com/favicon.ico";
+              icon = "https://go.se.axis.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
               urls = [{template = "https://go.se.axis.com/{searchTerms}";}];
               definedAliases = ["@go"];
             };
-            "YouTube" = {
-              iconUpdateURL = "https://youtube.com/favicon.ico";
+            "youtube" = {
+              icon = "https://youtube.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = ["@yt"];
               urls = [
@@ -113,7 +113,7 @@
               ];
             };
             "GitHub" = {
-              iconUpdateURL = "https://github.com/favicon.ico";
+              icon = "https://github.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = ["@gh"];
               urls = [
@@ -144,7 +144,7 @@
               ];
             };
             "HackerNews" = {
-              iconUpdateURL = "https://hn.algolia.com/favicon.ico";
+              icon = "https://hn.algolia.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = ["@hn"];
               urls = [
