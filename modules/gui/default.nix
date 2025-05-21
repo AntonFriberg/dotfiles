@@ -11,7 +11,7 @@
     ./vscode.nix
     # Fix for GPU stuff on non-nixos systems
     ./nixgl.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     ./mpv.nix
     ./ghostty.nix
   ];
