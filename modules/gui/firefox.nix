@@ -6,7 +6,7 @@
 }: {
   programs.firefox = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.firefox-devedition-bin;
+    package = config.lib.nixGL.wrap pkgs.firefox-devedition;
     profiles = {
       dev-edition-default = {
         id = 0;
