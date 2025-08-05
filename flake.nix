@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +55,7 @@
       # Useful stuff for managing modules between hosts
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
       modules = [
-        nix-index-database.hmModules.nix-index
+        nix-index-database.homeModules.nix-index
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui

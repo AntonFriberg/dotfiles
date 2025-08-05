@@ -4,7 +4,7 @@
   in {
     username = user;
     homeDirectory = "/home/${user}";
-    stateVersion = "24.11";
+    stateVersion = "25.11";
     sessionVariables = {
       # Set default applications
       SHELL = "$HOME/.nix-profile/bin/fish";
