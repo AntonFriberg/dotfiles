@@ -69,10 +69,10 @@
       ];
 
       monitor = [
-        ",preferred,auto,1"
-        # "DP-3, 2560x1440@59.95, 1120x0, 1, transform, 1"
-        # "DP-4, 2560x1440@59.95, 2560x865, 1"
-        # "DP-5, 2560x1440@59.95, 5120x0, 1, transform, 3"
+        # ",preferred,auto,1"
+        "DP-3, 2560x1440@59.95, 1120x0, 1, transform, 1"
+        "DP-4, 2560x1440@59.95, 2560x865, 1"
+        "DP-5, 2560x1440@59.95, 5120x0, 1, transform, 3"
       ];
 
       general = {
@@ -442,9 +442,9 @@
         position = "top";
         height = 30;
 
-        # output = [
-        #   "DP-4"
-        # ];
+        output = [
+          "DP-4"
+        ];
 
         modules-left = ["custom/launcher" "hyprland/language" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
