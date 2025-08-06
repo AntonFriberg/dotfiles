@@ -11,6 +11,9 @@
           version = "1.8";
         };
       };
+      settings = {
+        idiomatic_version_file_enable_tools = [];
+      };
     };
     settings = {
       verbose = false;
