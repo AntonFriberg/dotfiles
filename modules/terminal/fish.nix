@@ -137,13 +137,7 @@
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
       # home-manager
-      fenv 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}'
-      # Make VSCode work better with mise.jdx.dev
-      if status is-interactive
-        mise activate fish | source
-      else
-        mise activate fish --shims | source
-      end
+      # fenv 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}'
     '';
   };
 }
