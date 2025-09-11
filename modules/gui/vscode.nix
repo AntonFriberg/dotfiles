@@ -45,6 +45,7 @@
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.sideBar.location" = "right";
         "extensions.ignoreRecommendations" = true;
+        "keyboard.dispatch" = "keyCode";
       };
     };
   };
