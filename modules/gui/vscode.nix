@@ -40,6 +40,7 @@
         "keyboard.dispatch" = "keyCode";
         "python.analysis.typeCheckingMode" = "basic";
         "python.languageServer" = "Pylance";
+        "python.terminal.shellIntegration.enabled" = false;
         "terminal.integrated.fontFamily" = "Cousine Nerd Font Mono";
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = 1;
