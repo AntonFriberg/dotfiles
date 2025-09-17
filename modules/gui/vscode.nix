@@ -34,8 +34,10 @@
         "editor.minimap.enabled" = false;
         "editor.renderWhitespace" = "boundary";
         "editor.rulers" = [80 120];
+        "extensions.ignoreRecommendations" = true;
         "files.insertFinalNewline" = true;
         "files.trimTrailingWhitespace" = true;
+        "keyboard.dispatch" = "keyCode";
         "python.analysis.typeCheckingMode" = "basic";
         "python.languageServer" = "Pylance";
         "terminal.integrated.fontFamily" = "Cousine Nerd Font Mono";
@@ -44,8 +46,6 @@
         "workbench.colorTheme" = "Nord";
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.sideBar.location" = "right";
-        "extensions.ignoreRecommendations" = true;
-        "keyboard.dispatch" = "keyCode";
       };
     };
   };
