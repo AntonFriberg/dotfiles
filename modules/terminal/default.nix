@@ -26,7 +26,6 @@
       git-crypt
       glances
       go-migrate
-      helmfile
       httpie
       ipcalc
       jira-cli-go
