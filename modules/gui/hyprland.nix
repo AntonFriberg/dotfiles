@@ -65,7 +65,7 @@
 
       exec = [
         # Set wallpaper
-        "${pkgs.swaybg}/bin/swaybg --image ${config.home.homeDirectory}/Pictures/wallpaper.jpg"
+        "${pkgs.swaybg}/bin/swaybg -m fill --image ${config.home.homeDirectory}/Pictures/wallpaper.jpg"
       ];
 
       monitor = [
