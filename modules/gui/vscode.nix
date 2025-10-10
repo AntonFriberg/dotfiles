@@ -29,6 +29,7 @@
         "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
         "[python]" = {"editor.defaultFormatter" = "charliermarsh.ruff";};
         "[yaml]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
+        "chat.disableAIFeatures" = true;
         "editor.copyWithSyntaxHighlighting" = false;
         "editor.fontFamily" = "'Cousine Nerd Font', 'Hack Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'";
         "editor.minimap.enabled" = false;
