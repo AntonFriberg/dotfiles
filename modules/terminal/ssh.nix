@@ -9,7 +9,6 @@
       controlPath = "~/.ssh/master-%r@%n:%p";
       controlPersist = "10m";
       forwardAgent = false;
-      forwardX11 = false;
       hashKnownHosts = false;
       serverAliveCountMax = 3;
       serverAliveInterval = 25;
@@ -18,6 +17,9 @@
       };
       userKnownHostsFile = "~/.ssh/known_hosts";
     };
+    extraConfig = ''
+      ForwardX11 no
+    '';
     includes = [
       "config.d/*"
     ];
