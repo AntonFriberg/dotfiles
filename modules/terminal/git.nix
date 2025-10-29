@@ -2,47 +2,34 @@
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
-    userName = "Anton Frost";
-    userEmail = "anton.friberg@outlook.com";
-    ignores = [
-      ".env"
-      ".mise.toml"
-      ".venv"
-    ];
-    includes = [
-      {
-        condition = "hasconfig:remote.*.url:ssh://*@*.*.axis.com:*/**";
-        contents = {
-          user = {
-            email = "anton.frost@axis.com";
-          };
-        };
-      }
-    ];
-    aliases = {
-      # List available aliases
-      aliases = "!git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'";
-      # Command shortcuts
-      ci = "commit";
-      co = "checkout";
-      st = "status";
-      # Display tree-like log, default log is not ideal
-      lg = "log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'";
-      # Useful when you have to update your last commit
-      # with staged files without editing the commit message.
-      oops = "commit --amend --no-edit";
-      # Ensure that force-pushing won't lose someone else's work (only your own).
-      push-with-lease = "push --force-with-lease";
-      # List local commits that were not pushed to remote repository
-      review-local = "!git lg @{push}..";
-      # Edit last commit message
-      reword = "commit --amend";
-      # Undo last commit but keep changed files in stage
-      uncommit = "reset --soft HEAD~1";
-      # Remove file(s) from Git but not from disk
-      untrack = "rm --cache --";
-    };
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Anton Frost";
+        email = "anton.friberg@outlook.com";
+      };
+      aliases = {
+        # List available aliases
+        aliases = "!git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'";
+        # Command shortcuts
+        ci = "commit";
+        co = "checkout";
+        st = "status";
+        # Display tree-like log, default log is not ideal
+        lg = "log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'";
+        # Useful when you have to update your last commit
+        # with staged files without editing the commit message.
+        oops = "commit --amend --no-edit";
+        # Ensure that force-pushing won't lose someone else's work (only your own).
+        push-with-lease = "push --force-with-lease";
+        # List local commits that were not pushed to remote repository
+        review-local = "!git lg @{push}..";
+        # Edit last commit message
+        reword = "commit --amend";
+        # Undo last commit but keep changed files in stage
+        uncommit = "reset --soft HEAD~1";
+        # Remove file(s) from Git but not from disk
+        untrack = "rm --cache --";
+      };
       color = {
         ui = "auto";
       };
@@ -85,6 +72,21 @@
         pretty = "format:%h%Cgreen%d%Creset %C(yellow)%an %C(cyan)%cr%Creset %s";
       };
     };
+    ignores = [
+      ".env"
+      ".mise.toml"
+      ".venv"
+    ];
+    includes = [
+      {
+        condition = "hasconfig:remote.*.url:ssh://*@*.*.axis.com:*/**";
+        contents = {
+          user = {
+            email = "anton.frost@axis.com";
+          };
+        };
+      }
+    ];
   };
 
   programs.gh = {
