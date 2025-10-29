@@ -72,12 +72,13 @@
 
   programs.bat = {
     enable = true;
-    extraPackages = with pkgs.bat-extras; [
-      #batdiff
-      batman
-      batgrep
-      batwatch
-    ];
+    # Waiting for fix https://github.com/NixOS/nixpkgs/issues/454391
+    # extraPackages = with pkgs.bat-extras; [
+    #   #batdiff
+    #   batman
+    #   batgrep
+    #   batwatch
+    # ];
     config = {
       theme = "Nord";
       italic-text = "never";
