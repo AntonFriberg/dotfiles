@@ -2,25 +2,18 @@
   pkgs,
   lib,
   ...
-}: let
-  my-kubernetes-helm = with pkgs;
-  # Needed in order for necessary helm plugins to be available for helmfile
-    wrapHelm kubernetes-helm {
-      plugins = with pkgs.kubernetes-helmPlugins; [
-        helm-secrets
-        helm-diff
-        helm-s3
-        helm-git
-      ];
-    };
-
-  my-helmfile = pkgs.helmfile-wrapped.override {
-    inherit (my-kubernetes-helm) pluginsDir;
-  };
-in {
+}: {
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
+      (wrapHelm kubernetes-helm {
+        plugins = with pkgs.kubernetes-helmPlugins; [
+          helm-secrets
+          helm-diff
+          helm-s3
+          helm-git
+        ];
+      })
       kind
       kubeconform
       kubectl
@@ -34,8 +27,6 @@ in {
       kubectl-view-allocations
       kubectl-view-secret
       kubectx
-      my-kubernetes-helm
-      my-helmfile
       kubeseal
     ])
   ];
