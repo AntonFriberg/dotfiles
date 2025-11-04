@@ -4,7 +4,7 @@
   ...
 }: let
   my-kubernetes-helm = with pkgs;
-  # Needed in order for necessary helm plugins to be available for helmfile
+  # https://nixos.wiki/wiki/Helm_and_Helmfile
     wrapHelm kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-secrets
