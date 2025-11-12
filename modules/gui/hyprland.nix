@@ -138,7 +138,7 @@
       # Tip: You can install wev to tell you name of key being pressed
       bind = let
         modifier = "Super";
-        terminal = "alacritty";
+        terminal = "foot";
         menu = "fuzzel";
         file_explorer = "nautilus";
         lock_screen = "swaylock";
@@ -562,7 +562,7 @@
     enable = true;
     settings = {
       main = {
-        terminal = "${pkgs.alacritty}/bin/alacritty";
+        terminal = "${pkgs.foot}/bin/foot";
         layer = "overlay";
         width = 30;
         font = "Hack Nerd Font:weight=bold:size=10";
