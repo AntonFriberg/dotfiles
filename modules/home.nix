@@ -31,6 +31,7 @@
     };
     sessionPath = [
       "$XDG_CACHE_HOME/.bun/bin"
+      "$XDG_BIN_HOME"
     ];
   };
 
