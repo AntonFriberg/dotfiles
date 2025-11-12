@@ -8,10 +8,11 @@
     ./alacritty.nix
     ./chrome.nix
     ./firefox.nix
+    ./foot.nix
     ./vscode.nix
     # Fix for GPU stuff on non-nixos systems
     ./nixgl.nix
-    # ./hyprland.nix
+    ./hyprland.nix
     ./mpv.nix
     ./ghostty.nix
   ];
