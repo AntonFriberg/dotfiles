@@ -10,8 +10,6 @@
     ./firefox.nix
     ./foot.nix
     ./vscode.nix
-    # Fix for GPU stuff on non-nixos systems
-    ./nixgl.nix
     ./hyprland.nix
     ./mpv.nix
     ./ghostty.nix
@@ -20,8 +18,8 @@
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
-      (config.lib.nixGL.wrap spotify)
-      (config.lib.nixGL.wrap zed-editor)
+      spotify
+      zed-editor
       grim
       slurp
       swaybg

@@ -25,7 +25,8 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs-stable.hyprland;
+    package = pkgs-stable.hyprland;
+    portalPackage = pkgs-stable.xdg-desktop-portal-hyprland;
 
     systemd = {
       enable = true;

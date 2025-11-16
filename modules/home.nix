@@ -38,7 +38,10 @@
   programs.home-manager.enable = true;
 
   # Ease usage on non-NixOS installations
-  targets.genericLinux.enable = true;
+  targets.genericLinux = {
+    enable = true;
+    gpu.enable = true; # enable GPU driver integration for non-NixOS systems
+  };
 
   xdg.configFile."environment.d/envvars.conf".text = ''
     PATH="$HOME/.nix-profile/bin:$PATH"

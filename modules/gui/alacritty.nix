@@ -5,7 +5,6 @@
 }: {
   programs.alacritty = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.alacritty;
     settings = {
       terminal = {
         shell.program = "${config.home.homeDirectory}/.nix-profile/bin/fish";

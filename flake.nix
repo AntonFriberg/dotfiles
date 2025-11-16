@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixGL = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +22,6 @@
     firefox-addons,
     home-manager,
     nix-index-database,
-    nixGL,
     nixpkgs-stable,
     nixpkgs,
     ...
@@ -49,7 +44,6 @@
       inherit pkgs;
       extraSpecialArgs = {
         inherit pkgs-stable;
-        inherit nixGL;
         inherit firefox-addons;
       };
       # Useful stuff for managing modules between hosts

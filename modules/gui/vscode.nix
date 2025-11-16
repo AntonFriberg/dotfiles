@@ -6,7 +6,7 @@
 }: {
   programs.vscode = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs-stable.vscode;
+    package = pkgs-stable.vscode;
     profiles.default = {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = true;
