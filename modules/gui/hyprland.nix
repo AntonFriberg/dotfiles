@@ -2,8 +2,16 @@
   pkgs,
   pkgs-stable,
   config,
+  lib,
   ...
 }: {
+  # Add packages
+  home.packages = lib.mkMerge [
+    (with pkgs; [
+      brightnessctl
+    ])
+  ];
+
   # Theme fixes https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#fixing-problems-with-themes
   home.pointerCursor = {
     gtk.enable = true;
@@ -23,10 +31,24 @@
     };
   };
 
+  home.activation.linkSystemd = let
+    inherit (lib) hm;
+  in
+    hm.dag.entryBefore ["reloadSystemd"] ''
+      find $HOME/.config/systemd/user/ \
+        -type l \
+        -exec bash -c "readlink {} | grep -q $HOME/.nix-profile/share/systemd/user/" \; \
+        -delete
+
+      find $HOME/.nix-profile/share/systemd/user/ \
+        -type f -o -type l \
+        -exec ln -s {} $HOME/.config/systemd/user/ \;
+    '';
+
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs-stable.hyprland;
-    portalPackage = pkgs-stable.xdg-desktop-portal-hyprland;
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
 
     systemd = {
       enable = true;
@@ -121,16 +143,13 @@
         touchpad = {
           natural_scroll = true;
           disable_while_typing = true;
-          drag_lock = true;
+          tap_button_map = "lrm";
         };
         sensitivity = 0;
         float_switch_override_focus = 2;
       };
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_use_r = true;
-      };
+      gesture = "3, horizontal, workspace";
 
       binds = {
         allow_workspace_cycles = true;
@@ -227,6 +246,10 @@
         ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
+
+      xwayland = {
+        force_zero_scaling = true;
+      };
     };
   };
 
@@ -444,9 +467,9 @@
         position = "top";
         height = 30;
 
-        output = [
-          "DP-4"
-        ];
+        # output = [
+        #   "DP-4"
+        # ];
 
         modules-left = ["custom/launcher" "hyprland/language" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
