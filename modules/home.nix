@@ -10,7 +10,7 @@
       SHELL = "$HOME/.nix-profile/bin/fish";
       TERMINAL = "alacritty";
       VISUAL = "vim";
-      EDITOR = "vim";
+      EDITOR = "micro";
       BROWSER = "firefox-devedition";
       PAGER = "less";
       # Set XDG directories
