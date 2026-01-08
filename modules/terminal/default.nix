@@ -20,7 +20,7 @@
       comma
       delta
       docker-compose
-      dogdns
+      doggo
       fd
       fzf
       git-crypt
