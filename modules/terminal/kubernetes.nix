@@ -21,6 +21,7 @@ in {
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
+      fluxcd
       kind
       kubeconform
       kubectl
@@ -37,6 +38,7 @@ in {
       my-kubernetes-helm
       my-helmfile
       kubeseal
+      vault
     ])
   ];
 
