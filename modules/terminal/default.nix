@@ -60,6 +60,7 @@
     enable = true;
     settings = {
       colorscheme = "nord-16"; # installed via below
+      mkparents = true;
     };
   };
 
