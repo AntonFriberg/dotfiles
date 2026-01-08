@@ -16,12 +16,14 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-clickhouse.url = "github:NixOS/nixpkgs/5c46f3bd98147c8d82366df95bbef2cab3a967ea"; # https://www.nixhub.io/packages/clickhouse
   };
 
   outputs = {
     firefox-addons,
     home-manager,
     nix-index-database,
+    nixpkgs-clickhouse,
     nixpkgs-stable,
     nixpkgs,
     ...
@@ -35,6 +37,10 @@
       inherit system;
       config = pkgsConfig;
     };
+    pkgs-clickhouse = import nixpkgs-clickhouse {
+      inherit system;
+      config = pkgsConfig;
+    };
     pkgs-stable = import nixpkgs-stable {
       inherit system;
       config = pkgsConfig;
@@ -43,6 +49,7 @@
     homeConfigurations."antonfr" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
+        inherit pkgs-clickhouse;
         inherit pkgs-stable;
         inherit firefox-addons;
       };
