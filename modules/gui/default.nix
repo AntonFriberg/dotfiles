@@ -18,9 +18,9 @@
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
-      spotify
       grim
       slurp
+      spotify
       swaybg
       wdisplays
     ])
