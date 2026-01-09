@@ -19,7 +19,6 @@
   home.packages = lib.mkMerge [
     (with pkgs; [
       spotify
-      zed-editor
       grim
       slurp
       swaybg
