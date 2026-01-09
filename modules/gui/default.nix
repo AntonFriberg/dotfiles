@@ -13,6 +13,7 @@
     ./hyprland.nix
     ./mpv.nix
     ./ghostty.nix
+    ./niri.nix
   ];
 
   # Add packages

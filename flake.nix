@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri.url = "github:sodiboo/niri-flake";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +23,7 @@
   outputs = {
     firefox-addons,
     home-manager,
+    niri,
     nix-index-database,
     nixpkgs-clickhouse,
     nixpkgs-stable,
@@ -57,6 +59,7 @@
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
       modules = [
         nix-index-database.homeModules.nix-index
+        niri.homeModules.niri
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui
