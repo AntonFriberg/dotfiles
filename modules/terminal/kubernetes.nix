@@ -38,7 +38,7 @@ in {
       my-kubernetes-helm
       my-helmfile
       kubeseal
-      vault
+      vault-bin
     ])
   ];
 
