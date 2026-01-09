@@ -18,6 +18,7 @@
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
+      antigravity
       grim
       slurp
       spotify
