@@ -12,16 +12,14 @@
         };
       };
       settings = {
+        verbose = false;
+        experimental = true;
+        # https://github.com/jdx/mise/issues/1501
+        trusted_config_paths = [
+          "~/.config/mise/config.toml"
+        ];
         idiomatic_version_file_enable_tools = [];
       };
-    };
-    settings = {
-      verbose = false;
-      experimental = true;
-      # https://github.com/jdx/mise/issues/1501
-      trusted_config_paths = [
-        "~/.config/mise/config.toml"
-      ];
     };
   };
 }
