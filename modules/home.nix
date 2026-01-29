@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   home = let
     user = "antonfr";
   in {
@@ -33,6 +33,24 @@
       "$XDG_CACHE_HOME/.bun/bin"
       "$XDG_BIN_HOME"
     ];
+    # Make sure systemd user services are placed in a folder so that non-nixos picks them up.
+    activation.linkSystemd = let
+      inherit (lib) hm;
+    in
+      hm.dag.entryBefore ["reloadSystemd"] ''
+        # 1. Cleanup old nix-linked services
+        # Looks for links in the systemd folder that point to the Nix store and removes them
+        find $HOME/.config/systemd/user/ -type l \
+          -exec bash -c 'readlink "$0" | grep -q "/nix/store/"' {} \; \
+          -delete
+
+        # 2. Link current nix-profile services
+        # Finds all unit files in your current profile and links them where systemd can see them
+        if [ -d "$HOME/.nix-profile/share/systemd/user/" ]; then
+          find "$HOME/.nix-profile/share/systemd/user/" -maxdepth 1 -type f,l \
+            -exec ln -sf -t "$HOME/.config/systemd/user/" {} +
+        fi
+      '';
   };
 
   programs.home-manager.enable = true;
@@ -42,6 +60,9 @@
     enable = true;
     gpu.enable = true; # enable GPU driver integration for non-NixOS systems
   };
+
+  # Automatically (re)start/stop and changed services when activating home-manager configuration
+  systemd.user.startServices = true;
 
   xdg.configFile."environment.d/envvars.conf".text = ''
     PATH="$HOME/.nix-profile/bin:$PATH"

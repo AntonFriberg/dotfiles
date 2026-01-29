@@ -31,20 +31,6 @@
     };
   };
 
-  home.activation.linkSystemd = let
-    inherit (lib) hm;
-  in
-    hm.dag.entryBefore ["reloadSystemd"] ''
-      find $HOME/.config/systemd/user/ \
-        -type l \
-        -exec bash -c "readlink {} | grep -q $HOME/.nix-profile/share/systemd/user/" \; \
-        -delete
-
-      find $HOME/.nix-profile/share/systemd/user/ \
-        -type f -o -type l \
-        -exec ln -s {} $HOME/.config/systemd/user/ \;
-    '';
-
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
