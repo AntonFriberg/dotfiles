@@ -1,16 +1,16 @@
 {
   config,
   pkgs,
-  pkgs-stable,
+  # pkgs-stable,
   ...
 }: {
   programs.vscode = {
     enable = true;
-    package = pkgs-stable.vscode;
+    package = pkgs.vscode;
     profiles.default = {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = true;
-      extensions = with pkgs-stable.vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [
         arcticicestudio.nord-visual-studio-code
         bbenoist.nix
         bmalehorn.vscode-fish
