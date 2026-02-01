@@ -1,25 +1,63 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  home.packages = lib.mkMerge [
+    (with pkgs; [
+      ])
+  ];
+
+  programs.dank-material-shell = {
+    enable = true;
+    niri = {
+      enableKeybinds = true; # Sets static preset keybinds
+      enableSpawn = true; # Auto-start DMS with niri, if enabled
+      includes.enable = false;
+    };
+  };
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
     settings = {
       input = {
-        keyboard.xkb.layout = "us";
+        keyboard.xkb.layout = "us,se";
         touchpad = {
           tap = true;
-          natural-scroll = true; # Enable natural scrolling
+          dwt = true;
+          natural-scroll = true;
         };
       };
+      outputs = {
+        "eDP-1".scale = 1.5;
+      };
+      spawn-at-startup = [
+        {argv = ["dbus-update-activation-environment --systemd --all"];}
+        # Needs `sudo apt install --no-install-recommends polkit-kde-agent-1`
+        {argv = ["/usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1"];}
+      ];
       environment = {
         # Critical for Electron apps like VSCode
         NIXOS_OZONE_WL = "1";
         # Some apps need this
         MOZ_ENABLE_WAYLAND = "1";
+        # Disable DMS polkit
+        DMS_DISABLE_POLKIT = "1";
       };
+      window-rules = [
+        {
+          matches = [{app-id = "org.kde.polkit-kde-authentication-agent-1";}];
+          open-floating = true;
+        }
+      ];
       binds = {
         # Terminals & Apps
         "Mod+Return".action.spawn = "foot";
-        "Mod+D".action.spawn = "fuzzel"; # App launcher
+        "Mod+D".action.spawn = "fuzzel";
+
+        # Keyboard layout
+        "Alt+Space".action.switch-layout = "next";
 
         # Window Management
         "Mod+Shift+Q".action.close-window = [];
@@ -71,5 +109,57 @@
       # Optional: Set a wallpaper
       # outputs."eDP-1".background-color = "#1e1e2e";
     };
+  };
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        terminal = "${pkgs.foot}/bin/foot";
+        layer = "overlay";
+        width = 30;
+        font = "Hack Nerd Font:weight=bold:size=10";
+        inner-pad = 10;
+        lines = 15;
+        horizontal-pad = 20;
+        vertical-pad = 20;
+      };
+      colors = {
+        # Nord color palette
+        background = "2e3440ff"; # Dark blue-grey background
+        text = "d8dee9ff"; # Light blue-grey text
+        match = "88c0d0ff"; # Light blue for matched text
+        selection = "4c566aff"; # Lighter blue-grey for selected item
+        selection-text = "eceff4ff"; # Almost white for text in selected item
+        border = "5e81acff"; # Medium blue for border
+      };
+      border = {
+        width = 2;
+        radius = 6;
+      };
+    };
+  };
+
+  # Fix file picker and similar issues
+  xdg.portal = {
+    enable = true;
+    config = {
+      niri = {
+        default = ["gnome" "gtk"];
+        "org.freedesktop.impl.portal.Access" = "gtk";
+        "org.freedesktop.impl.portal.Notification" = "gtk";
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+      };
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+  };
+
+  # Fix keyring issues on ubuntu by stubbing the service
+  systemd.user.services.gnome-keyring = {
+    Service.ExecStart = lib.mkForce "${pkgs.coreutils}/bin/true";
+    Install.WantedBy = lib.mkForce [];
   };
 }
