@@ -58,7 +58,7 @@
   # Ease usage on non-NixOS installations
   targets.genericLinux = {
     enable = true;
-    gpu.enable = true; # enable GPU driver integration for non-NixOS systems
+    gpu.enable = true; # GPU driver integration for non-NixOS systems
   };
 
   # Automatically (re)start/stop and changed services when activating home-manager configuration
