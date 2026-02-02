@@ -10,7 +10,7 @@
     ./firefox.nix
     ./foot.nix
     ./vscode.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     ./mpv.nix
     ./ghostty.nix
     ./niri.nix
