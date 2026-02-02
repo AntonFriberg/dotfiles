@@ -10,6 +10,10 @@
         font = "Hack Nerd Font:size=12";
         pad = "10x10";
       };
+      csd = {
+        preferred = "none";
+        size = "0";
+      };
       colors = {
         alpha = "1"; # Opacity setting
         cursor = "2e3440 d8dee9";
