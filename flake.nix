@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-clickhouse.url = "github:NixOS/nixpkgs/5c46f3bd98147c8d82366df95bbef2cab3a967ea"; # https://www.nixhub.io/packages/clickhouse
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -26,8 +29,8 @@
     niri,
     nix-index-database,
     nixpkgs-clickhouse,
-    nixpkgs-stable,
     nixpkgs,
+    dms,
     ...
   }: let
     system = "x86_64-linux";
@@ -43,16 +46,11 @@
       inherit system;
       config = pkgsConfig;
     };
-    pkgs-stable = import nixpkgs-stable {
-      inherit system;
-      config = pkgsConfig;
-    };
   in {
     homeConfigurations."antonfr" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
         inherit pkgs-clickhouse;
-        inherit pkgs-stable;
         inherit firefox-addons;
       };
       # Useful stuff for managing modules between hosts
@@ -60,6 +58,8 @@
       modules = [
         nix-index-database.homeModules.nix-index
         niri.homeModules.niri
+        dms.homeModules.dank-material-shell
+        dms.homeModules.niri
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui
