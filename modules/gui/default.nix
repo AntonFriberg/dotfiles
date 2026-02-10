@@ -19,7 +19,7 @@
   # Add packages
   home.packages = lib.mkMerge [
     (with pkgs; [
-      antigravity
+      # antigravity # Currently not working, I am not using it that much
       grim
       slurp
       spotify
