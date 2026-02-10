@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  pkgs-clickhouse,
   ...
 }: let
   fish_start_logic = ''
@@ -13,9 +12,9 @@
 in {
   # Add packages
   home.packages = lib.mkMerge [
-    [pkgs-clickhouse.clickhouse] # Specifically use pkgs-clickhouse for clickhouse
     (with pkgs; [
       aws-signing-helper
+      clickhouse
     ])
   ];
 

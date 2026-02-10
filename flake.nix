@@ -16,7 +16,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-clickhouse.url = "github:NixOS/nixpkgs/5c46f3bd98147c8d82366df95bbef2cab3a967ea"; # https://www.nixhub.io/packages/clickhouse
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +27,6 @@
     home-manager,
     niri,
     nix-index-database,
-    nixpkgs-clickhouse,
     nixpkgs,
     dms,
     ...
@@ -42,15 +40,10 @@
       inherit system;
       config = pkgsConfig;
     };
-    pkgs-clickhouse = import nixpkgs-clickhouse {
-      inherit system;
-      config = pkgsConfig;
-    };
   in {
     homeConfigurations."antonfr" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit pkgs-clickhouse;
         inherit firefox-addons;
       };
       # Useful stuff for managing modules between hosts
