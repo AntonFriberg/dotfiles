@@ -20,6 +20,10 @@
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -29,6 +33,7 @@
     nix-index-database,
     nixpkgs,
     dms,
+    spicetify,
     ...
   }: let
     system = "x86_64-linux";
@@ -45,6 +50,7 @@
       inherit pkgs;
       extraSpecialArgs = {
         inherit firefox-addons;
+        inherit spicetify;
       };
       # Useful stuff for managing modules between hosts
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
@@ -53,6 +59,7 @@
         niri.homeModules.niri
         dms.homeModules.dank-material-shell
         dms.homeModules.niri
+        spicetify.homeManagerModules.spicetify
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui
