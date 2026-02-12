@@ -186,9 +186,6 @@
         # System
         "Ctrl+Alt+Delete".action.quit = [];
       };
-
-      # Optional: Set a wallpaper
-      # outputs."eDP-1".background-color = "#1e1e2e";
     };
   };
   programs.fuzzel = {
@@ -234,7 +231,10 @@
         "org.freedesktop.impl.portal.Settings" = ["gnome" "gtk"];
       };
     };
-    extraPortals = [];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
   };
 
   # Swaylock configuration (1.7.2)
