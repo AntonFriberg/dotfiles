@@ -17,6 +17,8 @@
       alejandra
       bandwhich
       choose
+      claude-code
+      claude-code-router
       comma
       delta
       docker-compose
