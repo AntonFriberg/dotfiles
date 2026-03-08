@@ -70,21 +70,39 @@
       layout = {
         gaps = 8; # Space between windows
 
+        default-column-width.proportion = 1. / 2.;
+
         preset-column-widths = [
-          {proportion = 1. / 2.;}
           {proportion = 2. / 3.;}
           {proportion = 1. / 3.;}
+          {proportion = 1. / 2.;}
         ];
 
-        # Focus ring colors (Material You style)
-        # These can be adjusted to match your DMS color scheme
+        preset-window-heights = [
+          {proportion = 1. / 3.;}
+          {proportion = 1. / 2.;}
+          {proportion = 2. / 3.;}
+        ];
+
         focus-ring = {
           enable = true;
           width = 4;
-          # Active color: A soft Material Primary (e.g., a muted lavender/blue)
           active.color = "#81a1c1";
-          # Inactive color: Darker surface color
           inactive.color = "#5e81ac";
+        };
+
+        tab-indicator = {
+          enable = true;
+          position = "top";
+          place-within-column = true;
+          width = 8;
+          gap = 8;
+          gaps-between-tabs = 6;
+          corner-radius = 12;
+          length.total-proportion = 1.0;
+          hide-when-single-tab = true;
+          active.color = "#88c0d0";
+          inactive.color = "#3b4252";
         };
       };
       layer-rules = [
@@ -128,9 +146,17 @@
         skip-at-startup = true;
       };
       binds = {
+        # Show list of important hotkeys
+        "Mod+Shift+Slash".action.show-hotkey-overlay = [];
+
         # Terminals & Apps
         "Mod+Return".action.spawn = "foot";
         "Mod+D".action.spawn = "fuzzel";
+
+        # Screenshot (requires grim/slurp)
+        "Print".action.screenshot = [];
+        "Mod+Print".action.screenshot-screen = [];
+        "Mod+Shift+Print".action.screenshot-window = [];
 
         # Lock screen
         "Mod+L" = {
@@ -141,25 +167,102 @@
         # Keyboard layout
         "Alt+Space".action.switch-layout = "next";
 
+        # Volume control
+        "XF86AudioRaiseVolume" = {
+          allow-when-locked = true;
+          # action.spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+        };
+        "XF86AudioLowerVolume" = {
+          allow-when-locked = true;
+          # action.spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+        };
+        "XF86AudioMute" = {
+          allow-when-locked = true;
+          # action.spawn = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        };
+        "XF86AudioMicMute" = {
+          allow-when-locked = true;
+          # action.spawn = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        };
+
+        # Example media keys mapping using playerctl.
+        # This will work with any MPRIS-enabled media player.
+        "XF86AudioPlay" = {
+          allow-when-locked = true;
+          action.spawn = "playerctl play-pause";
+        };
+        "XF86AudioStop" = {
+          allow-when-locked = true;
+          action.spawn = "playerctl stop";
+        };
+        "XF86AudioPrev" = {
+          allow-when-locked = true;
+          action.spawn = "playerctl previous";
+        };
+        "XF86AudioNext" = {
+          allow-when-locked = true;
+          action.spawn = "playerctl next";
+        };
+
+        # Example brightness key mappings for brightnessctl.
+        "XF86MonBrightnessUp" = {
+          allow-when-locked = true;
+          # action.spawn = "brightnessctl" "--class=backlight" "set" "+10%";
+        };
+        "XF86MonBrightnessDown" = {
+          allow-when-locked = true;
+          # action.spawn = "brightnessctl" "--class=backlight" "set" "10%-";
+        };
+
         # Layout adjustments
         "Mod+R".action.switch-preset-column-width = [];
+        "Mod+Shift+R".action.switch-preset-window-height = [];
+        "Mod+Shift+Ctrl+R".action.reset-window-height = [];
         "Mod+F".action.maximize-column = [];
         "Mod+Shift+F".action.fullscreen-window = [];
-
-        # Screenshot (requires grim/slurp)
-        "Print".action.screenshot = [];
-        "Mod+Print".action.screenshot-screen = [];
+        "Mod+Ctrl+F".action.expand-column-to-available-width = [];
+        "Mod+E".action.maximize-window-to-edges = [];
+        "Mod+C".action.center-column = [];
+        "Mod+Shift+C".action.center-visible-columns = [];
+        "Mod+Z".action.toggle-window-floating = [];
+        "Mod+Shift+Z".action.switch-focus-between-floating-and-tiling = [];
+        "Mod+W".action.toggle-column-tabbed-display = [];
+        "Mod+Minus".action.set-column-width = ["-10%"];
+        "Mod+Equal".action.set-column-width = ["+10%"];
+        "Mod+Shift+Minus".action.set-window-height = ["-10%"];
+        "Mod+Shift+Equal".action.set-window-height = ["+10%"];
 
         # Window Management
+        "Mod+O".action.toggle-overview = [];
         "Mod+Shift+Q".action.close-window = [];
         "Mod+Left".action.focus-column-left = [];
         "Mod+Right".action.focus-column-right = [];
         "Mod+Down".action.focus-window-down = [];
         "Mod+Up".action.focus-window-up = [];
+        "Mod+Home".action.focus-column-first = [];
+        "Mod+End".action.focus-column-last = [];
+        "Mod+Ctrl+Left".action.focus-monitor-left = [];
+        "Mod+Ctrl+Right".action.focus-monitor-right = [];
+        "Mod+Ctrl+Down".action.focus-monitor-down = [];
+        "Mod+Ctrl+Up".action.focus-monitor-up = [];
+        "Mod+Page_Down".action.focus-workspace-down = [];
+        "Mod+Page_Up".action.focus-workspace-up = [];
 
         # Move windows
         "Mod+Shift+Left".action.move-column-left = [];
         "Mod+Shift+Right".action.move-column-right = [];
+        "Mod+Shift+Down".action.move-window-down = [];
+        "Mod+Shift+Up".action.move-window-up = [];
+        "Mod+Shift+Home".action.move-column-to-first = [];
+        "Mod+Shift+End".action.move-column-to-last = [];
+        "Mod+Shift+Ctrl+Left".action.move-column-to-monitor-left = [];
+        "Mod+Shift+Ctrl+Right".action.move-column-to-monitor-right = [];
+        "Mod+Shift+Ctrl+Down".action.move-column-to-monitor-down = [];
+        "Mod+Shift+Ctrl+Up".action.move-column-to-monitor-up = [];
+        "Mod+Shift+Page_Down".action.move-column-to-workspace-down = [];
+        "Mod+Shift+Page_Up".action.move-column-to-workspace-up = [];
+        "Mod+BracketLeft".action.consume-or-expel-window-left = [];
+        "Mod+BracketRight".action.consume-or-expel-window-right = [];
 
         # Workspaces
         "Mod+1".action.focus-workspace = 1;
@@ -183,8 +286,12 @@
         "Mod+Shift+8".action.move-column-to-workspace = 8;
         "Mod+Shift+9".action.move-column-to-workspace = 9;
         "Mod+Shift+0".action.move-column-to-workspace = 10;
+
         # System
         "Ctrl+Alt+Delete".action.quit = [];
+
+        # Toggle applications such as KVM from taking over keybinds
+        "Mod+Escape".action.toggle-keyboard-shortcuts-inhibit = [];
       };
     };
   };
