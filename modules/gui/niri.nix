@@ -19,7 +19,17 @@
     };
   };
 
-  programs.niri = {
+  programs.niri = let
+    # 1. Download the raw script
+    niri-python-script = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/heyoeyo/niri_tweaks/2756205fd3938e9a3dbea13dadb23ff3b8051f64/niri_tile_to_n.py";
+      sha256 = "1zrp33mdiimrz7xdmm59vaial165zh2dspk6cl8lw60x07hk6r7h"; # Find the hash by running: nix-prefetch-url <url>
+    };
+    # 2. Create a clean wrapper that runs it with Python
+    niri-tile-to-n = pkgs.writeShellScriptBin "niri-tile-to-n" ''
+      exec ${pkgs.python3}/bin/python3 ${niri-python-script} "$@"
+    '';
+  in {
     enable = true;
     package = pkgs.niri;
     settings = {
@@ -65,6 +75,8 @@
             "swaylock -f"
           ];
         }
+        # Do not start scrolling until screen is full
+        {argv = ["${niri-tile-to-n}/bin/niri-tile-to-n" "2"];} # Change "2" to your preferred number of tiles
       ];
 
       layout = {
@@ -126,8 +138,15 @@
           open-floating = true;
         }
         {
-          matches = [{app-id = "org.kde.polkit-kde-authentication-agent-1";}];
+          matches = [
+            {
+              app-id = "firefox";
+              title = "^Picture-in-Picture$";
+            }
+          ];
           open-floating = true;
+          default-column-width.fixed = 400;
+          default-window-height.fixed = 225;
         }
         # For screencasting
         {
