@@ -34,7 +34,7 @@
     spicePkgs = spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   in {
     enable = true;
-    wayland = false; # Solve ugly blue decorations due to wayland issues
+    wayland = true; # Solve ugly blue decorations due to wayland issues
     theme = spicePkgs.themes.text;
     colorScheme = "Nord";
     # enabledExtensions = with spicePkgs.extensions; [

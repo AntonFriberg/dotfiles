@@ -43,6 +43,7 @@
         # Disable DMS dynamic theming
         DMS_DISABLE_MATUGEN = "1";
       };
+
       input = {
         keyboard.xkb.layout = "us,se";
         touchpad = {
@@ -51,9 +52,11 @@
           natural-scroll = true;
         };
       };
+
       outputs = {
         "eDP-1".scale = 1.5;
       };
+
       spawn-at-startup = [
         {argv = ["dbus-update-activation-environment --systemd --all"];}
         # Needs `sudo apt install --no-install-recommends polkit-kde-agent-1`
@@ -78,6 +81,8 @@
         # Do not start scrolling until screen is full
         {argv = ["${niri-tile-to-n}/bin/niri-tile-to-n" "2"];} # Change "2" to your preferred number of tiles
       ];
+
+      prefer-no-csd = true; # Fix for spotify ugly blue border on wayland
 
       layout = {
         gaps = 8; # Space between windows
@@ -117,12 +122,14 @@
           inactive.color = "#3b4252";
         };
       };
+
       layer-rules = [
         {
           matches = [{namespace = "^wallpaper$";}];
           place-within-backdrop = true;
         }
       ];
+
       window-rules = [
         {
           geometry-corner-radius = {
@@ -161,9 +168,11 @@
           };
         }
       ];
+
       hotkey-overlay = {
         skip-at-startup = true;
       };
+
       binds = {
         # Show list of important hotkeys
         "Mod+Shift+Slash".action.show-hotkey-overlay = [];
@@ -314,6 +323,7 @@
       };
     };
   };
+
   programs.fuzzel = {
     enable = true;
     settings = {
