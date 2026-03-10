@@ -4,26 +4,43 @@ My personal dotfiles manging packages, scripts and configuration on [Ubuntu],
 [Debian] and [Arch Linux]. Managed by [Home Manager] utilizing [Nix].
 
 - Color Scheme: [Nord]
-- Wallpaper: [Published on Unsplash]
-- Terminal: [Alacritty]
+- Wallpaper: [Published on Wikimedia]
+- Terminal: [Foot]
 - Editor: [Visual Studio Code]
+- Window Manager: [Niri]
+- Spotify Client: [Spicetify]
 
 [Ubuntu]: https://ubuntu.com/
 [Debian]: https://www.debian.org/
 [Arch Linux]: https://archlinux.org/
 [Home Manager]: https://github.com/nix-community/home-manager
 [Nix]: https://github.com/NixOS/nixpkgs
-[Alacritty]: https://github.com/alacritty/alacritty
+[Foot]: https://codeberg.org/dnkl/foot
 [Nord]: https://github.com/nordtheme/nord
 [Visual Studio Code]: https://github.com/microsoft/vscode
+[Niri]: https://github.com/niri-wm/niri
+[Spicetify]: https://spicetify.app/
 
 ## Screenshots
 
-Currently I have no screenshots since I am working on the Hyprland
-configurations.
+### Simple
+![image showing simple layout](docs/simple.webp)
+
+### Busy
+![image showing busy layout](docs/busy.webp)
+
+### Spotify
+![image showing spotify](docs/spotify.webp)
+
+### VS Code
+![image showing Visual Studio Code](docs/vscode.webp)
+
 
 ### Wallpaper
-Wallpaper [published on Unsplash] which grants you an irrevocable, nonexclusive, worldwide copyright license to download, copy, modify, distribute, perform, and use images from Unsplash for free. See [Unsplash license] for more info.
+Wallpaper [published on Wikimedia] see [direct link to wallpaper].
+
+[published on Wikimedia]: https://commons.wikimedia.org/wiki/File:Icy_glacier_slope_in_Kenai_Fjords_National_Park_%28Unsplash%29.jpg
+[direct link to wallpaper]: https://upload.wikimedia.org/wikipedia/commons/e/ef/Icy_glacier_slope_in_Kenai_Fjords_National_Park_%28Unsplash%29.jpg
 
 ## Installation & Management
 
@@ -118,95 +135,6 @@ install everything for you.
   --enable-features=WaylandWindowDecoration
   --ozone-platform=wayland
   ```
-
-  If staring the application in Gnome it can be tricky to get the arguments into
-  the application. The easiest is probably to simply copy the desktop file from
-  `~/.nix-profile/share/applications` to `~/.local/share/applications` and edit
-  the `Exec=` line.
-
-  ```sh
-  $ diff ~/.nix-profile/share/applications/spotify.desktop ~/.local/share/applications/spotify.desktop
-  < Exec=spotify %U
-  ---
-  > Exec=spotify --enable-features=UseOzonePlatform --enable-features=WaylandWindowDecoration --ozone-platform=wayland  %U
-  ```
-
-## Python & Javascript Development
-
-I prefer to keep Python and Javascript development environments outside of Nix
-due to some issues I have experienced and known performance issues due to the
-reproducible builds in Nix. Instead I install these via [Mise-en-Place] tool.
-
-[Mise-en-Place] is installed using Nix as usual and configured in `modules/terminal/mise.nix`. Here I specify which tools I want access to globally.
-
-```nix
-{...}: {
-  programs.mise = {
-    enable = true;
-    enableFishIntegration = true;
-    globalConfig = {
-      tools = {
-        python = "3.12";
-        node = "20";
-      };
-    };
-  };
-}
-```
-
-After activating my home-manager environment I have access to `mise` and can
-run the following to install python and nodejs.
-
-```sh
-# Check that mise is installed
-❯ mise --version
-2024.5.9 linux-x64 (2024-08-12)
-# Install configured global tools
-❯ mise install
-mise node@20.17.0 ✓ installed
-mise python@3.12.5 ✓ installed
-# Check that it is working
-❯ python --version && which python
-Python 3.12.5
-/home/antonfr/.local/share/mise/installs/python/3.12/bin/python
-❯ node --version && which node
-v20.17.0
-/home/antonfr/.local/share/mise/installs/node/20/bin/node
-```
-
-For local development where I might want different versions of Python or NodeJS
-I utilize a project specific `.mise.toml` file.
-
-```toml
-[tools]
-python = "3.10"
-
-[env]
-_.python.venv = { path = ".venv", create = true }
-```
-
-Then it works like this.
-
-```sh
-# Trust the .mise.toml file in the project dir
-❯ mise trust project-dir/.mise.toml
-# Navigate into the project dir which triggers mise hook
-❯ cd project-dir/
-mise missing: python@3.10.14
-# Mise alerts that tools are missing from installation
-❯ mise install
-mise python@3.10.14 ✓ installed                                              mise creating venv at: ~/project-dir/.venv
-# Mise installs Python version and activates our virtualenv
-❯ python --version & which python & which pip
-Python 3.10.14
-/home/antonfr/project-dir/.venv/bin/python
-/home/antonfr/project-dir/.venv/bin/pip
-```
-
-This means that I can quickly switch between different project specific tool
-versions by simply navigating into them.
-
-[Mise-en-Place]: https://mise.jdx.dev/
 
 ## Uninstall
 
