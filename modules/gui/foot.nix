@@ -14,7 +14,7 @@
         preferred = "none";
         size = "0";
       };
-      colors = {
+      colors-dark = {
         alpha = "1"; # Opacity setting
         cursor = "2e3440 d8dee9";
         foreground = "d8dee9";
