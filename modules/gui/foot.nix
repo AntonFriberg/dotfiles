@@ -7,8 +7,13 @@
     enable = true;
     settings = {
       main = {
-        font = "Hack Nerd Font:size=12";
+        font = "Hack Nerd Font:size=12:antialias=true:hinting=true";
         pad = "10x10";
+      };
+      scrollback = {
+        # Search scrollback history with ctrl-shift-r
+        lines = 100000;
+        multiplier = 8.0;
       };
       csd = {
         preferred = "none";
