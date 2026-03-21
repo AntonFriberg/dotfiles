@@ -29,7 +29,6 @@
         "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
         "[python]" = {"editor.defaultFormatter" = "charliermarsh.ruff";};
         "[yaml]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
-        "chat.disableAIFeatures" = true;
         "editor.copyWithSyntaxHighlighting" = false;
         "editor.fontFamily" = "'Cousine Nerd Font', 'Hack Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'";
         "editor.minimap.enabled" = false;
@@ -42,7 +41,19 @@
         "python.analysis.typeCheckingMode" = "basic";
         "python.languageServer" = "Pylance";
         "python.terminal.shellIntegration.enabled" = false;
+        "terminal.integrated.defaultProfile.linux" = "fish-nix";
         "terminal.integrated.fontFamily" = "Cousine Nerd Font Mono";
+        "terminal.integrated.initialHint" = false;
+        "terminal.integrated.profiles.linux" = {
+          "fish-nix" = {
+            "path" = "${pkgs.fish}/bin/fish";
+            "icon" = "terminal-linux";
+          };
+        };
+        "terminal.integrated.shellIntegration.enabled" = false;
+        "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
+        "terminal.integrated.stickyScroll.enabled" = false;
+        "terminal.integrated.suggest.enabled" = false;
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = 1;
         "workbench.colorTheme" = "Nord";
