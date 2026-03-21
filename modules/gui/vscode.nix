@@ -54,6 +54,7 @@
         "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
         "terminal.integrated.stickyScroll.enabled" = false;
         "terminal.integrated.suggest.enabled" = false;
+        "terminal.integrated.enableKittyKeyboardProtocol" = false;
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = 1;
         "workbench.colorTheme" = "Nord";
