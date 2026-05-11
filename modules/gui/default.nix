@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-stable,
   spicetify,
   ...
 }: {
@@ -31,9 +32,10 @@
 
   # Spotify client
   programs.spicetify = let
-    spicePkgs = spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+    spicePkgs = spicetify.legacyPackages.${pkgs-stable.stdenv.hostPlatform.system};
   in {
     enable = true;
+    spotifyPackage = pkgs-stable.spotify;
     wayland = true; # Solve ugly blue decorations due to wayland issues
     theme = spicePkgs.themes.text;
     colorScheme = "Nord";

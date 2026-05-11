@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +23,7 @@
     };
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
   };
 
@@ -32,6 +33,7 @@
     niri,
     nix-index-database,
     nixpkgs,
+    nixpkgs-stable,
     dms,
     spicetify,
     ...
@@ -45,12 +47,17 @@
       inherit system;
       config = pkgsConfig;
     };
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config = pkgsConfig;
+    };
   in {
     homeConfigurations."antonfr" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
         inherit firefox-addons;
         inherit spicetify;
+        inherit pkgs-stable;
       };
       # Useful stuff for managing modules between hosts
       # https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration
