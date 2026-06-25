@@ -37,7 +37,7 @@
     activation.linkSystemd = let
       inherit (lib) hm;
     in
-      hm.dag.entryBefore ["reloadSystemd"] ''
+      hm.dag.entryBefore ["linkGeneration"] ''
         # 1. Cleanup old nix-linked services
         # Looks for links in the systemd folder that point to the Nix store and removes them
         find $HOME/.config/systemd/user/ -type l \
