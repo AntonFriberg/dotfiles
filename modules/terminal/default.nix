@@ -48,8 +48,8 @@
       ripgrep
       tealdeer
       uv
-      yt-dlp
       yq-go
+      yt-dlp
     ])
   ];
 
