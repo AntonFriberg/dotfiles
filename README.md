@@ -136,6 +136,27 @@ install everything for you.
   --ozone-platform=wayland
   ```
 
+- **Spicetify build fails with exit code 137 (OOM kill)?**
+
+  The `spicetify backup apply` step can peak at ~2.7 GB of memory. When building
+  with many parallel jobs (`max-jobs = auto`), combined memory pressure can
+  trigger an OOM kill in the build sandbox.
+
+  **Fix:** Limit parallel build jobs in `/etc/nix/nix.custom.conf`:
+
+  ```conf
+  max-jobs = 6
+  ```
+
+  Then restart the daemon:
+
+  ```fish
+  sudo systemctl restart nix-daemon
+  ```
+
+  With 30 GB RAM, 6 parallel jobs leaves enough headroom. Adjust based on your
+  available system memory.
+
 ## Uninstall
 
 This is one of best features of Nix and it extends to Home-Manager as well. To
