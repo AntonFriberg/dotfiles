@@ -26,10 +26,10 @@
         tamasfe.even-better-toml
       ];
       userSettings = {
+        "[dockercompose]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
         "[json]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
         "[python]" = {"editor.defaultFormatter" = "charliermarsh.ruff";};
         "[yaml]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
-        "[dockercompose]" = {"editor.defaultFormatter" = "redhat.vscode-yaml";};
         "editor.copyWithSyntaxHighlighting" = false;
         "editor.fontFamily" = "'Cousine Nerd Font', 'Hack Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'";
         "editor.minimap.enabled" = false;
@@ -43,6 +43,7 @@
         "python.languageServer" = "Pylance";
         "python.terminal.shellIntegration.enabled" = false;
         "terminal.integrated.defaultProfile.linux" = "fish-nix";
+        "terminal.integrated.enableKittyKeyboardProtocol" = false;
         "terminal.integrated.fontFamily" = "Cousine Nerd Font Mono";
         "terminal.integrated.initialHint" = false;
         "terminal.integrated.profiles.linux" = {
@@ -51,11 +52,10 @@
             "icon" = "terminal-linux";
           };
         };
-        "terminal.integrated.shellIntegration.enabled" = false;
         "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
+        "terminal.integrated.shellIntegration.enabled" = false;
         "terminal.integrated.stickyScroll.enabled" = false;
         "terminal.integrated.suggest.enabled" = false;
-        "terminal.integrated.enableKittyKeyboardProtocol" = false;
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = 1;
         "workbench.colorTheme" = "Nord";
