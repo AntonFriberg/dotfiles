@@ -41,4 +41,4 @@ alejandra <file.nix>
 - **Package lists** use `lib.mkMerge` with `with pkgs; [ ... ]` blocks.
 - Each module category has a `default.nix` that imports sub-modules and defines category-specific packages.
 - `allowUnfree = true` is set globally.
-- Home Manager state version: `25.11`.
+- Home Manager state version: `26.05`.
