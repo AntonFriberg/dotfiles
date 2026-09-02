@@ -77,14 +77,15 @@
       ".mise.toml"
       ".venv"
     ];
-    includes = map (url: {
-      condition = "hasconfig:remote.*.url:${url}";
-      contents.user.email = "anton.frost@axis.com";
-    }) [
-      "ssh://*@*.*.axis.com:*/**"
-      "git@github.com:axteams-one/**"
-      "https://github.com/axteams-one/**"
-    ];
+    includes =
+      map (url: {
+        condition = "hasconfig:remote.*.url:${url}";
+        contents.user.email = "anton.frost@axis.com";
+      }) [
+        "ssh://*@*.*.axis.com:*/**"
+        "git@github.com:axteams-one/**"
+        "https://github.com/axteams-one/**"
+      ];
   };
 
   programs.gh = {
