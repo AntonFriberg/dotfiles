@@ -136,6 +136,15 @@
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
+
+      # Load decrypted sops secrets if available
+      set -l secrets_env "$HOME/.config/sops-nix/secrets/rendered/secrets.env"
+      if test -f $secrets_env
+          for line in (cat $secrets_env | grep -v '^#' | grep -v '^\s*$')
+              set -l item (string split -m 1 '=' $line)
+              set -gx $item[1] (string trim --chars=\'\" $item[2])
+          end
+      end
       # home-manager
       # fenv 'export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}'
     '';

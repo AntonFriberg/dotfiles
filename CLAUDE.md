@@ -30,6 +30,7 @@ alejandra <file.nix>
 - `home.nix` — User identity, session variables (EDITOR, BROWSER, XDG), systemd service linking
 - `terminal/` — Shell (fish), git, SSH, kubernetes tools, CLI packages
 - `gui/` — Window manager (niri), terminals (alacritty, foot, ghostty), browsers (firefox, chrome), VS Code, media
+- `secrets/` — Secret management via sops-nix and age, decrypting to RAM outside `/nix/store`
 - `work/` — Work-specific packages and conditional git config (overrides git email based on SSH URL patterns, uses system git/ssh for GSSAPI)
 
 **Overlays** (`overlays/default.nix`): Infrastructure exists but currently minimal.

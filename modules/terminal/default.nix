@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./ai.nix
     ./fish.nix
     ./git.nix
     ./kubernetes.nix

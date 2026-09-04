@@ -23,7 +23,11 @@
     };
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -36,6 +40,7 @@
     nixpkgs-stable,
     dms,
     spicetify,
+    sops-nix,
     ...
   }: let
     system = "x86_64-linux";
@@ -67,6 +72,8 @@
         dms.homeModules.dank-material-shell
         dms.homeModules.niri
         spicetify.homeManagerModules.spicetify
+        sops-nix.homeManagerModules.sops
+        ./modules/secrets
         ./modules/home.nix
         ./modules/terminal
         ./modules/gui

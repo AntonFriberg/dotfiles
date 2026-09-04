@@ -1,0 +1,8 @@
+keys:
+  - &antonfr age1up75zjm8k2epah2gwaxtzyp6nuwcsg0ezm9pwkl0an9tw88ck4tq3h3xyp
+
+creation_rules:
+  - path_regex: secrets/.*\.ya?ml$
+    key_groups:
+      - age:
+          - *antonfr
