@@ -23,7 +23,7 @@
     };
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
