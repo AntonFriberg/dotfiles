@@ -62,6 +62,7 @@
   programs.micro = {
     enable = true;
     settings = {
+      backup = false;
       colorscheme = "nord-16"; # installed via below
       mkparents = true;
     };
