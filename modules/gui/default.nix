@@ -22,6 +22,7 @@
   home.packages = lib.mkMerge [
     (with pkgs; [
       # antigravity # Currently not working, I am not using it that much
+      github-copilot-app
       grim
       slurp
       # spotify
