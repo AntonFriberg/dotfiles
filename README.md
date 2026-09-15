@@ -119,6 +119,36 @@ Secrets are managed using [sops-nix] and [age]. Encrypted secrets are stored in 
    hms  # home-manager switch --flake ~/.config/home-manager
    ```
 
+#### Managing Encrypted Files
+
+Whole files can be committed encrypted and deployed outside `/nix/store` as
+runtime-backed, permission-restricted files. The encrypted GitHub Copilot MCP
+registry at `secrets/files/github-copilot-mcp.json` is deployed to
+`~/.copilot/mcp-config.json` by `sops.secrets.github-copilot-mcp` in
+`modules/terminal/ai.nix`.
+
+Edit a binary secret with the Fish `sopsedit` alias:
+
+```fish
+sopsedit secrets/files/github-copilot-mcp.json
+```
+
+SOPS opens a temporary plaintext file under `$XDG_RUNTIME_DIR`, re-encrypts
+the tracked file when you save, and then removes the temporary plaintext.
+Disable editor swap and backup files when editing secrets. Declare each file
+with `format = "binary"`, an explicit `path`, and restrictive `mode` in its
+Home Manager module. Do not use `home.file` for the same target path: that
+would place the decrypted content in `/nix/store`.
+
+Dump a binary secret's exact plaintext to standard output with:
+
+```fish
+sopscat secrets/files/github-copilot-mcp.json
+```
+
+This is suitable for piping to a consumer or `jq`; avoid exposing secret output
+in terminal scrollback.
+
 #### Rotating Existing Secrets
 
 1. Edit the secret value:

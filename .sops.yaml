@@ -6,3 +6,7 @@ creation_rules:
     key_groups:
       - age:
           - *antonfr
+  - path_regex: secrets/files/.*$
+    key_groups:
+      - age:
+          - *antonfr

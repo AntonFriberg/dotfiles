@@ -128,6 +128,8 @@
       jci = "fast_jira_create_issue";
       ktemplate = "kubectl create --dry-run=client -o yaml";
       k = "kubectl";
+      sopsedit = "env TMPDIR=\"$XDG_RUNTIME_DIR\" sops --input-type binary --output-type binary";
+      sopscat = "sops decrypt --input-type binary --output-type binary";
     };
     shellInit = ''
       # Disable help message

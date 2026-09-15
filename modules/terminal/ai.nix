@@ -28,45 +28,6 @@
       };
     };
 
-    # Model Context Protocol (MCP) servers (written to mcp-config.json)
-    mcpServers = {
-      # Axis Jira MCP integration
-      "se.axis.rndtools/jira-mcp-server" = {
-        tools = ["*"];
-        type = "stdio";
-        command = "${pkgs.uv}/bin/uvx";
-        args = [
-          "axis-mcp-atlassian@0.21.2.dev10"
-        ];
-        env = {
-          UV_INDEX_URL = "\${UV_INDEX_URL}";
-          JIRA_PERSONAL_TOKEN = "\${JIRA_PERSONAL_TOKEN}";
-          JIRA_PROJECTS_FILTER = "\${JIRA_PROJECTS_FILTER}";
-          JIRA_URL = "\${JIRA_URL}";
-          JIRA_USERNAME = "\${JIRA_USERNAME}";
-          CONFLUENCE_URL = "\${CONFLUENCE_URL}";
-          CONFLUENCE_PERSONAL_TOKEN = "\${CONFLUENCE_TOKEN}";
-          CONFLUENCE_SPACES_FILTER = "\${CONFLUENCE_SPACES_FILTER}";
-          READ_ONLY_MODE = "true";
-          TOOLSETS = "all";
-        };
-      };
-
-      # Kubernetes / Kube-context MCP server example
-      # k8s = {
-      #   type = "local";
-      #   command = "${pkgs.nodejs}/bin/npx";
-      #   args = ["-y" "mcp-server-kubernetes"];
-      # };
-
-      # PostgreSQL / CNPG MCP server example
-      # postgres = {
-      #   type = "local";
-      #   command = "${pkgs.nodejs}/bin/npx";
-      #   args = ["-y" "@modelcontextprotocol/server-postgres" "postgresql://localhost:5432/mydb"];
-      # };
-    };
-
     # Custom Agents: specialized personas invoked via `/agent <name>` (written to ~/.copilot/agents/<name>.agent.md)
     # agents = {
     #   db-reviewer = ''
@@ -109,5 +70,13 @@
 
   home.file = {
     "${config.programs.github-copilot-cli.configDir}/config.json".force = true;
+  };
+
+  # Decrypt directly to Copilot's external MCP registry, not the Nix store.
+  sops.secrets.github-copilot-mcp = {
+    sopsFile = ../../secrets/files/github-copilot-mcp.json;
+    format = "binary";
+    path = "${config.programs.github-copilot-cli.configDir}/mcp-config.json";
+    mode = "0600";
   };
 }
