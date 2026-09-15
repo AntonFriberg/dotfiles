@@ -82,6 +82,63 @@ install everything for you.
 
 [Determinate Nix Installer]: https://determinate.systems/posts/determinate-nix-installer/
 
+### Secrets Management
+
+Secrets are managed using [sops-nix] and [age]. Encrypted secrets are stored in `secrets/secrets.yaml` in this repository and decrypted at activation to RAM (`~/.config/sops-nix/secrets`), keeping them outside the world-readable `/nix/store`.
+
+#### First-time Setup on a New Machine
+
+1. Ensure the age private key exists on the machine:
+   ```sh
+   mkdir -p ~/.config/sops/age
+   age-keygen -o ~/.config/sops/age/keys.txt
+   ```
+2. Retrieve the public key:
+   ```sh
+   age-keygen -y ~/.config/sops/age/keys.txt
+   ```
+3. Add the public key to `.sops.yaml` under `keys` and `creation_rules`, then re-encrypt existing secrets:
+   ```sh
+   sops updatekeys secrets/secrets.yaml
+   ```
+
+#### Adding or Editing Secrets
+
+1. Open and edit secrets using `sops`:
+   ```sh
+   sops secrets/secrets.yaml
+   ```
+   This decrypts the file in your `$EDITOR` and re-encrypts upon saving.
+2. If adding a new secret key, declare it in `modules/secrets/default.nix`:
+   ```nix
+   sops.secrets.my_secret_name = {};
+   ```
+   Or expose it as an environment variable in `sops.templates."secrets.env"`.
+3. Apply changes:
+   ```fish
+   hms  # home-manager switch --flake ~/.config/home-manager
+   ```
+
+#### Rotating Existing Secrets
+
+1. Edit the secret value:
+   ```sh
+   sops secrets/secrets.yaml
+   ```
+2. Apply changes with `hms`.
+
+#### Rotating Keys
+
+1. Generate a new key and update `.sops.yaml` with the new public key (and remove the old public key if retiring).
+2. Re-encrypt all secrets with the updated recipient list:
+   ```sh
+   sops updatekeys secrets/secrets.yaml
+   ```
+3. Commit the updated `.sops.yaml` and `secrets/secrets.yaml`.
+
+[sops-nix]: https://github.com/Mic92/sops-nix
+[age]: https://github.com/FiloSottile/age
+
 ### Troubleshooting
 
 - **No prompt in fish after initial startup? Run the following.**
