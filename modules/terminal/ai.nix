@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   ...
@@ -104,5 +105,9 @@
     #   - ClickHouse: Respect columnar storage patterns, avoid full table mutations, and check partition key cardinality.
     #   - Data Pipelines: In Dagster and DBT, prioritize idempotency, explicit asset dependencies, and strict type schemas.
     # '';
+  };
+
+  home.file = {
+    "${config.programs.github-copilot-cli.configDir}/config.json".force = true;
   };
 }
