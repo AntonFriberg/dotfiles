@@ -3,9 +3,17 @@ on:
   pull_request:
     paths:
       - '**.nix'
+      - '.sops.yaml'
+      - 'secrets/**'
+      - 'flake.lock'
+      - '.github/workflows/**'
   push:
     paths:
       - '**.nix'
+      - '.sops.yaml'
+      - 'secrets/**'
+      - 'flake.lock'
+      - '.github/workflows/**'
   workflow_dispatch: # allows manual triggering
 
 jobs:
@@ -23,6 +31,9 @@ jobs:
 
       - name: Validate flake lockfile
         uses: DeterminateSystems/flake-checker-action@main
+
+      - name: Check flake
+        run: nix flake check
 
       - name: Build Home Manager
         run: nix shell nixpkgs#home-manager -c home-manager build --flake .#antonfr
