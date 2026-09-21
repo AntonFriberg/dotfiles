@@ -22,6 +22,7 @@ in {
   home.packages = lib.mkMerge [
     (with pkgs; [
       fluxcd
+      k3d
       kind
       kubeconform
       kubectl
