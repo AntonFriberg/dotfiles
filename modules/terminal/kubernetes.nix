@@ -36,6 +36,7 @@ in {
       kubectl-view-allocations
       kubectl-view-secret
       kubectx
+      mkcert
       my-kubernetes-helm
       my-helmfile
       kubeseal
