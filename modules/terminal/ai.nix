@@ -68,10 +68,6 @@
     # '';
   };
 
-  home.file = {
-    "${config.programs.github-copilot-cli.configDir}/config.json".force = true;
-  };
-
   # Decrypt directly to Copilot's external MCP registry, not the Nix store.
   sops.secrets.github-copilot-mcp = {
     sopsFile = ../../secrets/files/github-copilot-mcp.json;
