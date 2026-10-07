@@ -11,7 +11,7 @@
       TERMINAL = "alacritty";
       VISUAL = "vim";
       EDITOR = "micro";
-      BROWSER = "firefox-devedition";
+      BROWSER = "chromium";
       PAGER = "less";
       # Set XDG directories
       XDG_CONFIG_HOME = "$HOME/.config";
