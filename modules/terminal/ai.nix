@@ -8,7 +8,7 @@
     enable = true;
 
     # General settings for Copilot CLI (written to ~/.copilot/config.json)
-    settings.model = "gemini-3.8-flash";
+    settings.model = "gpt-6.1-sol";
 
     # Language Server Protocol (LSP) integrations for code intelligence (written to lsp-config.json)
     # Note: Language server packages must be in pkgs / PATH (e.g. nixd, pyright)
