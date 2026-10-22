@@ -5,6 +5,8 @@
 }: {
   programs.chromium = {
     enable = true;
+    # Widevine CDM for DRM playback (Netflix, Spotify, ...)
+    package = pkgs.chromium.override {enableWideVine = true;};
     commandLineArgs = [
       "--ozone-platform-hint=auto"
       "--enable-features=OverlayScrollbar"
