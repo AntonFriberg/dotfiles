@@ -7,6 +7,13 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
+    # VS Code can't detect the keyring under niri, so force libsecret.
+    # Crash reporting is disabled since VS Code can't write its id to the
+    # read-only argv.json.
+    argvSettings = {
+      "password-store" = "gnome-libsecret";
+      "enable-crash-reporter" = false;
+    };
     profiles.default = {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = true;
