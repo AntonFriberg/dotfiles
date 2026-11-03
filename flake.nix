@@ -14,7 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      # Git fetch avoids GitLab's anonymous API rate limit (HTTP 429).
+      url = "git+https://gitlab.com/rycee/nur-expressions.git?dir=pkgs/firefox-addons&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dms = {
