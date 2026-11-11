@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   ...
 }: let
@@ -32,7 +33,6 @@ in {
       kubectl-neat
       kubectl-node-shell
       kubectl-tree
-      kubectl-validate
       kubectl-view-allocations
       kubectl-view-secret
       kubectx
@@ -42,6 +42,8 @@ in {
       kubeseal
       vault-bin
     ])
+    # Unstable's Go 1.27 build hangs in kubectl-validate's checkPhase.
+    [pkgs-stable.kubectl-validate]
   ];
 
   programs.k9s = {
