@@ -9,7 +9,20 @@
           ${./copilot-app-webkit-shim.c} -ldl
       '';
     in {
-      github-copilot-app = prev.github-copilot-app.overrideAttrs (old: {
+      github-copilot-app = prev.github-copilot-app.overrideAttrs (old: rec {
+        # Remove once nixpkgs ships >= 1.4.3.
+        version = "1.4.3";
+        src = final.fetchurl {
+          url = "https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-linux-x64.deb";
+          hash = "sha256-KIq/1ekQEVuZIRBBwK0+4Y75fHRIsicPY1ipC+miQ98=";
+        };
+        # libfoundry_local.so needs libonnxruntime.so.1, but only the unversioned
+        # library is bundled.
+        postInstall =
+          (old.postInstall or "")
+          + ''
+            ln -s libonnxruntime.so "$out/lib/GitHub Copilot/libonnxruntime.so.1"
+          '';
         # patchelf 0.15 corrupts the ~560 MB main executable's relocations
         # (ld.so: elf_machine_rela_relative assertion); newer patchelf works.
         nativeBuildInputs = [final.patchelfUnstable] ++ (old.nativeBuildInputs or []);
@@ -25,15 +38,6 @@
           + ''
             gappsWrapperArgs+=(--set-default ALSA_PLUGIN_DIR "${final.pipewire}/lib/alsa-lib")
             gappsWrapperArgs+=(--prefix LD_PRELOAD : "${copilotAppWebkitShim}/lib/libcopilot-app-webkit-shim.so")
-          '';
-        # Microsoft.AI.Foundry.Local.Core.so (.NET NativeAOT) dlopens libssl by
-        # name; add it to that library's RPATH to avoid "No usable version of
-        # libssl was found" aborts at startup.
-        postFixup =
-          (old.postFixup or "")
-          + ''
-            patchelf --add-rpath ${final.lib.getLib final.openssl_3_5}/lib \
-              "$out/lib/GitHub Copilot/Microsoft.AI.Foundry.Local.Core.so"
           '';
       });
     })
